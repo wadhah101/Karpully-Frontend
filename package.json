@@ -27,14 +27,20 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
+    "@tailwindcss/line-clamp": "^0.2.0",
+    "clsx": "^1.1.1",
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-icons": "^4.2.0",
     "react-redux": "^7.2.3",
-    "sass": "^1.32.8"
+    "react-use": "^17.2.3",
+    "sass": "^1.32.8",
+    "tailwindcss-fluid-container": "^4.0.0"
   },
   "devDependencies": {
     "@testing-library/react": "^11.2.5",
+    "@types/faker": "^5.5.1",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.25",
     "@types/react": "^17.0.1",
@@ -45,6 +51,7 @@
     "eslint": "^7.19.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-react": "^7.19.0",
+    "faker": "^5.5.3",
     "husky": "^4.2.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
