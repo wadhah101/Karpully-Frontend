@@ -717,10 +717,10 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/faker@^5.5.1":
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/@types/faker/-/faker-5.5.1.tgz#9fff6bf7bbaa13b1069c4e534c45610603a48bc5"
-  integrity sha512-JXGjV76oEUZUOSAr3bP5txETYoq0XDOQA8BpOz8Wc3EuvfF7sUVquf/EvM3aphuVKuVaYDSDu523/mAHnqrcvg==
+"@types/faker@^5.5.2":
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/@types/faker/-/faker-5.5.2.tgz#71084b72b5ac18bdb3404b9b29db010ba74136e8"
+  integrity sha512-KRBp6Cb2BsC/mz1m2oRp79KlEViX/nTZSunRPltXHpxEEEvFg1wQbgGJeJY+TGQHHZCx0F+jskPDwrkEovbvwA==
 
 "@types/graceful-fs@^4.1.2":
   version "4.1.5"
@@ -1581,7 +1581,7 @@ char-regex@^1.0.2:
   resolved "https://registry.yarnpkg.com/char-regex/-/char-regex-1.0.2.tgz#d744358226217f981ed58f479b1d6bcc29545dcf"
   integrity sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==
 
-chokidar@3.5.1, "chokidar@>=2.0.0 <4.0.0", chokidar@^3.5.1:
+chokidar@3.5.1, "chokidar@>=3.0.0 <4.0.0", chokidar@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.1.tgz#ee9ce7bbebd2b79f49f304799d5468e31e14e68a"
   integrity sha512-9+s+Od+W0VJJzawDma/gvBNQqkTiqYTWLuZoyAsivsI4AaWTCzHG06/TMjsf1cYe9Cb97UCEhjz7HvnPk2p/tw==
@@ -5598,12 +5598,12 @@ sane@^4.0.3:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-sass@^1.32.8:
-  version "1.32.8"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.32.8.tgz#f16a9abd8dc530add8834e506878a2808c037bdc"
-  integrity sha512-Sl6mIeGpzjIUZqvKnKETfMf0iDAswD9TNlv13A7aAF3XZlRPMq4VvJWBC2N2DXbp94MQVdNSFG6LfF/iOXrPHQ==
+sass@^1.32.10:
+  version "1.32.10"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.32.10.tgz#d40da4e20031b450359ee1c7e69bc8cc89569241"
+  integrity sha512-Nx0pcWoonAkn7CRp0aE/hket1UP97GiR1IFw3kcjV3pnenhWgZEWUf0ZcfPOV2fK52fnOcK3JdC/YYZ9E47DTQ==
   dependencies:
-    chokidar ">=2.0.0 <4.0.0"
+    chokidar ">=3.0.0 <4.0.0"
 
 saxes@^5.0.1:
   version "5.0.1"
