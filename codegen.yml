@@ -1,6 +1,6 @@
 schema:
   - ${NEXT_PUBLIC_API_URL}
-documents: "./src/**/*.graphql"
+documents: './src/**/*.graphql'
 generates:
   ./src/graphql/generated-types.ts:
     plugins:

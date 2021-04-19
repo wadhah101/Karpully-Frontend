@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 // import { gql } from '@apollo/client'
 
@@ -7,9 +8,11 @@ interface IHeaderLogoProps {}
 
 const HeaderLogo: React.FC<IHeaderLogoProps> = () => {
   return (
-    <div>
-      <img src="/logo/logo.svg" className="h-14 " />
-    </div>
+    <Link href="/" passHref>
+      <a className="block">
+        <img alt="site logo" src="/logo/logo.svg" className="h-12 " />
+      </a>
+    </Link>
   )
 }
 

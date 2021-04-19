@@ -1,21 +1,47 @@
+import Link from 'next/link'
 import React from 'react'
 
 interface IHomeBannerProps {}
 
+// const aspectRatio = 4480 / 6720
+// const width = 1920 / 2
+
 const HomeBanner: React.FC<IHomeBannerProps> = () => {
   return (
-    <div className="grid h-screen grid-cols-2">
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ea
-        possimus nesciunt temporibus asperiores, nisi suscipit repellat error
-        voluptate quasi enim eius ipsum expedita sint exercitationem blanditiis
-        magni? Velit, ad?
+    <div className="grid w-full h-screen grid-cols-2 ">
+      <div className="flex flex-col justify-center px-32 ">
+        <h1 className="mb-1 font-bold text-8xl ">Karpully</h1>
+        <h2 className="text-2xl font-semibold text-sblack-222 ">
+          Travel Anytime, Anywhere.
+        </h2>
+        <p className="mt-2 text-lg text-sblack-333 ">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta vitae
+          voluptatem ab omnis excepturi corrupti. Laborum harum praesentium
+          atque, accusantium, sed illum obcaecati tempora provident suscipit
+          facilis nobis minima earum?
+        </p>
+        <div className="grid items-center grid-cols-2 gap-4 my-4 text-lg font-bold ">
+          <Link href="signup" passHref>
+            <a className="grid  py-2.5 text-white bg-opacity-50 rounded bg-gradient-to-r from-kgreen-600 place-items-center to-kgreen-300">
+              Join
+            </a>
+          </Link>
+
+          <Link href="/carpools" passHref>
+            <a className="grid  py-2.5 text-white bg-opacity-50 rounded bg-gradient-to-r from-kpink-600 place-items-center to-kpink-300">
+              Browse Offers
+            </a>
+          </Link>
+        </div>
+        <div className="text-black t text-opacity-70">
+          <p>
+            The most popular carpooling platform in Tunisia with +1000 users &
+            +100 daily offers
+          </p>
+        </div>
       </div>
-      <div className="text-white bg-kgray-900 ">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo assumenda
-        consectetur, minima pariatur cum impedit iure quidem libero omnis,
-        adipisci ea fugit porro deserunt nostrum repellendus explicabo harum
-        molestias natus.
+      <div className="grid overflow-hidden">
+        <img className="object-cover" src="/assets/home.jpg" />
       </div>
     </div>
   )
