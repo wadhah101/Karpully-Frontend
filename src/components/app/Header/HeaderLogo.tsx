@@ -6,7 +6,11 @@ interface IHeaderLogoProps {}
 // const gqp = gql``
 
 const HeaderLogo: React.FC<IHeaderLogoProps> = () => {
-  return <div> </div>
+  return (
+    <div>
+      <img src="/logo/logo.svg" className="h-14 " />
+    </div>
+  )
 }
 
 export default HeaderLogo

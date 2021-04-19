@@ -34,6 +34,6 @@ const HeaderLinkFactory = ({
 export const navLinks: HeaderLinkData[] = [
   HeaderLinkFactory({ name: 'feed' }),
   HeaderLinkFactory({ name: 'carpools' }),
-  HeaderLinkFactory({ name: 'arrage', to: 'carpools/arrange' }),
+  HeaderLinkFactory({ name: 'arrange', to: 'carpools/arrange' }),
   HeaderLinkFactory({ name: 'about' }),
 ]

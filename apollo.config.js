@@ -2,7 +2,7 @@ module.exports = {
   client: {
     service: {
       name: 'karpully-backend',
-      url: process.env.API_URL,
+      url: process.env.NEXT_PUBLIC_API_URL,
     },
   },
 }

@@ -1,5 +1,5 @@
 schema:
-  - ${API_URL}
+  - ${NEXT_PUBLIC_API_URL}
 documents: "./src/**/*.graphql"
 generates:
   ./src/graphql/generated-types.ts:

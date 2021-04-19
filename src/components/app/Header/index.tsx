@@ -5,9 +5,11 @@ interface Props {}
 
 export const Header: React.FC<Props> = () => {
   return (
-    <StatelessHeader
-      text={{ white: true }}
-      background={{ transparent: true }}
-    />
+    <div className="mb-10">
+      <StatelessHeader
+        text={{ white: true }}
+        background={{ transparent: true }}
+      />
+    </div>
   )
 }

@@ -5,10 +5,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "postinstall": "codegen",
+    "build": "gql-gen -r dotenv/config && next build",
+    "codegen": "gql-gen -r dotenv/config",
     "serve": "next start",
-    "codegen": "gql-gen",
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js",
