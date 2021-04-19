@@ -3,6 +3,8 @@ import { navLinks } from './data'
 import HeaderLogo from './HeaderLogo'
 import Link from 'next/link'
 import clsx from 'clsx'
+import { useDispatch } from 'react-redux'
+import { openPortal } from '../../../utils/redux/slices/appSlice'
 
 interface IStatelessHeaderProps {
   text: { white: boolean }
@@ -13,6 +15,7 @@ const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
   body: { fixed },
   text: { white },
 }) => {
+  const dispatch = useDispatch()
   const navLinksLocal = navLinks.slice(0)
   return (
     <header
@@ -41,12 +44,18 @@ const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
               </Link>
             ))}
             <li className="">
-              <button className="font-semibold" onClick={() => null}>
+              <button
+                className="font-semibold"
+                onClick={() => dispatch(openPortal('login'))}
+              >
                 Login
               </button>
             </li>
             <li>
-              <button className="grid px-8 py-2.5 text-white bg-opacity-50 rounded bg-gradient-to-r from-kgreen-700 font-semibold place-items-center to-kgreen-300 ">
+              <button
+                onClick={() => dispatch(openPortal('signup'))}
+                className="grid px-8 py-2.5 text-white bg-opacity-50 rounded bg-gradient-to-r from-kgreen-700 font-semibold place-items-center to-kgreen-300 "
+              >
                 Sign Up
               </button>
             </li>

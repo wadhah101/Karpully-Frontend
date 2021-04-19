@@ -21,14 +21,14 @@ const HomeBanner: React.FC<IHomeBannerProps> = () => {
           facilis nobis minima earum?
         </p>
         <div className="grid items-center grid-cols-2 gap-4 my-4 text-lg font-bold ">
-          <Link href="signup" passHref>
-            <a className="grid  py-2.5 text-white bg-opacity-50 rounded bg-gradient-to-r from-kgreen-600 place-items-center to-kgreen-300">
+          <Link href="/user/signup" passHref>
+            <a className="grid py-2 text-white bg-opacity-50 rounded bg-gradient-to-r from-kgreen-600 place-items-center to-kgreen-300">
               Join
             </a>
           </Link>
 
           <Link href="/carpools" passHref>
-            <a className="grid  py-2.5 text-white bg-opacity-50 rounded bg-gradient-to-r from-kpink-600 place-items-center to-kpink-300">
+            <a className="grid py-2 text-white bg-opacity-50 rounded bg-gradient-to-r from-kpink-600 place-items-center to-kpink-300">
               Browse Offers
             </a>
           </Link>
