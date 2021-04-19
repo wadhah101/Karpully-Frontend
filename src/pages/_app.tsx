@@ -6,14 +6,18 @@ import { Footer } from '../components/app/Footer'
 import { Provider } from 'react-redux'
 import { Header } from '../components/app/Header'
 import store from '../utils/redux/store'
+import { ApolloProvider } from '@apollo/client/react'
+import { client } from '../utils/apollo'
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <Provider store={store}>
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
-    </Provider>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <Header />
+        <Component {...pageProps} />
+        <Footer />
+      </Provider>
+    </ApolloProvider>
   )
 }
 

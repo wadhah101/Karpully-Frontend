@@ -1,18 +1,21 @@
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
+import React from 'react'
+import HomeBanner from '../components/pages/Home/HomeBanner'
 
-export const Home: NextPage = () => {
+const Home: NextPage = () => {
   return (
     <div>
-      <div className="p-3">
-        <p className="bg-red-300 ">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio eum
-          dolorem tempore necessitatibus ad adipisci, reiciendis dolores,
-          nesciunt debitis, enim iusto. Consectetur minima sint harum iste eius
-          qui, perspiciatis et.
-        </p>
-      </div>
+      <HomeBanner />
     </div>
   )
+}
+
+export const getStaticProps: GetStaticProps = async (_ctx) => {
+  return {
+    props: {
+      data: null,
+    },
+  }
 }
 
 export default Home
