@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const tcontainer = require('tailwindcss-fluid-container')
+const lineClamp = require('@tailwindcss/line-clamp')
+
 module.exports = {
   mode: 'jit',
   purge: [
@@ -6,6 +10,18 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    fluidContainer: {
+      default: {
+        maxWidth: {
+          default: '800px',
+          lg: '1300px',
+        },
+        padding: {
+          default: '1rem',
+          lg: '2.5rem',
+        },
+      },
+    },
     extend: {
       colors: {
         kgreen: {
@@ -70,5 +86,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [lineClamp, tcontainer],
 }

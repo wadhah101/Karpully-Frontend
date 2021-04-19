@@ -4,7 +4,7 @@ import HomeBanner from '../components/pages/Home/HomeBanner'
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <div className="">
       <HomeBanner />
     </div>
   )
