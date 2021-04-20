@@ -30,10 +30,10 @@ const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
         <nav>
           <ul
             className={clsx(
-              'grid items-center grid-flow-col-dense gap-6 font-semibold  capitalize ',
+              'grid items-center transition-colors duration-300 ease-in-out grid-flow-col-dense gap-6 font-semibold  capitalize ',
               white
-                ? 'text-black text-opacity-75'
-                : 'text-white text-opacity-80'
+                ? 'text-white text-opacity-80'
+                : 'text-black text-opacity-75'
             )}
           >
             {navLinksLocal.map((e) => (

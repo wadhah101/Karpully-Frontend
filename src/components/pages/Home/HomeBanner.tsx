@@ -6,10 +6,15 @@ interface IHomeBannerProps {}
 // const aspectRatio = 4480 / 6720
 // const width = 1920 / 2
 
+const image = '/assets/Pattern-Randomized.svg'
+
 const HomeBanner: React.FC<IHomeBannerProps> = () => {
   return (
     <div className="grid w-full h-screen grid-cols-2 ">
-      <div className="flex flex-col justify-center px-32 ">
+      <div
+        style={{ background: `url(${image})` }}
+        className="flex flex-col justify-center px-32 bg-repeat "
+      >
         <h1 className="mb-1 font-bold text-8xl ">Karpully</h1>
         <h2 className="text-2xl font-semibold text-sblack-222 ">
           Travel Anytime, Anywhere.

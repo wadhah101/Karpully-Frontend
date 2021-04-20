@@ -1,11 +1,13 @@
 import { GetStaticProps, NextPage } from 'next'
 import React from 'react'
 import HomeBanner from '../components/pages/Home/HomeBanner'
+import HomeFeatures from '../components/pages/Home/HomeFeatures'
 
 const Home: NextPage = () => {
   return (
     <div className="">
       <HomeBanner />
+      <HomeFeatures />
     </div>
   )
 }
