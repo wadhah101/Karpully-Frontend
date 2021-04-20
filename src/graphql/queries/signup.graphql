@@ -1,0 +1,31 @@
+mutation signup(
+  $firstname: String!
+  $username: String!
+  $lastname: String!
+  $age: Float!
+  $email: String!
+  $localization: String!
+  $telNumber: String!
+  $password: String!
+  $gender: Float!
+) {
+  createUser(
+    createUserInput: {
+      firstname: $firstname
+      lastname: $lastname
+      username: $username
+      age: $age
+      email: $email
+      localization: $localization
+      gender: $gender
+      roles: ["user"]
+      telNumber: $telNumber
+      password: $password
+    }
+  ) {
+    id
+    age
+    firstname
+    lastname
+  }
+}

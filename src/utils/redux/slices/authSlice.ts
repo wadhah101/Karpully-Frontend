@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { CoreState } from '../store'
+import { User } from '../../../graphql/generated-types'
 
 type AuthSlice = {
-  user: any
+  user: User
   token: string
 }
 
@@ -15,13 +15,11 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    //   TODO login with redux thunk
-    login: (state, action: PayloadAction<{ token: string; user: any }>) => {
+    login: (state, action: PayloadAction<{ token: string; user: User }>) => {
       state.user = action.payload.user
       state.token = action.payload.token
     },
 
-    //   TODO logout with redux thunk
     logout: (state) => {
       state.user = null
       state.token = null
@@ -41,8 +39,6 @@ const authSlice = createSlice({
     // },
   },
 })
-
-export const selectCount = (state: CoreState): number => state.counter.value
 
 export const { login, logout } = authSlice.actions
 
