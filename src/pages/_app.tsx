@@ -5,12 +5,13 @@ import * as React from 'react'
 import { Footer } from '../components/app/Footer'
 import { Provider, useSelector } from 'react-redux'
 import { Header } from '../components/app/Header'
-import store, { CoreState } from '../utils/redux/store'
+import { CoreState, persistor, store } from '../utils/redux/store'
 import { ApolloProvider } from '@apollo/client/react'
 import { client } from '../utils/apollo'
 import AppHead from '../components/app/Head/Head'
 import { AppState } from '../utils/redux/slices/appSlice'
 import PortalManager from '../components/portals/PortalManager'
+import { PersistGate } from 'redux-persist/integration/react'
 
 const MyWrapper: React.FC<AppProps> = ({ Component, pageProps }) => {
   const app = useSelector<CoreState, AppState>((state) => state.app)
@@ -29,7 +30,9 @@ const MyApp: React.FC<AppProps> = (e) => {
   return (
     <ApolloProvider client={client}>
       <Provider store={store}>
-        <MyWrapper {...e} />
+        <PersistGate loading={null} persistor={persistor}>
+          <MyWrapper {...e} />
+        </PersistGate>
       </Provider>
     </ApolloProvider>
   )

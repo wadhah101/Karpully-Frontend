@@ -7,7 +7,6 @@ interface IloginProps {}
 
 const LoginPortal: React.FC<IloginProps> = () => {
   const dispatch = useDispatch()
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loginMutation, result] = useLoginMutation({
     variables: { username: 'Ahmed', password: 'ahmed' },
   })
