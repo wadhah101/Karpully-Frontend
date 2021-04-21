@@ -1,13 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AppPortals } from '../../../components/portals/Portals.data'
+import { AppPortals } from '../../../components/Portals/Portals.data'
 import { CoreState } from '../store'
 
 export type AppState = {
-  portal: AppPortals
+  portal: {
+    current: AppPortals
+    show: boolean
+  }
 }
 
 const initialState: AppState = {
-  portal: null,
+  portal: { current: null, show: false },
 }
 
 const counterSlice = createSlice({
@@ -15,10 +18,10 @@ const counterSlice = createSlice({
   initialState,
   reducers: {
     openPortal: (state, action: PayloadAction<AppPortals>) => {
-      state.portal = action.payload
+      state.portal = { current: action.payload, show: true }
     },
     closePortal: (state) => {
-      state.portal = null
+      state.portal.show = false
     },
   },
 })

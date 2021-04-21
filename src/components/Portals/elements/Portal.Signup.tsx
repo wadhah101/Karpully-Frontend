@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useSignupMutation } from '../../graphql/generated-types'
-import { closePortal } from '../../utils/redux/slices/appSlice'
+import { useSignupMutation } from '../../../graphql/generated-types'
+import { closePortal } from '../../../utils/redux/slices/appSlice'
 
 interface IsignupProps {}
 
