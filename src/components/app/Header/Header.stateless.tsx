@@ -5,15 +5,19 @@ import clsx from 'clsx'
 import { useDispatch } from 'react-redux'
 import { openPortal } from '../../../utils/redux/slices/appSlice'
 import { HEADER_NAV_LINKS } from './Header.data'
+import { User } from '../../../graphql/generated-types'
+import { logout } from '../../../utils/redux/slices/authSlice'
 
 interface IStatelessHeaderProps {
   text: { white: boolean }
   body: { transparent: boolean; fixed: boolean }
+  user: Partial<User>
 }
 
 export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
   body: { fixed },
   text: { white },
+  user,
 }) => {
   const dispatch = useDispatch()
   const navLinksLocal = [...HEADER_NAV_LINKS]
@@ -43,22 +47,35 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
                 </a>
               </Link>
             ))}
-            <li className="">
-              <button
-                className="font-semibold"
-                onClick={() => dispatch(openPortal('login'))}
-              >
-                Login
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => dispatch(openPortal('signup'))}
-                className="grid px-8 py-2.5 text-white bg-opacity-50 rounded bg-gradient-to-r from-kgreen-700 font-semibold place-items-center to-kgreen-300 "
-              >
-                Sign Up
-              </button>
-            </li>
+            {user ? (
+              <li>
+                <button
+                  className="font-semibold"
+                  onClick={() => dispatch(logout())}
+                >
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <React.Fragment>
+                <li className="">
+                  <button
+                    className="font-semibold"
+                    onClick={() => dispatch(openPortal('login'))}
+                  >
+                    Login
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => dispatch(openPortal('signup'))}
+                    className="grid px-8 py-2.5 text-white bg-opacity-50 rounded bg-gradient-to-r from-kgreen-700 font-semibold place-items-center to-kgreen-300 "
+                  >
+                    Sign Up
+                  </button>
+                </li>
+              </React.Fragment>
+            )}
           </ul>
         </nav>
       </div>

@@ -1,5 +1,18 @@
 mutation login($username: String!, $password: String!) {
   login(credentialsInput: { username: $username, password: $password }) {
     access_token
+    user {
+      id
+      username
+      firstname
+      lastname
+      age
+      rate
+      email
+      localization
+      telNumber
+      gender
+      isConfirmed
+    }
   }
 }
