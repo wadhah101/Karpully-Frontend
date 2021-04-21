@@ -16,7 +16,7 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
   text: { white },
 }) => {
   const dispatch = useDispatch()
-  const navLinksLocal = HEADER_NAV_LINKS.slice(0)
+  const navLinksLocal = [...HEADER_NAV_LINKS]
   return (
     <header
       className={clsx(

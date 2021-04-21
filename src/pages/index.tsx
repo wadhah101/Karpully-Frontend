@@ -1,13 +1,12 @@
 import { GetStaticProps, NextPage } from 'next'
 import React from 'react'
-import HomeBanner from '../components/pages/Home/Home.Banner'
-import HomeFeatures from '../components/pages/Home/Home.Features'
+import * as Home from '../components/pages/Home/exports'
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
   return (
-    <div className="">
-      <HomeBanner />
-      <HomeFeatures />
+    <div>
+      <Home.Banner />
+      <Home.Features />
     </div>
   )
 }
@@ -20,4 +19,4 @@ export const getStaticProps: GetStaticProps = async (_ctx) => {
   }
 }
 
-export default Home
+export default HomePage

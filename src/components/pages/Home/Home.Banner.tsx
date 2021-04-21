@@ -8,7 +8,7 @@ interface IHomeBannerProps {}
 
 const image = '/assets/Pattern-Randomized.svg'
 
-const HomeBanner: React.FC<IHomeBannerProps> = () => {
+export const Banner: React.FC<IHomeBannerProps> = () => {
   return (
     <div className="grid w-full h-screen grid-cols-2 ">
       <div
@@ -51,5 +51,3 @@ const HomeBanner: React.FC<IHomeBannerProps> = () => {
     </div>
   )
 }
-
-export default HomeBanner
