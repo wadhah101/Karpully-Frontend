@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppPortals } from '../../../components/Portals/Portals.data'
-import { CoreState } from '../store'
 
 export type AppState = {
   portal: {
@@ -25,8 +24,6 @@ const counterSlice = createSlice({
     },
   },
 })
-
-export const selectCount = (state: CoreState): number => state.counter.value
 
 export const { openPortal, closePortal } = counterSlice.actions
 

@@ -14,7 +14,6 @@ import {
   REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import counterReducer from './slices/counterSlice'
 import appReducer from './slices/appSlice'
 import authReducer from './slices/authSlice'
 
@@ -26,7 +25,6 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
   app: appReducer,
   auth: authReducer,
 })
