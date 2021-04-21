@@ -1,6 +1,6 @@
 import withRouter, { WithRouterProps } from 'next/dist/client/with-router'
 import React, { useEffect, useState } from 'react'
-import StatelessHeader from './StatelessHeader'
+import { StatelessHeader } from './Header.stateless'
 
 // TODO program
 const pageWithScrollColorChangeChecker = (current: string): boolean =>

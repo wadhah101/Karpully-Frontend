@@ -1,22 +1,22 @@
 import React from 'react'
-import { navLinks } from './data'
-import HeaderLogo from './HeaderLogo'
+import HeaderLogo from './Components/Header.logo'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { useDispatch } from 'react-redux'
 import { openPortal } from '../../../utils/redux/slices/appSlice'
+import { HEADER_NAV_LINKS } from './Header.data'
 
 interface IStatelessHeaderProps {
   text: { white: boolean }
   body: { transparent: boolean; fixed: boolean }
 }
 
-const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
+export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
   body: { fixed },
   text: { white },
 }) => {
   const dispatch = useDispatch()
-  const navLinksLocal = navLinks.slice(0)
+  const navLinksLocal = HEADER_NAV_LINKS.slice(0)
   return (
     <header
       className={clsx(
@@ -65,5 +65,3 @@ const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
     </header>
   )
 }
-
-export default StatelessHeader

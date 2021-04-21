@@ -31,7 +31,7 @@ const HeaderLinkFactory = ({
   comparator,
 })
 
-export const navLinks: HeaderLinkData[] = [
+export const HEADER_NAV_LINKS: HeaderLinkData[] = [
   // HeaderLinkFactory({ name: 'feed' }),
   HeaderLinkFactory({ name: 'carpools' }),
   HeaderLinkFactory({ name: 'arrange', to: '/carpools/arrange' }),

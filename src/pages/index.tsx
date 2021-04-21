@@ -1,7 +1,7 @@
 import { GetStaticProps, NextPage } from 'next'
 import React from 'react'
-import HomeBanner from '../components/pages/Home/HomeBanner'
-import HomeFeatures from '../components/pages/Home/HomeFeatures'
+import HomeBanner from '../components/pages/Home/Home.Banner'
+import HomeFeatures from '../components/pages/Home/Home.Features'
 
 const Home: NextPage = () => {
   return (

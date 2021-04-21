@@ -1,0 +1,13 @@
+query carpools($page: Float!, $limit: Float!) {
+  carpools(where: {}, paginationInput: { page: $page, limit: $limit }) {
+    items {
+      id
+      owner {
+        username
+      }
+    }
+    meta {
+      itemCount
+    }
+  }
+}

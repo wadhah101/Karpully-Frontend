@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { User } from '../../../graphql/generated-types'
 
-type AuthSlice = {
+export type AuthState = {
   user: User
   token: string
 }
 
-const initialState: AuthSlice = {
+const initialState: AuthState = {
   user: null,
   token: null,
 }

@@ -3,38 +3,35 @@ import '../styles/global.scss'
 import type { AppProps } from 'next/app'
 import * as React from 'react'
 import { Footer } from '../components/app/Footer'
-import { Provider, useSelector } from 'react-redux'
-import Header from '../components/app/Header'
-import { CoreState, persistor, store } from '../utils/redux/store'
+import { Provider } from 'react-redux'
+import Header from '../components/app/Header/Header.controller'
+import { persistor, store } from '../utils/redux/store'
 import { ApolloProvider } from '@apollo/client/react'
-import { client } from '../utils/apollo'
 import AppHead from '../components/app/Head/Head'
-import { AppState } from '../utils/redux/slices/appSlice'
-import PortalManager from '../components/portals/PortalManager'
+import PortalController from '../components/portals/Portal.controller'
 import { PersistGate } from 'redux-persist/integration/react'
+import { useClient } from '../utils/apollo'
 
 const MyWrapper: React.FC<AppProps> = ({ Component, pageProps }) => {
-  const app = useSelector<CoreState, AppState>((state) => state.app)
+  const client = useClient()
   return (
-    <React.Fragment>
+    <ApolloProvider client={client}>
       <AppHead />
       <Header />
       <Component {...pageProps} />
-      <PortalManager portal={app.portal} />
+      <PortalController />
       <Footer />
-    </React.Fragment>
+    </ApolloProvider>
   )
 }
 
 const MyApp: React.FC<AppProps> = (e) => {
   return (
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <MyWrapper {...e} />
-        </PersistGate>
-      </Provider>
-    </ApolloProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <MyWrapper {...e} />
+      </PersistGate>
+    </Provider>
   )
 }
 

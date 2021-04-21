@@ -1,5 +1,5 @@
-import { AppPortals } from './../../../components/portals/PortalManager'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { AppPortals } from '../../../components/portals/Portals.data'
 import { CoreState } from '../store'
 
 export type AppState = {
@@ -20,18 +20,6 @@ const counterSlice = createSlice({
     closePortal: (state) => {
       state.portal = null
     },
-    // increment: (state) => {
-    //   state.value += 1
-    // },
-    // decrement: (state) => {
-    //   state.value -= 1
-    // },
-    // reset: (state) => {
-    //   state.value = 0
-    // },
-    // incrementByAmount: (state, action) => {
-    //   state.value += action.payload
-    // },
   },
 })
 
