@@ -9,8 +9,7 @@ import {
   HEADER_NAV_LINKS_SIGNED_OUT,
 } from './Header.data'
 import { User } from '../../../graphql/generated-types'
-import { logout } from '../../../utils/redux/slices/authSlice'
-import { useRouter } from 'next/dist/client/router'
+import HeaderProfile from './Components/Header.profile'
 
 interface IStatelessHeaderProps {
   text: { white: boolean }
@@ -23,7 +22,6 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
   text: { white },
   user,
 }) => {
-  const router = useRouter()
   const dispatch = useDispatch()
   const navLinksLocal = user
     ? HEADER_NAV_LINKS_SIGNED_IN
@@ -71,17 +69,7 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
               )
             )}
             {user ? (
-              <li>
-                <button
-                  className="font-semibold"
-                  onClick={() => {
-                    dispatch(logout())
-                    router.push('/')
-                  }}
-                >
-                  Logout
-                </button>
-              </li>
+              <HeaderProfile user={user} />
             ) : (
               <React.Fragment>
                 <li className="">

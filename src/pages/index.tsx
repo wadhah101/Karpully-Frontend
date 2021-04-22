@@ -17,6 +17,9 @@ const HomePage: NextPage = () => {
     <div>
       <Home.Banner />
       <Home.Features />
+      {/* Social proff */}
+      {/* FAQ */}
+      {/* Reach Us */}
     </div>
   )
 }
