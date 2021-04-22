@@ -32,6 +32,7 @@ const PortalController: React.FC<IPortalManagerProps> = () => {
           leaveFrom="scale-100 opacity-100"
           leaveTo="scale-90 opacity-0"
         >
+          {/* TODO add changing animation */}
           <div ref={ref} className="bg-transparent">
             <Comp />
           </div>

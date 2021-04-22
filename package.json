@@ -36,7 +36,8 @@
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
     "sass": "^1.32.10",
-    "tailwindcss-fluid-container": "^4.0.0"
+    "tailwindcss-fluid-container": "^4.0.0",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.21.3",
