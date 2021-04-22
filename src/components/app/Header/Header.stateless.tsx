@@ -69,7 +69,9 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
               )
             )}
             {user ? (
-              <HeaderProfile user={user} />
+              <li>
+                <HeaderProfile user={user} />
+              </li>
             ) : (
               <React.Fragment>
                 <li className="">
