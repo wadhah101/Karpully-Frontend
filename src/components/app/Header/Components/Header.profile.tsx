@@ -14,6 +14,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { logout } from '../../../../utils/redux/slices/authSlice'
 import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/dist/client/router'
 
 const ImageButton: React.FC = () => {
   const imageId = 'IuJc2qh2TcA'
@@ -34,6 +35,7 @@ const ImageButton: React.FC = () => {
 // TODO  extract components for menu items
 const ProfileMenu: React.FC = () => {
   const dispatch = useDispatch()
+  const router = useRouter()
 
   return (
     <div>
@@ -105,7 +107,10 @@ const ProfileMenu: React.FC = () => {
                   <Menu.Item>
                     {({ active }) => (
                       <button
-                        onClick={() => dispatch(logout())}
+                        onClick={() => {
+                          dispatch(logout())
+                          router.push('/')
+                        }}
                         className={`${
                           active ? 'bg-opacity-40  bg-gray-300 ' : ''
                         } group flex text-gray-800 transition-all font-semibold rounded-md items-center w-full px-2 py-2 text-sm`}
