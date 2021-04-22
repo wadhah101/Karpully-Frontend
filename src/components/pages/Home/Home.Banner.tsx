@@ -27,13 +27,13 @@ export const Banner: React.FC<IHomeBannerProps> = () => {
         </p>
         <div className="grid items-center grid-cols-2 gap-4 my-4 text-lg font-bold ">
           <Link href="/user/signup" passHref>
-            <a className="grid py-2 text-white bg-opacity-50 rounded bg-gradient-to-r from-kgreen-600 place-items-center to-kgreen-300">
+            <a className="grid py-2 text-white bg-opacity-50 rounded bg-gradient-to-r from-kgreen-600 place-items-center to-kgreen-400">
               Join
             </a>
           </Link>
 
           <Link href="/carpools" passHref>
-            <a className="grid py-2 text-white bg-opacity-50 rounded bg-gradient-to-r from-kpink-600 place-items-center to-kpink-300">
+            <a className="grid py-2 text-white bg-opacity-50 rounded bg-gradient-to-r from-kpink-600 place-items-center to-kpink-400">
               Browse Offers
             </a>
           </Link>

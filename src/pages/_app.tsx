@@ -10,10 +10,10 @@ import { ApolloProvider } from '@apollo/client/react'
 import AppHead from '../components/app/Head/Head'
 import * as Portals from '../components/Portals/exports'
 import { PersistGate } from 'redux-persist/integration/react'
-import { useClient } from '../utils/apollo'
+import { useApolloClient } from '../utils/apollo'
 
 const MyWrapper: React.FC<AppProps> = ({ Component, pageProps }) => {
-  const client = useClient()
+  const client = useApolloClient()
   return (
     <ApolloProvider client={client}>
       <AppHead />

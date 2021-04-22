@@ -69,7 +69,7 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
                 <li>
                   <button
                     onClick={() => dispatch(openPortal('signup'))}
-                    className="grid px-8 py-2.5 text-white bg-opacity-50 rounded bg-gradient-to-r from-kgreen-700 font-semibold place-items-center to-kgreen-300 "
+                    className="grid px-8 py-2.5 text-white bg-opacity-50 rounded bg-gradient-to-r from-kgreen-700 font-semibold place-items-center to-kgreen-400 "
                   >
                     Sign Up
                   </button>
