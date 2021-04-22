@@ -13,7 +13,7 @@ interface IloginProps {}
 const LoginPortal: React.FC<IloginProps> = () => {
   const dispatch = useDispatch()
   return (
-    <div className="relative w-[30rem]  bg-white rounded">
+    <div className="relative w-[30rem] bg-white rounded">
       <span
         onClick={() => dispatch(closePortal())}
         className="absolute block text-black text-opacity-50 cursor-pointer top-6 left-6 "
@@ -22,7 +22,7 @@ const LoginPortal: React.FC<IloginProps> = () => {
       </span>
       <div className="flex flex-col items-center p-6">
         <h2 className="text-4xl font-extrabold text-black text-opacity-80">
-          Join Karpooly
+          Join Karpully
         </h2>
         <h3 className="text-lg text-black text-opacity-50">
           Sign up to start your journey{' '}
@@ -35,7 +35,7 @@ const LoginPortal: React.FC<IloginProps> = () => {
       <hr />
 
       <div className="flex flex-col items-center p-6">
-        <p className="text-black  text-opacity-80">
+        <p className="text-black text-opacity-80">
           Already registered ?&nbsp;
           <span
             onClick={() => dispatch(openPortal('login'))}

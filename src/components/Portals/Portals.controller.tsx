@@ -8,6 +8,7 @@ import { Transition } from '@headlessui/react'
 
 interface IPortalManagerProps {}
 
+// TODO code spliting
 const PortalController: React.FC<IPortalManagerProps> = () => {
   const portal = useSelector<CoreState, { current: AppPortals; show: boolean }>(
     (state) => state.app.portal
