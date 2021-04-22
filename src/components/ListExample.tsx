@@ -53,7 +53,7 @@ export const Example: React.FC = () => {
                       }
                       value={person}
                     >
-                      {({ selected, _active }) => (
+                      {({ selected }) => (
                         <>
                           <span
                             className={`${
