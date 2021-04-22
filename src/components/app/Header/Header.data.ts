@@ -40,7 +40,7 @@ export const HEADER_NAV_LINKS_SIGNED_OUT: HeaderLinkData[] = [
 ]
 
 export const HEADER_NAV_LINKS_SIGNED_IN: HeaderLinkData[] = [
-  // HeaderLinkFactory({ name: 'feed' }),
+  HeaderLinkFactory({ name: 'feed' }),
   HeaderLinkFactory({ name: 'carpools' }),
   HeaderLinkFactory({ name: 'arrange', to: '/carpools/arrange' }),
 ]

@@ -1,7 +1,7 @@
 import { GetStaticProps, NextPage } from 'next'
 
 const feed: NextPage = () => {
-  return <div></div>
+  return <div className="min-h-screen"></div>
 }
 
 export const getStaticProps: GetStaticProps = async (_ctx) => {

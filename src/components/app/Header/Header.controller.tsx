@@ -1,4 +1,4 @@
-import withRouter, { WithRouterProps } from 'next/dist/client/with-router'
+import { useRouter } from 'next/dist/client/router'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { User } from '../../../graphql/generated-types'
@@ -9,7 +9,8 @@ import { StatelessHeader } from './Header.stateless'
 const pageWithScrollColorChangeChecker = (current: string): boolean =>
   current === '/'
 
-const Header: React.FC<WithRouterProps> = ({ router }) => {
+const Header: React.FC = () => {
+  const router = useRouter()
   const pageWithScrollColorChange = pageWithScrollColorChangeChecker(
     router.pathname
   )
@@ -44,7 +45,7 @@ const Header: React.FC<WithRouterProps> = ({ router }) => {
     }
     document.addEventListener('scroll', work)
     return () => document.removeEventListener('scroll', work)
-  }, [textWhiteWithScroll])
+  }, [textWhiteWithScroll, router])
   return (
     <StatelessHeader
       user={user}
@@ -54,4 +55,4 @@ const Header: React.FC<WithRouterProps> = ({ router }) => {
   )
 }
 
-export default withRouter(Header)
+export default Header

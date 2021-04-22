@@ -47,13 +47,30 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
                 : 'text-black text-opacity-75'
             )}
           >
-            {navLinksLocal.map((e) => (
-              <Link passHref key={e.link.name} href={e.link.to}>
-                <a>
-                  <li>{e.link.name}</li>
-                </a>
-              </Link>
-            ))}
+            {navLinksLocal.map((e) =>
+              e.link.name === 'arrange' ? (
+                user ? (
+                  <Link passHref key={e.link.name} href={e.link.to}>
+                    <a>
+                      <li>{e.link.name}</li>
+                    </a>
+                  </Link>
+                ) : (
+                  <li
+                    className="cursor-pointer "
+                    onClick={() => dispatch(openPortal('login'))}
+                  >
+                    {e.link.name}
+                  </li>
+                )
+              ) : (
+                <Link passHref key={e.link.name} href={e.link.to}>
+                  <a>
+                    <li>{e.link.name}</li>
+                  </a>
+                </Link>
+              )
+            )}
             {user ? (
               <li>
                 <button
