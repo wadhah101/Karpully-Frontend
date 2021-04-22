@@ -20,7 +20,7 @@ const PortalController: React.FC<IPortalManagerProps> = () => {
   })
 
   if (portal.current === null) return null
-  const Comp = PORTALS_WITH_DATA.find((e) => e[0] === portal.current)[1]
+  const Comp = PORTALS_WITH_DATA.find((e) => e[0] === portal.current)[1]()
 
   return (
     <Transition show={portal.show}>

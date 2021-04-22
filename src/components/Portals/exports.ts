@@ -1,5 +1,7 @@
-import Login from './elements/Login/Portal.Login'
-import Signup from './elements/SignUp/Portal.SignUp'
 import Controller from './Portals.controller'
+import dynamic from 'next/dynamic'
 
-export { Login, Signup, Controller }
+const Login = dynamic(() => import('./elements/Login/Portal.Login'))
+const SignUp = dynamic(() => import('./elements/SignUp/Portal.SignUp'))
+
+export { Login, SignUp, Controller }
