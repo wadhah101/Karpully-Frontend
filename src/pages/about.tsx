@@ -1,7 +1,7 @@
 import { GetStaticProps, NextPage } from 'next'
 
 const about: NextPage = () => {
-  return <div>Enter</div>
+  return <div></div>
 }
 
 export const getStaticProps: GetStaticProps = async (_ctx) => {

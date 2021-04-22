@@ -1,14 +1,15 @@
 import Link from 'next/link'
 import React from 'react'
+import { User } from '../../../../graphql/generated-types'
 // import { gql } from '@apollo/client'
 
-interface IHeaderLogoProps {}
+interface IHeaderLogoProps {
+  user: Partial<User>
+}
 
-// const gqp = gql``
-
-const HeaderLogo: React.FC<IHeaderLogoProps> = () => {
+const HeaderLogo: React.FC<IHeaderLogoProps> = ({ user }) => {
   return (
-    <Link href="/" passHref>
+    <Link href={user ? '/feed' : '/'} passHref>
       <a className="block">
         <img alt="site logo" src="/logo/logo.svg" className="h-12 " />
       </a>

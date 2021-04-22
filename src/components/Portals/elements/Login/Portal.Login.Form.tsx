@@ -8,9 +8,11 @@ import { login } from '../../../../utils/redux/slices/authSlice'
 import * as LoginFormData from './Portal.Login.Form.data'
 import { MailIcon, KeyIcon } from '@heroicons/react/outline'
 import * as Forms from '../../../../components/Forms/export'
+import { useRouter } from 'next/dist/client/router'
 
 const LoginPortalForm: React.FC = () => {
   const dispatch = useDispatch()
+  const router = useRouter()
   const [loginMutation, result] = useLoginMutation()
 
   useEffect(() => {
@@ -22,6 +24,7 @@ const LoginPortalForm: React.FC = () => {
       } = result
       dispatch(login({ token: access_token, user: user }))
       dispatch(closePortal())
+      router.push('/feed')
     }
     return () => null
   }, [result])

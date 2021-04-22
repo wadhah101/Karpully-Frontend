@@ -4,9 +4,13 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import { useDispatch } from 'react-redux'
 import { openPortal } from '../../../utils/redux/slices/appSlice'
-import { HEADER_NAV_LINKS } from './Header.data'
+import {
+  HEADER_NAV_LINKS_SIGNED_IN,
+  HEADER_NAV_LINKS_SIGNED_OUT,
+} from './Header.data'
 import { User } from '../../../graphql/generated-types'
 import { logout } from '../../../utils/redux/slices/authSlice'
+import { useRouter } from 'next/dist/client/router'
 
 interface IStatelessHeaderProps {
   text: { white: boolean }
@@ -19,17 +23,20 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
   text: { white },
   user,
 }) => {
+  const router = useRouter()
   const dispatch = useDispatch()
-  const navLinksLocal = [...HEADER_NAV_LINKS]
+  const navLinksLocal = user
+    ? HEADER_NAV_LINKS_SIGNED_IN
+    : HEADER_NAV_LINKS_SIGNED_OUT
   return (
     <header
       className={clsx(
-        'flex flex-col w-screen z-30 items-center top-0 left-0 justify-center h-24 px-8  ',
+        'flex flex-col w-screen z-30 items-center top-0 left-0 justify-center h-24 px-10  ',
         fixed ? 'fixed' : 'static'
       )}
     >
       <div className="flex items-center w-full">
-        <HeaderLogo />
+        <HeaderLogo user={user} />
         <div className="flex-grow" />
         <nav>
           <ul
@@ -51,7 +58,10 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
               <li>
                 <button
                   className="font-semibold"
-                  onClick={() => dispatch(logout())}
+                  onClick={() => {
+                    dispatch(logout())
+                    router.push('/')
+                  }}
                 >
                   Logout
                 </button>
