@@ -31,7 +31,9 @@ const LoginPortalForm: React.FC = () => {
     // formikHelpers: FormikHelpers<LoginFormData.FormValues>
   ): void | Promise<any> => {
     const { username, password } = values
-    loginMutation({ variables: { username, password } }).catch(() => null)
+    loginMutation({ variables: { username: username.trim(), password } }).catch(
+      () => null
+    )
   }
 
   return (

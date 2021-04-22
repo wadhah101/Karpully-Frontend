@@ -1,26 +1,19 @@
 import clsx from 'clsx'
 import { Form, Formik } from 'formik'
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { useLoginMutation } from '../../../../graphql/generated-types'
-import { login } from '../../../../utils/redux/slices/authSlice'
+import { useSignupMutation } from '../../../../graphql/generated-types'
 import * as SignUpFormData from './Portal.Login.Form.data'
 import { MailIcon, KeyIcon, UserCircleIcon } from '@heroicons/react/outline'
 import * as Forms from '../../../../components/Forms/export'
 
 // TODO complete sign up process elsewhere
 const SignUpPortalForm: React.FC = () => {
-  const dispatch = useDispatch()
-  const [loginMutation, result] = useLoginMutation()
+  const [signUpMutation, result] = useSignupMutation()
 
   useEffect(() => {
     if (result.called && !result.loading && !result.error) {
-      const {
-        data: {
-          login: { access_token, user },
-        },
-      } = result
-      dispatch(login({ token: access_token, user: user }))
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const a = result.data.createUser.id
       // dispatch(closePortal())
       // TODO add check your mail message
     }
@@ -31,8 +24,20 @@ const SignUpPortalForm: React.FC = () => {
     values: SignUpFormData.FormValues
     // formikHelpers: FormikHelpers<LoginFormData.FormValues>
   ): void | Promise<any> => {
-    const { username, password } = values
-    loginMutation({ variables: { username, password } }).catch(() => null)
+    const { username, password, fullName } = values
+    signUpMutation({
+      variables: {
+        username: username.trim(),
+        password,
+        firstname: fullName.trim(),
+        lastname: '',
+        age: 20,
+        email: '',
+        localization: '',
+        telNumber: '',
+        gender: 0,
+      },
+    }).catch(() => null)
   }
 
   return (
@@ -65,10 +70,10 @@ const SignUpPortalForm: React.FC = () => {
             />
             <button
               type="submit"
-              disabled={result.loading || !isValid}
+              disabled={result.loading || !isValid || !!result.data}
               className={clsx(
                 'grid px-8 py-2.5 rounded bg-gradient-to-r font-bold place-items-center  ',
-                (result.called && result.loading) || !isValid || result.data
+                (result.called && result.loading) || !isValid || !!result.data
                   ? 'from-kgreen-200 to-kgreen-200  text-gray-50'
                   : 'from-kgreen-600 to-kgreen-500 text-white'
               )}

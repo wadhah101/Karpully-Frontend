@@ -16,22 +16,25 @@ const Input: React.FC<FieldAttributes<InputCustomFields>> = ({
   RightIcon,
   ...props
 }) => (
-  <div className="flex items-center rounded ring">
+  <div className="flex items-center ">
     {LeftIcon && (
       <i className="flex text-gray-400 ">
         <LeftIcon className="w-6 h-6 mx-3" />
       </i>
     )}
-    <Field className={clsx('flex w-full p-2.5 ', className)} {...props}>
+    <Field
+      className={clsx(
+        'mt-0 block w-full px-0.5 py-2.5 border-0 outline-none border-b-2 border-gray-200 focus:ring-0 focus:border-black focus:border-opacity-70',
+        className
+      )}
+      {...props}
+    >
       {children}
     </Field>
     {RightIcon && (
       <i
         onClick={rightIconOnClick}
-        className={clsx(
-          'flex items-center self-stretch text-gray-400 ',
-          rightIconOnClick && 'cursor-pointer'
-        )}
+        className={clsx('text-gray-400 ', rightIconOnClick && 'cursor-pointer')}
       >
         <RightIcon className="w-6 h-6 mx-3 " />
       </i>

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const tcontainer = require('tailwindcss-fluid-container')
 const lineClamp = require('@tailwindcss/line-clamp')
+const forms = require('@tailwindcss/forms')
 
 module.exports = {
   mode: 'jit',
@@ -94,5 +95,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [lineClamp, tcontainer],
+  plugins: [lineClamp, tcontainer, forms],
 }
