@@ -48,27 +48,26 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
             )}
           >
             {navLinksLocal.map((e) =>
-              e.link.name === 'arrange' ? (
-                user ? (
-                  <Link passHref key={e.link.name} href={e.link.to}>
-                    <a>
-                      <li>{e.link.name}</li>
-                    </a>
+              e.link.name !== 'arrange' ? (
+                <li key={e.link.name}>
+                  <Link passHref href={e.link.to}>
+                    <a>{e.link.name}</a>
                   </Link>
-                ) : (
-                  <li
-                    className="cursor-pointer "
-                    onClick={() => dispatch(openPortal('login'))}
-                  >
-                    {e.link.name}
-                  </li>
-                )
+                </li>
               ) : (
-                <Link passHref key={e.link.name} href={e.link.to}>
-                  <a>
-                    <li>{e.link.name}</li>
-                  </a>
-                </Link>
+                <li
+                  key={e.link.name}
+                  className={clsx(!user && 'cursor-pointer ')}
+                  onClick={() => !user && dispatch(openPortal('login'))}
+                >
+                  {user ? (
+                    <Link passHref href={e.link.to}>
+                      <a>{e.link.name}</a>
+                    </Link>
+                  ) : (
+                    e.link.name
+                  )}
+                </li>
               )
             )}
             {user ? (

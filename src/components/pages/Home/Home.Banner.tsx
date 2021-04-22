@@ -46,7 +46,11 @@ export const Banner: React.FC<IHomeBannerProps> = () => {
         </div>
       </div>
       <div className="grid overflow-hidden">
-        <img className="object-cover" src="/assets/home.jpg" />
+        <img
+          alt="Home page picture"
+          className="object-cover"
+          src="/assets/home.jpg"
+        />
       </div>
     </div>
   )
