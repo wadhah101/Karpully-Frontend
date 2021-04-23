@@ -24,7 +24,7 @@ const SignUpPortalForm: React.FC = () => {
     values: SignUpFormData.FormValues
     // formikHelpers: FormikHelpers<LoginFormData.FormValues>
   ): void | Promise<any> => {
-    const { username, password, fullName } = values
+    const { email: username, password, fullName } = values
     signUpMutation({
       variables: {
         username: username.trim(),
@@ -57,9 +57,9 @@ const SignUpPortalForm: React.FC = () => {
             />
             <Forms.Input
               LeftIcon={MailIcon}
-              id="username"
-              name="username"
-              placeholder="Username"
+              id="email"
+              name="email"
+              placeholder="Email"
             />
             <Forms.PasswordInput
               LeftIcon={KeyIcon}
@@ -86,7 +86,7 @@ const SignUpPortalForm: React.FC = () => {
           <div className="text-sm font-semibold text-center text-red-400 ">
             {result.error && <p> {result.error.message} </p>}
             {touched.password && errors.password && <p> {errors.password} </p>}
-            {touched.username && errors.username && <p> {errors.username} </p>}
+            {touched.email && errors.email && <p> {errors.email} </p>}
           </div>
           {result.data && (
             <p className="text-sm text-center text-kgreen-400">
