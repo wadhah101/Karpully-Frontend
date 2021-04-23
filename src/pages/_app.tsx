@@ -8,7 +8,7 @@ import Header from '../components/app/Header/Header.controller'
 import { persistor, store } from '../utils/redux/store'
 import { ApolloProvider } from '@apollo/client/react'
 import AppHead from '../components/app/Head/Head'
-import * as Portals from '../components/Portals/exports'
+import * as Dialogs from '../components/Portals/exports'
 import { PersistGate } from 'redux-persist/integration/react'
 import { useApolloClient } from '../utils/apollo'
 import { useAuthGuard } from '../utils/guards/auth.guard'
@@ -21,7 +21,7 @@ const MyWrapper: React.FC<AppProps> = ({ Component, pageProps }) => {
       <AppHead />
       <Header />
       <Component {...pageProps} />
-      <Portals.Controller />
+      <Dialogs.Controller />
       <Footer />
     </ApolloProvider>
   )
