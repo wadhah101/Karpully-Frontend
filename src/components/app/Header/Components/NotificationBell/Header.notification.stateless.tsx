@@ -58,7 +58,7 @@ const StateLessNotificationBell: React.FC<IStateLessNotificationBell> = ({
               className="absolute right-0 mt-2 overflow-y-auto origin-top-right bg-white divide-y divide-gray-100 rounded shadow w-96 ring-1 ring-black ring-opacity-5 focus:outline-none"
             >
               <div>
-                <h3 className="py-5 pl-4 text-3xl font-extrabold text-kpurple-500 bg-kpurple-100 bg-opacity-30 text-opacity-80">
+                <h3 className="py-5 pl-4 text-2xl font-extrabold text-kpurple-500 bg-kpurple-100 bg-opacity-30 text-opacity-80">
                   Notifications
                 </h3>
               </div>
