@@ -2,12 +2,12 @@ import clsx from 'clsx'
 import { Form, Formik } from 'formik'
 import React, { useEffect } from 'react'
 import { useSignupMutation } from '../../../../graphql/generated-types'
-import * as SignUpFormData from './Portal.Login.Form.data'
+import * as SignUpFormData from './Dialog.SignUp.Form.data'
 import { MailIcon, KeyIcon, UserCircleIcon } from '@heroicons/react/outline'
-import * as Forms from '../../../../components/Forms/export'
+import * as Forms from '../../../Forms/export'
 
 // TODO complete sign up process elsewhere
-const SignUpPortalForm: React.FC = () => {
+const SignUpDialogForm: React.FC = () => {
   const [signUpMutation, result] = useSignupMutation()
 
   useEffect(() => {
@@ -99,4 +99,4 @@ const SignUpPortalForm: React.FC = () => {
   )
 }
 
-export default SignUpPortalForm
+export default SignUpDialogForm

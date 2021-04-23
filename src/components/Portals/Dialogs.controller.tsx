@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useClickAway } from 'react-use'
 import { closePortal } from '../../utils/redux/slices/appSlice'
 import { CoreState } from '../../utils/redux/store'
-import { AppPortals, PORTALS_WITH_DATA } from './Portals.data'
+import { AppPortals, PORTALS_WITH_DATA } from './Dialogs.data'
 import { Transition } from '@headlessui/react'
 
 interface IPortalManagerProps {}
 
-// TODO code spliting
-const PortalController: React.FC<IPortalManagerProps> = () => {
+const DialogsController: React.FC<IPortalManagerProps> = () => {
   const portal = useSelector<CoreState, { current: AppPortals; show: boolean }>(
     (state) => state.app.portal
   )
@@ -43,4 +42,4 @@ const PortalController: React.FC<IPortalManagerProps> = () => {
   )
 }
 
-export default PortalController
+export default DialogsController

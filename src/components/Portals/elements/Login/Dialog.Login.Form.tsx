@@ -5,12 +5,12 @@ import { useDispatch } from 'react-redux'
 import { useLoginMutation } from '../../../../graphql/generated-types'
 import { closePortal } from '../../../../utils/redux/slices/appSlice'
 import { login } from '../../../../utils/redux/slices/authSlice'
-import * as LoginFormData from './Portal.Login.Form.data'
+import * as LoginFormData from './Dialog.Login.Form.data'
 import { MailIcon, KeyIcon } from '@heroicons/react/outline'
 import * as Forms from '../../../../components/Forms/export'
 import { useRouter } from 'next/dist/client/router'
 
-const LoginPortalForm: React.FC = () => {
+const LoginDialogForm: React.FC = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const [loginMutation, result] = useLoginMutation()
@@ -86,4 +86,4 @@ const LoginPortalForm: React.FC = () => {
   )
 }
 
-export default LoginPortalForm
+export default LoginDialogForm
