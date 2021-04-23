@@ -3,7 +3,7 @@ import { Form, Formik } from 'formik'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useLoginMutation } from '../../../../graphql/generated-types'
-import { closePortal } from '../../../../utils/redux/slices/appSlice'
+import { closeDialog } from '../../../../utils/redux/slices/appSlice'
 import { login } from '../../../../utils/redux/slices/authSlice'
 import * as LoginFormData from './Dialog.Login.Form.data'
 import { MailIcon, KeyIcon } from '@heroicons/react/outline'
@@ -23,7 +23,7 @@ const LoginDialogForm: React.FC = () => {
         },
       } = result
       dispatch(login({ token: access_token, user: user }))
-      dispatch(closePortal())
+      dispatch(closeDialog())
       router.push('/feed')
     }
     return () => null

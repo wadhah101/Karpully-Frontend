@@ -3,7 +3,7 @@ import HeaderLogo from './Components/Header.logo'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { useDispatch } from 'react-redux'
-import { openPortal } from '../../../utils/redux/slices/appSlice'
+import { openDialog } from '../../../utils/redux/slices/appSlice'
 import {
   HEADER_NAV_LINKS_SIGNED_IN,
   HEADER_NAV_LINKS_SIGNED_OUT,
@@ -56,7 +56,7 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
                 <li
                   key={e.link.name}
                   className={clsx(!user && 'cursor-pointer ')}
-                  onClick={() => !user && dispatch(openPortal('login'))}
+                  onClick={() => !user && dispatch(openDialog('login'))}
                 >
                   {user ? (
                     <Link passHref href={e.link.to}>
@@ -77,14 +77,14 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
                 <li className="">
                   <button
                     className="font-semibold"
-                    onClick={() => dispatch(openPortal('login'))}
+                    onClick={() => dispatch(openDialog('login'))}
                   >
                     Login
                   </button>
                 </li>
                 <li>
                   <button
-                    onClick={() => dispatch(openPortal('signup'))}
+                    onClick={() => dispatch(openDialog('signup'))}
                     className="grid px-8 py-2.5 text-white bg-opacity-50 rounded bg-gradient-to-r from-kgreen-700 font-semibold place-items-center to-kgreen-400 "
                   >
                     Sign Up

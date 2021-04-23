@@ -16,15 +16,15 @@ const counterSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    openPortal: (state, action: PayloadAction<AppPortals>) => {
+    openDialog: (state, action: PayloadAction<AppPortals>) => {
       state.portal = { current: action.payload, show: true }
     },
-    closePortal: (state) => {
+    closeDialog: (state) => {
       state.portal.show = false
     },
   },
 })
 
-export const { openPortal, closePortal } = counterSlice.actions
+export const { openDialog, closeDialog } = counterSlice.actions
 
 export default counterSlice.reducer
