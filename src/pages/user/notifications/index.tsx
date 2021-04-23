@@ -1,6 +1,6 @@
 import { GetStaticProps, NextPage } from 'next'
 
-const messages: NextPage = () => {
+const notificationsPage: NextPage = () => {
   return <div></div>
 }
 
@@ -12,4 +12,4 @@ export const getStaticProps: GetStaticProps = async (_ctx) => {
   }
 }
 
-export default messages
+export default notificationsPage

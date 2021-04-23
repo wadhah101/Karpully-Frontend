@@ -13,7 +13,7 @@ const SignUpPortalForm: React.FC = () => {
   useEffect(() => {
     if (result.called && !result.loading && !result.error) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const a = result.data.createUser.id
+      // const a = result.data.createUser.id
       // dispatch(closePortal())
       // TODO add check your mail message
     }

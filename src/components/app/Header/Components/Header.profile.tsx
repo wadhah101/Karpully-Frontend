@@ -15,6 +15,7 @@ import Link from 'next/link'
 import { logout } from '../../../../utils/redux/slices/authSlice'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/dist/client/router'
+import HeaderNotificationBell from './NotificationBell/Header.notification.controller'
 
 const ImageButton: React.FC = () => {
   const imageId = 'IuJc2qh2TcA'
@@ -31,6 +32,19 @@ const ImageButton: React.FC = () => {
     </div>
   )
 }
+
+const ROW_1 = [
+  {
+    name: 'Profile',
+    Icon: UserCircleIcon,
+    href: '/user/profile',
+  },
+  {
+    name: 'Message',
+    Icon: InboxIcon,
+    href: '/user/messages',
+  },
+]
 
 // TODO  extract components for menu items
 const ProfileMenu: React.FC = () => {
@@ -62,47 +76,30 @@ const ProfileMenu: React.FC = () => {
                 className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded shadow ring-1 ring-black ring-opacity-5 focus:outline-none"
               >
                 <div className="px-1 py-1 ">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <div>
-                        <Link href="/user/profile" passHref>
-                          <a
-                            className={`${
-                              active ? 'bg-opacity-40 bg-kgreen-100 ' : ''
-                            } group flex text-gray-800 transition-all font-semibold rounded-md items-center w-full px-2 py-2 text-sm`}
-                          >
-                            <div
-                              className={clsx(
-                                'mr-3 transition-all text-black text-opacity-50 '
-                              )}
+                  {/* profile / message */}
+                  {ROW_1.map((e) => (
+                    <Menu.Item key={e.name}>
+                      {({ active }: { active: boolean }) => (
+                        <div>
+                          <Link href={e.href} passHref>
+                            <a
+                              className={`${
+                                active ? 'bg-opacity-40 bg-gray-300 ' : ''
+                              } group flex text-gray-800 transition-all font-semibold rounded-md items-center w-full px-2 py-2 text-sm`}
                             >
-                              <UserCircleIcon className="w-6 h-6" />
-                            </div>
-                            Profile
-                          </a>
-                        </Link>
-                      </div>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <div>
-                        <Link passHref href="user/messages">
-                          <a
-                            className={`${
-                              active ? 'bg-opacity-40 bg-kpink-100' : ''
-                            } group flex text-gray-800 font-semibold transition-colors rounded-md items-center w-full px-2 py-2 text-sm`}
-                          >
-                            <div className="mr-3 text-black text-opacity-50">
-                              <InboxIcon className="w-6 h-6" />
-                            </div>
-                            Messages
-                          </a>
-                        </Link>
-                      </div>
-                    )}
-                  </Menu.Item>
+                              <div className="mr-3 text-black text-opacity-50 transition-all">
+                                <e.Icon className="w-6 h-6" />
+                              </div>
+                              {e.name}
+                            </a>
+                          </Link>
+                        </div>
+                      )}
+                    </Menu.Item>
+                  ))}
                 </div>
+
+                {/* row 2  logout */}
                 <div className="px-1 py-1 ">
                   <Menu.Item>
                     {({ active }) => (
@@ -141,10 +138,10 @@ interface IHeaderProfileProps {
 }
 
 const HeaderProfile: React.FC<IHeaderProfileProps> = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return (
     <div className="grid items-center grid-flow-col-dense gap-4">
       <HeaderSearch />
+      <HeaderNotificationBell />
       <ProfileMenu />
     </div>
   )

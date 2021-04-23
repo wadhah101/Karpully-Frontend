@@ -11,9 +11,11 @@ import AppHead from '../components/app/Head/Head'
 import * as Portals from '../components/Portals/exports'
 import { PersistGate } from 'redux-persist/integration/react'
 import { useApolloClient } from '../utils/apollo'
+import { useAuthGuard } from '../utils/guards/auth.guard'
 
 const MyWrapper: React.FC<AppProps> = ({ Component, pageProps }) => {
   const client = useApolloClient()
+  useAuthGuard()
   return (
     <ApolloProvider client={client}>
       <AppHead />
