@@ -57,7 +57,7 @@ const ProfileMenu: React.FC = () => {
         {({ open }) => (
           <>
             <div>
-              <Menu.Button className="outline-none ">
+              <Menu.Button name="Profile menu" className="outline-none ">
                 <ImageButton />
               </Menu.Button>
             </div>

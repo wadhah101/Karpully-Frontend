@@ -22,13 +22,18 @@ interface IStateLessNotificationBell {
 const StateLessNotificationBell: React.FC<IStateLessNotificationBell> = ({
   notifications,
   hasMissed,
+  onOpen,
 }) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       {({ open }) => (
         <>
           <div>
-            <Menu.Button className="outline-none ">
+            <Menu.Button
+              name="notification button"
+              onClick={onOpen}
+              className="outline-none "
+            >
               <div className="relative cursor-pointer">
                 <BellIcon className="w-6 h-6" />
                 {hasMissed && (

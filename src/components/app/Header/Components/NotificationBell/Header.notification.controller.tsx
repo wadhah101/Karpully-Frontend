@@ -6,7 +6,7 @@ import dayjs from 'dayjs'
 const HeaderNotificationBell: React.FC = () => {
   const data: AppNotifications[] = new Array(30).fill(null).map((_, index) => ({
     id: index,
-    picture: `https://source.unsplash.com/150x150/?cat${index}`,
+    picture: `https://source.unsplash.com/80x80/?cat${index}`,
     date: dayjs()
       .subtract(index * 10, 'minute')
       .toDate(),
