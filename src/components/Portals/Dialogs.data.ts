@@ -15,3 +15,11 @@ export const PORTALS_WITH_DATA: [
   ['signup', () => Portals.SignUp],
   ['reset', () => Portals.SignUp],
 ]
+
+export const formikErrorFactory = (
+  touched: Record<string, boolean>,
+  errors: Record<string, string>
+): string[] =>
+  Object.entries(touched)
+    .filter((e) => e[1])
+    .map((e) => errors[e[0]])

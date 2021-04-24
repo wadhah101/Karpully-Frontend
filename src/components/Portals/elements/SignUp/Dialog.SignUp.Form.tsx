@@ -1,41 +1,26 @@
 import clsx from 'clsx'
 import { Form, Formik } from 'formik'
-import React, { useEffect } from 'react'
-import { useSignupMutation } from '../../../../graphql/generated-types'
+import React from 'react'
 import * as SignUpFormData from './Dialog.SignUp.Form.data'
 import { MailIcon, KeyIcon, UserCircleIcon } from '@heroicons/react/outline'
 import * as Forms from '../../../Forms/export'
+import { useSignUpStage1Mutation } from '../../../../graphql/generated-types'
+import { formikErrorFactory } from '../../Dialogs.data'
+import * as Dialogs from '../../exports'
 
 // TODO complete sign up process elsewhere
 const SignUpDialogForm: React.FC = () => {
-  const [signUpMutation, result] = useSignupMutation()
-
-  useEffect(() => {
-    if (result.called && !result.loading && !result.error) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      // const a = result.data.createUser.id
-      // dispatch(closePortal())
-      // TODO add check your mail message
-    }
-    return () => null
-  }, [result])
-
+  const [signUpMutation, result] = useSignUpStage1Mutation()
   const onSumbit = (
     values: SignUpFormData.FormValues
     // formikHelpers: FormikHelpers<LoginFormData.FormValues>
   ): void | Promise<any> => {
-    const { email: username, password, fullName } = values
+    const { username, email, password } = values
     signUpMutation({
       variables: {
-        username: username.trim(),
+        username,
         password,
-        firstname: fullName.trim(),
-        lastname: '',
-        age: 20,
-        email: '',
-        localization: '',
-        telNumber: '',
-        gender: 0,
+        email,
       },
     }).catch(() => null)
   }
@@ -51,9 +36,9 @@ const SignUpDialogForm: React.FC = () => {
           <div className="grid gap-5">
             <Forms.Input
               LeftIcon={UserCircleIcon}
-              id="fullName"
-              name="fullName"
-              placeholder="Full Name"
+              id="username"
+              name="username"
+              placeholder="Username"
             />
             <Forms.Input
               LeftIcon={MailIcon}
@@ -80,14 +65,26 @@ const SignUpDialogForm: React.FC = () => {
             >
               Login
             </button>
+            <Dialogs.SmallText
+              error={true}
+              data={[
+                ...formikErrorFactory(touched, errors),
+                ...(result.error ? [result.error.message] : []),
+              ]}
+            />
+            <Dialogs.SmallText
+              data={[
+                ...(result.data
+                  ? ['Please confirm your email to complete your sign up']
+                  : []),
+              ]}
+            />
           </div>
 
-          {/* TODO POP UP  */}
-          <div className="text-sm font-semibold text-center text-red-400 ">
+          {/* <div className="text-sm font-semibold text-center text-red-400 ">
             {result.error && <p> {result.error.message} </p>}
-            {touched.password && errors.password && <p> {errors.password} </p>}
-            {touched.email && errors.email && <p> {errors.email} </p>}
-          </div>
+          </div> */}
+
           {result.data && (
             <p className="text-sm text-center text-kgreen-400">
               Please confirm your email to complete your sign up

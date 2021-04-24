@@ -9,6 +9,8 @@ import * as LoginFormData from './Dialog.Login.Form.data'
 import { MailIcon, KeyIcon } from '@heroicons/react/outline'
 import * as Forms from '../../../../components/Forms/export'
 import { useRouter } from 'next/dist/client/router'
+import * as Dialogs from '../../exports'
+import { formikErrorFactory } from '../../Dialogs.data'
 
 const LoginDialogForm: React.FC = () => {
   const dispatch = useDispatch()
@@ -72,13 +74,13 @@ const LoginDialogForm: React.FC = () => {
             >
               Login
             </button>
-          </div>
-
-          {/* TODO POP UP  */}
-          <div className="text-sm font-semibold text-center text-red-400 ">
-            {result.error && <p> {result.error.message} </p>}
-            {touched.password && errors.password && <p> {errors.password} </p>}
-            {touched.username && errors.username && <p> {errors.username} </p>}
+            <Dialogs.SmallText
+              error={true}
+              data={[
+                ...formikErrorFactory(touched, errors),
+                ...(result.error ? [result.error.message] : []),
+              ]}
+            />
           </div>
         </Form>
       )}
