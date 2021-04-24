@@ -44,3 +44,9 @@ export const HEADER_NAV_LINKS_SIGNED_IN: HeaderLinkData[] = [
   HeaderLinkFactory({ name: 'carpools' }),
   HeaderLinkFactory({ name: 'arrange', to: '/carpools/arrange' }),
 ]
+
+export const FOOTER_LINK: HeaderLinkData[] = [
+  ...HEADER_NAV_LINKS_SIGNED_OUT,
+  HeaderLinkFactory({ name: 'FAQ' }),
+  HeaderLinkFactory({ name: 'terms of service', to: 'terms' }),
+]

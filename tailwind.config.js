@@ -15,7 +15,7 @@ module.exports = {
       default: {
         maxWidth: {
           default: '800px',
-          lg: '1300px',
+          '2xl': '1500px',
         },
         padding: {
           default: '1rem',
