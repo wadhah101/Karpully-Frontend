@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppPortals } from '../../../components/Portals/Dialogs.data'
 
+export interface PortalState {
+  current: AppPortals
+  show: boolean
+}
+
 export type AppState = {
-  portal: {
-    current: AppPortals
-    show: boolean
-  }
+  portal: PortalState
 }
 
 const initialState: AppState = {

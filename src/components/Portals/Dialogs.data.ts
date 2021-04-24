@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import * as Portals from './exports'
 
-export type AppPortals = 'login' | 'signup' | 'reset'
+export type AppPortals = 'login' | 'signup' | 'reset' | 'search'
 
 export interface BaseDiagleProps {
   cancelButtonRef: React.MutableRefObject<HTMLButtonElement>
@@ -14,6 +14,7 @@ export const PORTALS_WITH_DATA: [
   ['login', () => Portals.Login],
   ['signup', () => Portals.SignUp],
   ['reset', () => Portals.SignUp],
+  ['search', () => Portals.Search],
 ]
 
 export const formikErrorFactory = (
