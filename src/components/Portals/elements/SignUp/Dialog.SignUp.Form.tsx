@@ -80,16 +80,6 @@ const SignUpDialogForm: React.FC = () => {
               ]}
             />
           </div>
-
-          {/* <div className="text-sm font-semibold text-center text-red-400 ">
-            {result.error && <p> {result.error.message} </p>}
-          </div> */}
-
-          {result.data && (
-            <p className="text-sm text-center text-kgreen-400">
-              Please confirm your email to complete your sign up
-            </p>
-          )}
         </Form>
       )}
     </Formik>
