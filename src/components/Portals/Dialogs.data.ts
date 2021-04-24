@@ -22,4 +22,5 @@ export const formikErrorFactory = (
 ): string[] =>
   Object.entries(touched)
     .filter((e) => e[1])
+    .filter((e) => errors[e[0]])
     .map((e) => errors[e[0]])
