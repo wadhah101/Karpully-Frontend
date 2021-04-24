@@ -46,6 +46,7 @@
     "@graphql-codegen/typescript": "^1.21.1",
     "@graphql-codegen/typescript-operations": "^1.17.15",
     "@graphql-codegen/typescript-react-apollo": "^2.2.3",
+    "@svgr/webpack": "^5.5.0",
     "@testing-library/react": "^11.2.6",
     "@types/faker": "^5.5.2",
     "@types/jest": "^26.0.22",
