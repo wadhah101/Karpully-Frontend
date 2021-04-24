@@ -54,7 +54,7 @@ const LoginDialogForm: React.FC = () => {
               LeftIcon={MailIcon}
               id="username"
               name="username"
-              placeholder="Username"
+              placeholder="Username or Email "
             />
             <Forms.PasswordInput
               LeftIcon={KeyIcon}

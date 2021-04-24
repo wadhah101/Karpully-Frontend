@@ -11,6 +11,11 @@ export const initialValues: FormValues = {
   password: '',
 }
 
+//   (async () => {
+//   const a = await authLessClient.query({ query: gql`` })
+//   return a.eil
+// })
+
 export const validationSchema: Yup.SchemaOf<FormValues> = Yup.object().shape({
   username: Yup.string().required(),
   email: Yup.string().email().required(),

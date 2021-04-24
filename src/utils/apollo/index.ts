@@ -13,6 +13,11 @@ const httpLink = createHttpLink({
   uri: base.toString(),
 })
 
+export const authLessClient = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache(),
+})
+
 export const useApolloClient = (): ApolloClient<NormalizedCacheObject> => {
   const token = useSelector<CoreState, string>((state) => state.auth.token)
 
