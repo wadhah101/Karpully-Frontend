@@ -51,11 +51,9 @@ export const Footer: React.FC<Props> = () => {
                   className="text-white transition-colors text-opacity-80 hover:text-opacity-100"
                   key={e.href}
                 >
-                  <Link href={e.href} passHref>
-                    <a>
-                      <e.Icon />
-                    </a>
-                  </Link>
+                  <a href={e.href} target="_blank" rel="noreferrer">
+                    <e.Icon />
+                  </a>
                 </li>
               ))}
             </ul>
