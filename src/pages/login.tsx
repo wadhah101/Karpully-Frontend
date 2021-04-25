@@ -1,6 +1,6 @@
 import { GetStaticProps, NextPage } from 'next'
 
-const login: NextPage = () => {
+const loginPage: NextPage = () => {
   return <div>Enter</div>
 }
 
@@ -12,4 +12,4 @@ export const getStaticProps: GetStaticProps = async (_ctx) => {
   }
 }
 
-export default login
+export default loginPage

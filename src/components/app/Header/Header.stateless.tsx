@@ -29,8 +29,8 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
   return (
     <header
       className={clsx(
-        'flex flex-col w-screen z-30 items-center top-0 left-0 justify-center h-24 px-10  ',
-        fixed ? 'fixed' : 'static'
+        'flex flex-col w-full z-30 items-center top-0 left-0 justify-center h-24 px-10  ',
+        fixed ? 'fixed' : 'sticky border-b border-black border-opacity-5 '
       )}
     >
       <div className="flex items-center w-full">

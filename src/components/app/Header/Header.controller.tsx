@@ -11,6 +11,7 @@ const pageWithScrollColorChangeChecker = (current: string): boolean =>
 
 const Header: React.FC = () => {
   const router = useRouter()
+  const [fixed, setFixed] = useState(false)
   const pageWithScrollColorChange = pageWithScrollColorChangeChecker(
     router.pathname
   )
@@ -19,7 +20,13 @@ const Header: React.FC = () => {
   const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user)
 
   useEffect(() => {
-    if (!pageWithScrollColorChange) return () => null
+    if (!pageWithScrollColorChange) {
+      setFixed(false)
+      return () => null
+    }
+
+    setFixed(true)
+
     const threshold = window.innerWidth > 600 ? window.innerHeight - 100 : 300
     let lastKnownScrollPosition = 0
     let ticking = false
@@ -50,7 +57,7 @@ const Header: React.FC = () => {
     <StatelessHeader
       user={user}
       text={pageWithScrollColorChange && textWhiteWithScroll}
-      body={{ transparent: true, fixed: true }}
+      body={{ transparent: true, fixed }}
     />
   )
 }

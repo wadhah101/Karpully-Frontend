@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { User } from '../../../../graphql/generated-types'
-import Logo from '../../../../../public/logo/logo.svg'
-// import { gql } from '@apollo/client'
+import Logo from '@public/logo/logo.svg'
 
 interface IHeaderLogoProps {
   user: Partial<User>

@@ -1,6 +1,6 @@
 import { GetStaticProps, NextPage } from 'next'
 import React from 'react'
-import * as Home from '../components/pages/Home/exports'
+import * as Home from '@comp/pages/Home/exports'
 
 const HomePage: NextPage = () => {
   return (
