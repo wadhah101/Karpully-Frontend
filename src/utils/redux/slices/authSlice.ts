@@ -3,12 +3,20 @@ import { User } from '../../../graphql/generated-types'
 
 export type AuthState = {
   user: Partial<User>
-  token: string
+  accessToken: string
+  refreshToken: string
+  signup: {
+    email: string
+  }
 }
 
 const initialState: AuthState = {
   user: null,
-  token: null,
+  accessToken: null,
+  refreshToken: null,
+  signup: {
+    email: null,
+  },
 }
 
 const authSlice = createSlice({
@@ -17,19 +25,31 @@ const authSlice = createSlice({
   reducers: {
     login: (
       state,
-      action: PayloadAction<{ token: string; user: Partial<User> }>
+      {
+        payload,
+      }: PayloadAction<{
+        refreshToken: string
+        accessToken: string
+        user: Partial<User>
+      }>
     ) => {
-      state.user = action.payload.user
-      state.token = action.payload.token
+      state.user = payload.user
+      state.accessToken = payload.accessToken
+      state.refreshToken = payload.refreshToken
     },
 
     logout: (state) => {
       state.user = null
-      state.token = null
+      state.accessToken = null
+      state.refreshToken = null
+    },
+
+    setSignUpEmail: (state, { payload }: PayloadAction<string>) => {
+      state.signup = { email: payload }
     },
   },
 })
 
-export const { login, logout } = authSlice.actions
+export const { login, logout, setSignUpEmail } = authSlice.actions
 
 export default authSlice.reducer

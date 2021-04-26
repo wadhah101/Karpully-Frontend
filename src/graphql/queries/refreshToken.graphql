@@ -1,7 +1,7 @@
-mutation login($username: String!, $password: String!) {
-  login(credentialsInput: { username: $username, password: $password }) {
-    access_token
+query refreshToken($refreshToken: String!) {
+  refreshToken(refreshToken: $refreshToken) {
     refresh_token
+    access_token
     user {
       id
       username

@@ -7,5 +7,6 @@ mutation signUpStage2($username: String!, $password: String!, $email: String!) {
     }
   ) {
     id
+    email
   }
 }

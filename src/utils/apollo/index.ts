@@ -19,7 +19,9 @@ export const authLessClient = new ApolloClient({
 })
 
 export const useApolloClient = (): ApolloClient<NormalizedCacheObject> => {
-  const token = useSelector<CoreState, string>((state) => state.auth.token)
+  const token = useSelector<CoreState, string>(
+    (state) => state.auth.accessToken
+  )
 
   const authLink = setContext((_, { headers }) => ({
     headers: {

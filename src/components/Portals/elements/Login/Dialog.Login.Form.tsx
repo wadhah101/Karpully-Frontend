@@ -21,10 +21,16 @@ const LoginDialogForm: React.FC = () => {
     if (result.called && !result.loading && !result.error) {
       const {
         data: {
-          login: { access_token, user },
+          login: { access_token, user, refresh_token },
         },
       } = result
-      dispatch(login({ token: access_token, user: user }))
+      dispatch(
+        login({
+          accessToken: access_token,
+          user: user,
+          refreshToken: refresh_token,
+        })
+      )
       dispatch(closeDialog())
       router.push('/feed')
     }

@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeDialog } from '../../utils/redux/slices/appSlice'
 import { CoreState } from '../../utils/redux/store'
-import { AppPortals, PORTALS_WITH_DATA } from './Dialogs.data'
+import { AppPortals, BLOCKED_PORTALS, PORTALS_WITH_DATA } from './Dialogs.data'
 import { Transition } from '@headlessui/react'
 
 import { Dialog } from '@headlessui/react'
@@ -26,7 +26,10 @@ const DialogsController: React.FC = () => {
         className="fixed inset-0 z-50 overflow-y-auto"
         static
         open={portal.show}
-        onClose={() => dispatch(closeDialog())}
+        onClose={() => {
+          !BLOCKED_PORTALS.find((e) => e === portal.current) &&
+            dispatch(closeDialog())
+        }}
       >
         <div className="min-h-screen text-center">
           <Transition.Child

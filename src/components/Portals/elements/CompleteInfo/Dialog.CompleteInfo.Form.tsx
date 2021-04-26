@@ -1,45 +1,52 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import clsx from 'clsx'
 import { Form, Formik } from 'formik'
 import React, { useEffect } from 'react'
-import * as SignUpFormData from './Dialog.SignUp.Form.data'
+import * as SignUpFormData from './Dialog.SignUp.CompleteInfo.data'
 import { MailIcon, KeyIcon, UserCircleIcon } from '@heroicons/react/outline'
 import * as Forms from '../../../Forms/export'
-import { useSignUpStage1Mutation } from '../../../../graphql/generated-types'
+import { useSignUpStage2Mutation } from '../../../../graphql/generated-types'
 import { formikErrorFactory } from '../../Dialogs.data'
 import * as Dialogs from '../../exports'
+import { logout } from 'src/utils/redux/slices/authSlice'
 import { useDispatch } from 'react-redux'
-import { openDialog } from 'src/utils/redux/slices/appSlice'
-import { setSignUpEmail } from 'src/utils/redux/slices/authSlice'
 
-const SignUpDialogForm: React.FC = () => {
+// TODO LOGOUT FROM  CURRENT ACCOUNT AND LOGIN WITH NEW INFO
+const CompleteInfoDialogForm: React.FC = () => {
   const dispatch = useDispatch()
-  const [signUpMutation, result] = useSignUpStage1Mutation()
 
   useEffect(() => {
-    if (result.called && !result.loading && !result.error) {
-      const {
-        data: {
-          firstStageSignUp: { email },
-        },
-      } = result
-      dispatch(setSignUpEmail(email))
-      dispatch(openDialog('confirm'))
-    }
+    dispatch(logout())
     return () => null
-  }, [result])
+  }, [])
+
+  const [signUpMutation, result] = useSignUpStage2Mutation()
+
+  // useEffect(() => {
+  //   if (result.called && !result.loading && !result.error) {
+  //     const {
+  //       data: {
+  //         firstStageSignUp: { email },
+  //       },
+  //     } = result
+  //     // dispatch(setSignUpEmail(email))
+  //     // dispatch(openDialog('confirm'))
+  //   }
+  //   return () => null
+  // }, [result])
 
   const onSumbit = (
     values: SignUpFormData.FormValues
     // formikHelpers: FormikHelpers<LoginFormData.FormValues>
   ): void | Promise<any> => {
-    const { username, email, password } = values
-    signUpMutation({
-      variables: {
-        username,
-        password,
-        email,
-      },
-    }).catch(() => null)
+    // const { username, email, password } = values
+    // signUpMutation({
+    //   variables: {
+    //     username,
+    //     password,
+    //     email,
+    //   },
+    // }).catch(() => null)
   }
 
   return (
@@ -53,22 +60,21 @@ const SignUpDialogForm: React.FC = () => {
           <div className="grid gap-5">
             <Forms.Input
               LeftIcon={UserCircleIcon}
-              id="username"
-              name="username"
-              placeholder="Username"
+              id="firstName"
+              name="firstName"
+              placeholder="First Name"
             />
             <Forms.Input
               LeftIcon={MailIcon}
-              id="email"
-              name="email"
-              placeholder="Email"
+              id="lastName"
+              name="lastName"
+              placeholder="Last Name"
             />
-            <Forms.PasswordInput
+            <Forms.Input
               LeftIcon={KeyIcon}
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Password"
+              id="age"
+              name="age"
+              placeholder="Age"
             />
             <button
               type="submit"
@@ -80,7 +86,7 @@ const SignUpDialogForm: React.FC = () => {
                   : 'from-kgreen-600 to-kgreen-500 text-white'
               )}
             >
-              Sign Up
+              Submit
             </button>
             <Dialogs.SmallText
               error={true}
@@ -103,4 +109,4 @@ const SignUpDialogForm: React.FC = () => {
   )
 }
 
-export default SignUpDialogForm
+export default CompleteInfoDialogForm
