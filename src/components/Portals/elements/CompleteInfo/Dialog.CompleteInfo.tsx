@@ -2,8 +2,12 @@ import React from 'react'
 import { Dialog } from '@headlessui/react'
 import { BaseDiagleProps } from '../../Dialogs.data'
 import CompleteInfoDialogForm from './Dialog.CompleteInfo.Form'
+import useConfirmEmail from './useConfirmMail'
 
 const CompleteInfoDialog: React.FC<BaseDiagleProps> = () => {
+  // TODO handle errors and false values
+  useConfirmEmail()
+
   return (
     <div className="relative w-[40rem] bg-white rounded">
       <div className="flex flex-col items-center p-6">
