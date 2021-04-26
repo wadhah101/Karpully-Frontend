@@ -6,7 +6,6 @@ interface NavLinkData {
 export interface HeaderLinkData {
   link: NavLinkData
   isFixed?: boolean
-  // TODO
   comparator?: (current: string) => boolean
 }
 

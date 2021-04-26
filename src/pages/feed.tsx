@@ -1,7 +1,14 @@
 import { GetStaticProps, NextPage } from 'next'
+import * as Feed from '@comp/pages/Feed/exports'
 
-const feed: NextPage = () => {
-  return <div className="min-h-screen"></div>
+const feedPage: NextPage = () => {
+  return (
+    <div className="min-h-screen bg-gray-50 ">
+      <div className="py-10 c-container ">
+        <Feed.Controller />
+      </div>
+    </div>
+  )
 }
 
 export const getStaticProps: GetStaticProps = async (_ctx) => {
@@ -12,4 +19,4 @@ export const getStaticProps: GetStaticProps = async (_ctx) => {
   }
 }
 
-export default feed
+export default feedPage

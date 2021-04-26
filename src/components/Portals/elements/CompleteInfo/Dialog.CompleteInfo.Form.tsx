@@ -11,14 +11,8 @@ import * as Dialogs from '../../exports'
 import { logout } from 'src/utils/redux/slices/authSlice'
 import { useDispatch } from 'react-redux'
 
-// TODO LOGOUT FROM  CURRENT ACCOUNT AND LOGIN WITH NEW INFO
 const CompleteInfoDialogForm: React.FC = () => {
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(logout())
-    return () => null
-  }, [])
 
   const [signUpMutation, result] = useSignUpStage2Mutation()
 

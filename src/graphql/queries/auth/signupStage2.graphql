@@ -1,12 +1,33 @@
-mutation signUpStage2($username: String!, $password: String!, $email: String!) {
-  firstStageSignUp(
-    firstStageDTOInput: {
-      username: $username
-      password: $password
-      email: $email
+mutation signUpStage2(
+  $id: Float!
+  $localization: String!
+  $telNumber: String!
+  $firstName: String!
+  $lastName: String!
+  $age: Float!
+  $gender: Float!
+) {
+  secondStageSignUp(
+    secondStageDTOInput: {
+      id: $id
+      localization: $localization
+      telNumber: $telNumber
+      firstname: $firstName
+      lastname: $lastName
+      age: $age
+      gender: $gender
     }
   ) {
     id
+    username
+    firstname
+    lastname
+    age
+    rate
     email
+    localization
+    telNumber
+    gender
+    isConfirmed
   }
 }

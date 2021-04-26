@@ -48,6 +48,31 @@ const useRefreshToken = (): void => {
     }, timeOut)
     return () => clearTimeout(a)
   }, [refreshToken])
+
+  useEffect(() => {
+    if (!refreshToken) return () => null
+    client
+      .query<RefreshTokenQuery, RefreshTokenQueryVariables>({
+        query: query,
+        variables: { refreshToken },
+      })
+      .then((result) => {
+        const { refresh_token, access_token, user } = result.data.refreshToken
+        disptah(
+          login({
+            accessToken: access_token,
+            refreshToken: refresh_token,
+            user: user,
+          })
+        )
+      })
+      .catch((e) => {
+        console.log('errors in token', e)
+        disptah(logout())
+      })
+
+    return () => null
+  }, [])
 }
 
 export default useRefreshToken

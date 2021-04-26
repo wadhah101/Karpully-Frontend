@@ -31,7 +31,7 @@ const useConfirmEmail = (): MutationResult<ConfirmEmailMutation> => {
         verificationToken: sign_up_confirm_token as string,
         userId: Number(sign_up_user_id),
       },
-    })
+    }).catch(() => null)
   }, [])
   return result
 }

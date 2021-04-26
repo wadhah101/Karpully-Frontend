@@ -46,7 +46,6 @@ const ROW_1 = [
   },
 ]
 
-// TODO  extract components for menu items
 const ProfileMenu: React.FC = () => {
   const dispatch = useDispatch()
   const router = useRouter()
