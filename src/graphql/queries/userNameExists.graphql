@@ -1,0 +1,3 @@
+query userNameExists($username: String!) {
+  existByEmailOrUsername(username: $username)
+}

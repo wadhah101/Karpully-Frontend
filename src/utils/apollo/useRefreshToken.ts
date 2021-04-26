@@ -1,5 +1,8 @@
-import { Query } from './../../graphql/generated-types'
-import { gql } from '@apollo/client'
+import {
+  RefreshTokenDocument,
+  RefreshTokenQuery,
+  RefreshTokenQueryVariables,
+} from './../../graphql/generated-types'
 /* eslint-disable no-console */
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,27 +12,7 @@ import { CoreState } from '../redux/store'
 
 const timeOut = 30 * 1000
 
-const query = gql`
-  query refreshToken($refreshToken: String!) {
-    refreshToken(refreshToken: $refreshToken) {
-      refresh_token
-      access_token
-      user {
-        id
-        username
-        firstname
-        lastname
-        age
-        rate
-        email
-        localization
-        telNumber
-        gender
-        isConfirmed
-      }
-    }
-  }
-`
+const query = RefreshTokenDocument
 
 const useRefreshToken = (): void => {
   const disptah = useDispatch()
@@ -44,7 +27,10 @@ const useRefreshToken = (): void => {
     if (!refreshToken) return () => null
     const a = setTimeout(() => {
       client
-        .query<Query>({ query: query, variables: { refreshToken } })
+        .query<RefreshTokenQuery, RefreshTokenQueryVariables>({
+          query: query,
+          variables: { refreshToken },
+        })
         .then((result) => {
           const { refresh_token, access_token, user } = result.data.refreshToken
           disptah(
