@@ -2,7 +2,7 @@
 import clsx from 'clsx'
 import { Form, Formik } from 'formik'
 import React, { useEffect } from 'react'
-import * as SignUpFormData from './Dialog.SignUp.CompleteInfo.data'
+import * as CompleteInfoFormData from './Dialog.CompleteInfo.data'
 import { MailIcon, KeyIcon, UserCircleIcon } from '@heroicons/react/outline'
 import * as Forms from '../../../Forms/export'
 import { useSignUpStage2Mutation } from '../../../../graphql/generated-types'
@@ -36,7 +36,7 @@ const CompleteInfoDialogForm: React.FC = () => {
   // }, [result])
 
   const onSumbit = (
-    values: SignUpFormData.FormValues
+    values: CompleteInfoFormData.FormValues
     // formikHelpers: FormikHelpers<LoginFormData.FormValues>
   ): void | Promise<any> => {
     // const { username, email, password } = values
@@ -51,9 +51,9 @@ const CompleteInfoDialogForm: React.FC = () => {
 
   return (
     <Formik
-      validationSchema={SignUpFormData.validationSchema}
+      validationSchema={CompleteInfoFormData.validationSchema}
       onSubmit={onSumbit}
-      initialValues={SignUpFormData.initialValues}
+      initialValues={CompleteInfoFormData.initialValues}
     >
       {({ errors, touched, isValid }) => (
         <Form>
