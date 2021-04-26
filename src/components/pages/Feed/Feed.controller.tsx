@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useSelector } from 'react-redux'
 import { User } from 'src/graphql/generated-types'
 import { CoreState } from 'src/utils/redux/store'
-import FriendsPanelFeed from './FriendsPanel/FriendsPanelFeed'
+import ActionPanelFeed from './ActionPanel/ActionPanelFeed'
 import MyCarpoolsFeed from './MyCarpoolsPanel/MyCarpools.Feed'
 import ProfilePanel from './ProfilePanel/Feed.ProfilePanel'
 import SubmittedCarpools from './SubmittedCarpools/SubmittedCarpools.Feed'
@@ -13,7 +13,7 @@ interface IFeedControllerProps {}
 const FeedController: React.FC<IFeedControllerProps> = () => {
   const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user)
   return user ? (
-    <div className="grid gap-x-8 md:grid-cols-12">
+    <div className="grid gap-x-6 md:grid-cols-12">
       <div className="md:col-span-3">
         <ProfilePanel user={user} />
       </div>
@@ -27,7 +27,7 @@ const FeedController: React.FC<IFeedControllerProps> = () => {
       </div>
       <div className="flex flex-col md:col-span-3 ">
         <div>
-          <FriendsPanelFeed />
+          <ActionPanelFeed />
         </div>
         <div className="mt-4">
           <SuggestionPanelFeed />

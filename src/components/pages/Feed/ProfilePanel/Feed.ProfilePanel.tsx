@@ -12,14 +12,14 @@ const ProfilePanel: React.FunctionComponent<IProfilePanelProps> = ({
   const fullName = `${user.firstname} ${user.lastname}`
 
   return (
-    <div className="bg-white rounded shadow min-h-[30rem] ">
+    <div className="bg-white border rounded shadow min-h-[30rem] ">
       <div className="h-24 bg-kgreen-500" />
-      <div className="flex flex-col items-center transform -translate-y-10">
+      <div className="flex flex-col items-center transform -translate-y-11">
         <div className="p-1 overflow-hidden bg-white rounded-full">
           <img
             alt="user image"
             src={`https://source.unsplash.com/${imageId}/200x200`}
-            className="w-20 h-20 overflow-hidden rounded-full"
+            className="w-20 h-20 overflow-hidden rounded-full shadow"
           />
         </div>
         <h2 className="font-semibold text-black capitalize text-opacity-80">

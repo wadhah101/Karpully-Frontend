@@ -28,11 +28,11 @@ const StateLessNotificationBell: React.FC<IStateLessNotificationBell> = ({
     <Menu as="div" className="relative inline-block text-left">
       {({ open }) => (
         <>
-          <div>
+          <div className="flex">
             <Menu.Button
               name="notification button"
               onClick={onOpen}
-              className="outline-none "
+              className="block outline-none "
             >
               <div className="relative cursor-pointer">
                 <BellIcon className="w-6 h-6" />

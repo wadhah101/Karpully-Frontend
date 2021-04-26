@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
 const carpool: NextPage = () => {
-  return <div>Enter</div>
+  return <div className="min-h-screen"></div>
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

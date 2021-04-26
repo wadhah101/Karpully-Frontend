@@ -70,6 +70,18 @@ const CompleteInfoDialogForm: React.FC = () => {
               name="age"
               placeholder="Age"
             />
+            <Forms.Input
+              LeftIcon={KeyIcon}
+              id="localization"
+              name="localization"
+              placeholder="localization"
+            />
+            <Forms.Input
+              LeftIcon={KeyIcon}
+              id="gender"
+              name="gender"
+              placeholder="gender"
+            />
             <button
               type="submit"
               disabled={result.loading || !isValid || !!result.data}

@@ -6,7 +6,9 @@ const HomePage: NextPage = () => {
   return (
     <div>
       <Home.Banner />
-      <Home.Features />
+      <div className="my-24 bg-repeat c-container bg-opacity-20">
+        <Home.Features />
+      </div>
       {/* Social proff */}
       {/* FAQ */}
       {/* Reach Us */}

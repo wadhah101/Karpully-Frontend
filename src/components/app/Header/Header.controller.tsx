@@ -27,7 +27,7 @@ const Header: React.FC = () => {
 
     setFixed(true)
 
-    const threshold = window.innerWidth > 600 ? window.innerHeight - 100 : 300
+    const threshold = window.innerWidth > 600 ? window.innerHeight - 300 : 300
     let lastKnownScrollPosition = 0
     let ticking = false
 

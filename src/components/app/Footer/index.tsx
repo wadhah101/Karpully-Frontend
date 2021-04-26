@@ -66,7 +66,7 @@ export const Footer: React.FC<Props> = () => {
         <hr className="my-10 border-white border-opacity-30" />
         <div className="pb-20 text-center">
           <p className="text-white text-opacity-75 ">
-            Copy right wasalni 2021 all right reserved{' '}
+            © 2021 Karpully, Inc., All Rights Reserved.
           </p>
         </div>
       </div>
