@@ -6,9 +6,12 @@ const HomePage: NextPage = () => {
   return (
     <div>
       <Home.Banner />
-      <div className="my-24 bg-repeat c-container bg-opacity-20">
-        <Home.Features />
+      <div className="mb-20 ">
+        <div className="py-24 c-container ">
+          <Home.Features />
+        </div>
       </div>
+
       {/* Social proff */}
       {/* FAQ */}
       {/* Reach Us */}

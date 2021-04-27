@@ -9,5 +9,21 @@ mutation confirmEmail(
       verificationToken: $verificationToken
       userId: $userId
     }
-  )
+  ) {
+    user {
+      id
+      username
+      firstname
+      lastname
+      age
+      rate
+      email
+      localization
+      telNumber
+      gender
+      isConfirmed
+    }
+    refresh_token
+    access_token
+  }
 }
