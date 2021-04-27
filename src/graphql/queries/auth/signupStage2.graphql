@@ -22,6 +22,7 @@ mutation signUpStage2(
     username
     firstname
     lastname
+    completedSignUp
     age
     rate
     email

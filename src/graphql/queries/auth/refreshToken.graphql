@@ -8,6 +8,7 @@ query refreshToken($refreshToken: String!) {
       firstname
       lastname
       age
+      completedSignUp
       rate
       email
       localization

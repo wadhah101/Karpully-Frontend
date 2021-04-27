@@ -17,6 +17,7 @@ mutation confirmEmail(
       lastname
       age
       rate
+      completedSignUp
       email
       localization
       telNumber

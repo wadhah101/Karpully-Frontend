@@ -7,7 +7,7 @@ import {
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { authLessClient } from './useApolloClient'
-import { login, logout } from '../redux/slices/authSlice'
+import { logout, refreshTokenAction } from '../redux/slices/authSlice'
 import { CoreState } from '../redux/store'
 
 const timeOut = 30 * 1000
@@ -24,7 +24,7 @@ const useRefreshToken = (): void => {
       .then((result) => {
         const { refresh_token, access_token, user } = result.data.refreshToken
         disptah(
-          login({
+          refreshTokenAction({
             accessToken: access_token,
             refreshToken: refresh_token,
             user: user,
@@ -32,7 +32,7 @@ const useRefreshToken = (): void => {
         )
       })
       .catch((e) => {
-        console.log('errors in token', e)
+        console.error('errors in token', JSON.stringify(e))
         disptah(logout())
       })
   }

@@ -10,6 +10,7 @@ mutation login($username: String!, $password: String!) {
       age
       rate
       email
+      completedSignUp
       localization
       telNumber
       gender

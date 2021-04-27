@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import { Form, Formik } from 'formik'
 import React, { useEffect } from 'react'
 import * as CompleteInfoFormData from './Dialog.CompleteInfo.data'
-import { MailIcon, KeyIcon, UserCircleIcon } from '@heroicons/react/outline'
 import * as Forms from '../../../Forms/export'
 import { useSignUpStage2Mutation } from '../../../../graphql/generated-types'
 import { formikErrorFactory } from '../../Dialogs.data'
@@ -11,6 +10,7 @@ import * as Dialogs from '../../exports'
 import { logout } from 'src/utils/redux/slices/authSlice'
 import { useDispatch } from 'react-redux'
 
+// TODO add profile picture
 const CompleteInfoDialogForm: React.FC = () => {
   const dispatch = useDispatch()
 
@@ -51,42 +51,32 @@ const CompleteInfoDialogForm: React.FC = () => {
     >
       {({ errors, touched, isValid }) => (
         <Form>
-          <div className="grid gap-5">
+          <div className="grid gap-4">
             <Forms.Input
-              LeftIcon={UserCircleIcon}
               id="firstName"
               name="firstName"
               placeholder="First Name"
             />
             <Forms.Input
-              LeftIcon={MailIcon}
               id="lastName"
               name="lastName"
               placeholder="Last Name"
             />
-            <Forms.Input
-              LeftIcon={KeyIcon}
-              id="age"
-              name="age"
-              placeholder="Age"
-            />
-            <Forms.Input
-              LeftIcon={KeyIcon}
-              id="localization"
-              name="localization"
-              placeholder="localization"
-            />
-            <Forms.Input
-              LeftIcon={KeyIcon}
-              id="gender"
-              name="gender"
-              placeholder="gender"
-            />
+            <Forms.Input id="age" name="age" placeholder="Age" />
+            <div className="mt-2">
+              <Forms.Select
+                options={['Male', 'Female']}
+                id="gender"
+                name="gender"
+                placeholder="Gender"
+              />
+            </div>
+
             <button
               type="submit"
               disabled={result.loading || !isValid || !!result.data}
               className={clsx(
-                'grid px-8 py-2.5 rounded bg-gradient-to-r font-bold place-items-center  ',
+                'grid px-8 py-2.5 mt-2 rounded bg-gradient-to-r font-bold place-items-center  ',
                 (result.called && result.loading) || !isValid || !!result.data
                   ? 'from-kgreen-200 to-kgreen-200  text-gray-50'
                   : 'from-kgreen-600 to-kgreen-500 text-white'
@@ -94,20 +84,22 @@ const CompleteInfoDialogForm: React.FC = () => {
             >
               Submit
             </button>
-            <Dialogs.SmallText
-              error={true}
-              data={[
-                ...formikErrorFactory(touched, errors),
-                ...(result.error ? [result.error.message] : []),
-              ]}
-            />
-            <Dialogs.SmallText
-              data={[
-                ...(result.data
-                  ? ['Please confirm your email to complete your sign up']
-                  : []),
-              ]}
-            />
+            <div className="">
+              <Dialogs.SmallText
+                error={true}
+                data={[
+                  ...formikErrorFactory(touched, errors),
+                  ...(result.error ? [result.error.message] : []),
+                ]}
+              />
+              <Dialogs.SmallText
+                data={[
+                  ...(result.data
+                    ? ['Please confirm your email to complete your sign up']
+                    : []),
+                ]}
+              />
+            </div>
           </div>
         </Form>
       )}

@@ -19,7 +19,7 @@ import authReducer from './slices/authSlice'
 
 const persistConfig = {
   key: 'root',
-  version: 1,
+  version: 3,
   storage,
   whitelist: ['auth'],
 }
@@ -38,7 +38,7 @@ const store = configureStore({
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  devTools: process.env.NODE_ENV === 'development',
+  devTools: true,
 })
 
 const persistor = persistStore(store)

@@ -1,22 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Dialog } from '@headlessui/react'
 import { BaseDiagleProps } from '../../Dialogs.data'
 import CompleteInfoDialogForm from './Dialog.CompleteInfo.Form'
 import useConfirmEmail from './useConfirmMail'
-import { logout } from 'src/utils/redux/slices/authSlice'
-import { useDispatch } from 'react-redux'
 
 const CompleteInfoDialog: React.FC<BaseDiagleProps> = () => {
   // TODO handle errors and false values
-  const dispatch = useDispatch()
   useConfirmEmail()
-  useEffect(() => {
-    dispatch(logout())
-    return () => null
-  }, [])
 
   return (
-    <div className="relative w-[40rem] bg-white rounded">
+    <div className="relative w-[30rem] bg-white rounded">
       <div className="flex flex-col items-center p-6">
         <Dialog.Title
           as="h2"

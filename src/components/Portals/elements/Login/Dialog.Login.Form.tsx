@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useLoginMutation } from '../../../../graphql/generated-types'
 import { closeDialog } from '../../../../utils/redux/slices/appSlice'
-import { login } from '../../../../utils/redux/slices/authSlice'
+import { loginAction } from '../../../../utils/redux/slices/authSlice'
 import * as LoginFormData from './Dialog.Login.Form.data'
 import { MailIcon, KeyIcon } from '@heroicons/react/outline'
 import * as Forms from '../../../../components/Forms/export'
@@ -18,24 +18,27 @@ const LoginDialogForm: React.FC = () => {
   const [loginMutation, result] = useLoginMutation()
 
   useEffect(() => {
-    if (result.called && !result.loading && !result.error) {
+    if (result.data) {
       const {
         data: {
           login: { access_token, user, refresh_token },
         },
       } = result
       dispatch(
-        login({
+        loginAction({
           accessToken: access_token,
           user: user,
           refreshToken: refresh_token,
         })
       )
-      dispatch(closeDialog())
-      router.push('/feed')
+
+      if (user.completedSignUp) {
+        dispatch(closeDialog())
+        router.push('/feed')
+      }
     }
     return () => null
-  }, [result])
+  }, [result.data])
 
   const onSumbit = (
     values: LoginFormData.FormValues

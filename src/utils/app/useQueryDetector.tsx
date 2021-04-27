@@ -10,11 +10,11 @@ const useQueryDetector = (): void => {
   useEffect(() => {
     const {
       sign_up_token,
-      sign_up_confirm_token,
+      sign_up_verification_token,
       sign_up_user_id,
     } = router.query
 
-    if (sign_up_user_id && sign_up_token && sign_up_confirm_token) {
+    if (sign_up_user_id && sign_up_token && sign_up_verification_token) {
       dispatch(logout())
       dispatch(openDialog('completeInfo'))
     }

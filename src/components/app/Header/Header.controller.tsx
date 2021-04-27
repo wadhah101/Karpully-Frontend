@@ -1,6 +1,7 @@
 import { useRouter } from 'next/dist/client/router'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { openDialog } from 'src/utils/redux/slices/appSlice'
 import { User } from '../../../graphql/generated-types'
 import { CoreState } from '../../../utils/redux/store'
 import { StatelessHeader } from './Header.stateless'
@@ -11,6 +12,7 @@ const pageWithScrollColorChangeChecker = (current: string): boolean =>
 
 const Header: React.FC = () => {
   const router = useRouter()
+  const dispatch = useDispatch()
   const [fixed, setFixed] = useState(false)
   const pageWithScrollColorChange = pageWithScrollColorChangeChecker(
     router.pathname
@@ -18,6 +20,10 @@ const Header: React.FC = () => {
   const [textWhiteWithScroll, setTextWhite] = useState({ white: true })
 
   const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user)
+
+  useEffect(() => {
+    if (user && !user.completedSignUp) dispatch(openDialog('completeInfo'))
+  }, [user])
 
   useEffect(() => {
     if (!pageWithScrollColorChange) {

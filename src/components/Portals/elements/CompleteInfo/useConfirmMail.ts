@@ -1,15 +1,11 @@
-import { closeDialog } from 'src/utils/redux/slices/appSlice'
 import { useEffect } from 'react'
 import { useRouter } from 'next/dist/client/router'
-import {
-  ConfirmEmailMutation,
-  useConfirmEmailMutation,
-} from 'src/graphql/generated-types'
+import { useConfirmEmailMutation } from 'src/graphql/generated-types'
 import { useDispatch } from 'react-redux'
-import { MutationResult } from '@apollo/client'
+import { loginAction } from 'src/utils/redux/slices/authSlice'
 
 // TODO add already confirmed , error ,
-const useConfirmEmail = (): MutationResult<ConfirmEmailMutation> => {
+const useConfirmEmail = (): void => {
   const [mutation, result] = useConfirmEmailMutation()
   const router = useRouter()
   const dispatch = useDispatch()
@@ -17,23 +13,33 @@ const useConfirmEmail = (): MutationResult<ConfirmEmailMutation> => {
   useEffect(() => {
     const {
       sign_up_token,
-      sign_up_confirm_token,
+      sign_up_verification_token,
       sign_up_user_id,
     } = router.query
 
-    if (!(sign_up_user_id && sign_up_token && sign_up_confirm_token)) {
-      dispatch(closeDialog())
-    }
-
-    mutation({
-      variables: {
-        token: sign_up_token as string,
-        verificationToken: sign_up_confirm_token as string,
-        userId: Number(sign_up_user_id),
-      },
-    }).catch(() => null)
+    if (sign_up_user_id && sign_up_token && sign_up_verification_token)
+      mutation({
+        variables: {
+          token: String(sign_up_token),
+          verificationToken: String(sign_up_verification_token),
+          userId: Number(sign_up_user_id),
+        },
+      }).catch(() => null)
   }, [])
-  return result
+
+  useEffect(() => {
+    if (result.data) {
+      const { user, access_token, refresh_token } = result.data.confirmEmail
+      dispatch(
+        loginAction({
+          refreshToken: refresh_token,
+          accessToken: access_token,
+          user,
+        })
+      )
+    }
+    return () => null
+  }, [result])
 }
 
 export default useConfirmEmail
