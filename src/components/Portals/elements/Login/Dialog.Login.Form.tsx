@@ -15,15 +15,13 @@ import { formikErrorFactory } from '../../Dialogs.data'
 const LoginDialogForm: React.FC = () => {
   const dispatch = useDispatch()
   const router = useRouter()
-  const [loginMutation, result] = useLoginMutation()
+  const [loginMutation, { data, called, error, loading }] = useLoginMutation()
 
   useEffect(() => {
-    if (result.data) {
+    if (data) {
       const {
-        data: {
-          login: { access_token, user, refresh_token },
-        },
-      } = result
+        login: { access_token, user, refresh_token },
+      } = data
       dispatch(
         loginAction({
           accessToken: access_token,
@@ -38,7 +36,7 @@ const LoginDialogForm: React.FC = () => {
       }
     }
     return () => null
-  }, [result.data])
+  }, [data])
 
   const onSumbit = (
     values: LoginFormData.FormValues
@@ -73,10 +71,10 @@ const LoginDialogForm: React.FC = () => {
             />
             <button
               type="submit"
-              disabled={result.loading || !isValid}
+              disabled={loading || !isValid}
               className={clsx(
                 'grid px-8 py-2.5 rounded bg-gradient-to-r font-bold place-items-center  ',
-                (result.called && result.loading) || !isValid || result.data
+                (called && loading) || !isValid || data
                   ? 'from-kgreen-200 to-kgreen-200  text-gray-50'
                   : 'from-kgreen-600 to-kgreen-500 text-white'
               )}
@@ -87,7 +85,7 @@ const LoginDialogForm: React.FC = () => {
               error={true}
               data={[
                 ...formikErrorFactory(touched, errors),
-                ...(result.error ? [result.error.message] : []),
+                ...(error ? [error.message] : []),
               ]}
             />
           </div>

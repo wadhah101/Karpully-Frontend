@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { logout, refreshTokenAction } from '../redux/slices/authSlice'
 import { CoreState } from '../redux/store'
 
-const timeOut = 10 * 1000
+const timeOut = 30 * 1000
 const logEnabled = false
 
 const useRefreshToken = (): void => {
@@ -47,7 +47,6 @@ const useRefreshToken = (): void => {
   useEffect(() => {
     if (!refreshToken) return () => null
     logEnabled && console.debug('INIT REFRESH TOKEN')
-
     query({ variables: { refreshToken: refreshToken } })
     return () => null
   }, [])

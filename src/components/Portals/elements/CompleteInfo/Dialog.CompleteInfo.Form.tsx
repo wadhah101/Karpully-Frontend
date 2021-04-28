@@ -20,15 +20,18 @@ const CompleteInfoDialogForm: React.FC = () => {
 
   const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user)
 
-  const [signUpMutation, result] = useSignUpStage2Mutation()
+  const [
+    signUpMutation,
+    { data, loading, error, called },
+  ] = useSignUpStage2Mutation()
 
   useEffect(() => {
-    if (result.data) {
-      dispatch(updateUserAction(result.data.secondStageSignUp))
+    if (data) {
+      dispatch(updateUserAction(data.secondStageSignUp))
       dispatch(closeDialog())
     }
     return () => null
-  }, [result.data])
+  }, [data])
 
   const onSumbit = (
     values: CompleteInfoFormData.FormValues
@@ -79,10 +82,10 @@ const CompleteInfoDialogForm: React.FC = () => {
 
             <button
               type="submit"
-              disabled={result.loading || !isValid || !!result.data}
+              disabled={loading || !isValid || !!data}
               className={clsx(
                 'grid px-8 py-2.5 mt-2 rounded bg-gradient-to-r font-bold place-items-center  ',
-                (result.called && result.loading) || !isValid || !!result.data
+                (called && loading) || !isValid || !!data
                   ? 'from-kgreen-200 to-kgreen-200  text-gray-50'
                   : 'from-kgreen-600 to-kgreen-500 text-white'
               )}
@@ -94,7 +97,7 @@ const CompleteInfoDialogForm: React.FC = () => {
                 error={true}
                 data={[
                   ...formikErrorFactory(touched, errors),
-                  ...(result.error ? [result.error.message] : []),
+                  ...(error ? [error.message] : []),
                 ]}
               />
             </div>

@@ -13,20 +13,21 @@ import { setSignUpEmail } from 'src/utils/redux/slices/authSlice'
 
 const SignUpDialogForm: React.FC = () => {
   const dispatch = useDispatch()
-  const [signUpMutation, result] = useSignUpStage1Mutation()
+  const [
+    signUpMutation,
+    { data, error, called, loading },
+  ] = useSignUpStage1Mutation()
 
   useEffect(() => {
-    if (result.called && !result.loading && !result.error) {
+    if (data) {
       const {
-        data: {
-          firstStageSignUp: { email },
-        },
-      } = result
+        firstStageSignUp: { email },
+      } = data
       dispatch(setSignUpEmail(email))
       dispatch(openDialog('confirm'))
     }
     return () => null
-  }, [result])
+  }, [data])
 
   const onSumbit = (
     values: SignUpFormData.FormValues
@@ -72,10 +73,10 @@ const SignUpDialogForm: React.FC = () => {
             />
             <button
               type="submit"
-              disabled={result.loading || !isValid || !!result.data}
+              disabled={loading || !isValid || !!data}
               className={clsx(
                 'grid px-8 py-2.5 rounded bg-gradient-to-r font-bold place-items-center  ',
-                (result.called && result.loading) || !isValid || !!result.data
+                (called && loading) || !isValid || !!data
                   ? 'from-kgreen-200 to-kgreen-200  text-gray-50'
                   : 'from-kgreen-600 to-kgreen-500 text-white'
               )}
@@ -86,7 +87,7 @@ const SignUpDialogForm: React.FC = () => {
               error={true}
               data={[
                 ...formikErrorFactory(touched, errors),
-                ...(result.error ? [result.error.message] : []),
+                ...(error ? [error.message] : []),
               ]}
             />
           </div>

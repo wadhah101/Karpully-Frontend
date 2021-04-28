@@ -3,8 +3,8 @@ import * as Feed from '@comp/pages/Feed/exports'
 
 const feedPage: NextPage = () => {
   return (
-    <div className="min-h-screen bg-gray-50 ">
-      <div className="py-10 c-container ">
+    <div className="min-h-screen bg-gray-100 ">
+      <div className="py-8 c-container ">
         <Feed.Controller />
       </div>
     </div>

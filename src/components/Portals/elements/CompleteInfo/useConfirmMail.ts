@@ -6,7 +6,7 @@ import { loginAction } from 'src/utils/redux/slices/authSlice'
 
 // TODO add already confirmed , error ,
 const useConfirmEmail = (): void => {
-  const [mutation, result] = useConfirmEmailMutation()
+  const [mutation, { data }] = useConfirmEmailMutation()
   const router = useRouter()
   const dispatch = useDispatch()
 
@@ -28,8 +28,8 @@ const useConfirmEmail = (): void => {
   }, [])
 
   useEffect(() => {
-    if (result.data) {
-      const { user, access_token, refresh_token } = result.data.confirmEmail
+    if (data) {
+      const { user, access_token, refresh_token } = data.confirmEmail
       dispatch(
         loginAction({
           refreshToken: refresh_token,
@@ -39,7 +39,7 @@ const useConfirmEmail = (): void => {
       )
     }
     return () => null
-  }, [result])
+  }, [data])
 }
 
 export default useConfirmEmail
