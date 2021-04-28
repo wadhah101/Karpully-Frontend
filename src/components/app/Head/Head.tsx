@@ -1,9 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
+import useRefreshToken from 'src/utils/apollo/useRefreshToken'
 
 const description = `Here is a precise description of my awesome webpage`
 
 const AppHead: React.FC = () => {
+  useRefreshToken()
+
   return (
     <Head>
       <title>Karpully</title>

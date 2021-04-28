@@ -18,6 +18,10 @@ export const authLessClient = new ApolloClient({
   cache: new InMemoryCache(),
 })
 
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+})
+
 export const useApolloClient = (): ApolloClient<NormalizedCacheObject> => {
   const token = useSelector<CoreState, string>(
     (state) => state.auth.accessToken
@@ -30,10 +34,8 @@ export const useApolloClient = (): ApolloClient<NormalizedCacheObject> => {
     },
   }))
 
-  const client = new ApolloClient({
-    link: authLink.concat(httpLink),
-    cache: new InMemoryCache(),
-  })
+  // if you generate a new client old queries will be  resent  , mutate the same client instead
+  client.setLink(authLink.concat(httpLink))
 
   return client
 }
