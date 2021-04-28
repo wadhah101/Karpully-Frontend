@@ -1,46 +1,50 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import clsx from 'clsx'
 import { Form, Formik } from 'formik'
 import React, { useEffect } from 'react'
 import * as CompleteInfoFormData from './Dialog.CompleteInfo.data'
 import * as Forms from '../../../Forms/export'
-import { useSignUpStage2Mutation } from '../../../../graphql/generated-types'
+import {
+  User,
+  useSignUpStage2Mutation,
+} from '../../../../graphql/generated-types'
 import { formikErrorFactory } from '../../Dialogs.data'
 import * as Dialogs from '../../exports'
-import { logout } from 'src/utils/redux/slices/authSlice'
-import { useDispatch } from 'react-redux'
+import { updateUserAction } from 'src/utils/redux/slices/authSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { CoreState } from 'src/utils/redux/store'
+import { closeDialog } from 'src/utils/redux/slices/appSlice'
 
 // TODO add profile picture
 const CompleteInfoDialogForm: React.FC = () => {
   const dispatch = useDispatch()
 
+  const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user)
+
   const [signUpMutation, result] = useSignUpStage2Mutation()
 
-  // useEffect(() => {
-  //   if (result.called && !result.loading && !result.error) {
-  //     const {
-  //       data: {
-  //         firstStageSignUp: { email },
-  //       },
-  //     } = result
-  //     // dispatch(setSignUpEmail(email))
-  //     // dispatch(openDialog('confirm'))
-  //   }
-  //   return () => null
-  // }, [result])
+  useEffect(() => {
+    if (result.data) {
+      dispatch(updateUserAction(result.data.secondStageSignUp))
+      dispatch(closeDialog())
+    }
+    return () => null
+  }, [result.data])
 
   const onSumbit = (
     values: CompleteInfoFormData.FormValues
-    // formikHelpers: FormikHelpers<LoginFormData.FormValues>
   ): void | Promise<any> => {
-    // const { username, email, password } = values
-    // signUpMutation({
-    //   variables: {
-    //     username,
-    //     password,
-    //     email,
-    //   },
-    // }).catch(() => null)
+    const { firstName, lastName, age, gender, phone } = values
+    signUpMutation({
+      variables: {
+        firstName,
+        lastName,
+        age: Number(age),
+        gender: gender === 'Male' ? 0 : 1,
+        localization: 'tunis',
+        id: user.id,
+        telNumber: phone,
+      },
+    }).catch(() => null)
   }
 
   return (
@@ -62,6 +66,7 @@ const CompleteInfoDialogForm: React.FC = () => {
               name="lastName"
               placeholder="Last Name"
             />
+            <Forms.Input id="phone" name="phone" placeholder="Phone" />
             <Forms.Input id="age" name="age" placeholder="Age" />
             <div className="mt-2">
               <Forms.Select
@@ -90,13 +95,6 @@ const CompleteInfoDialogForm: React.FC = () => {
                 data={[
                   ...formikErrorFactory(touched, errors),
                   ...(result.error ? [result.error.message] : []),
-                ]}
-              />
-              <Dialogs.SmallText
-                data={[
-                  ...(result.data
-                    ? ['Please confirm your email to complete your sign up']
-                    : []),
                 ]}
               />
             </div>

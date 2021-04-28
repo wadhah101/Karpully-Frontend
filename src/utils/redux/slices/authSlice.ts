@@ -61,12 +61,16 @@ const authSlice = createSlice({
     setSignUpEmail: (state, { payload }: PayloadAction<string>) => {
       state.signup = { email: payload }
     },
+    updateUserAction: (state, { payload }: PayloadAction<Partial<User>>) => {
+      state.user = payload
+    },
   },
 })
 
 export const {
   loginAction,
   logout,
+  updateUserAction,
   setSignUpEmail,
   refreshTokenAction,
 } = authSlice.actions

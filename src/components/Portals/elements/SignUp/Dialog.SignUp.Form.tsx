@@ -89,13 +89,6 @@ const SignUpDialogForm: React.FC = () => {
                 ...(result.error ? [result.error.message] : []),
               ]}
             />
-            <Dialogs.SmallText
-              data={[
-                ...(result.data
-                  ? ['Please confirm your email to complete your sign up']
-                  : []),
-              ]}
-            />
           </div>
         </Form>
       )}
