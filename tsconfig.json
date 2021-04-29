@@ -17,8 +17,8 @@
     "paths": {
       "@public/*": ["public/*"],
       "@comp/*": ["src/components/*"],
-      "@utils/*": ["src/utils/store/*"],
-      "@graphql/*": ["srcgraphql/*"]
+      "@utils/*": ["src/utils/*"],
+      "@graphql/*": ["src/graphql/*"]
     }
   },
   "exclude": ["node_modules", ".next", "out"],

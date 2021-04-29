@@ -1,41 +1,63 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { closeDialog } from '../../../../utils/redux/slices/appSlice'
-import { XIcon } from '@heroicons/react/outline'
-import { Dialog } from '@headlessui/react'
 import { BaseDiagleProps } from '../../Dialogs.data'
+import SearchDialogForm from './Dialog.Search.Form'
+import debounce from 'lodash/debounce'
+import { useCarpoolsLazyQuery } from '@graphql/generated-types'
 
-const SearchDialog: React.FC<BaseDiagleProps> = ({ cancelButtonRef }) => {
-  const dispatch = useDispatch()
+const SearchDialog: React.FC<BaseDiagleProps> = () => {
+  const [current, setCurrent] = React.useState('')
+  const onChange = debounce((e: string) => setCurrent(e), 200)
+
+  // TODO use search query instead
+  const [query, { data }] = useCarpoolsLazyQuery()
+
+  React.useEffect(() => {
+    console.debug({ current })
+    query({ variables: { page: 1, limit: 8 } })
+    return () => null
+  }, [current])
+
   return (
-    <div className="relative w-[50rem] bg-white rounded">
-      <button
-        ref={cancelButtonRef}
-        onClick={() => dispatch(closeDialog())}
-        className="absolute block text-black text-opacity-50 cursor-pointer top-6 left-6 "
-      >
-        <XIcon className="w-6 h-6" aria-hidden="true" />
-      </button>
-      <div className="flex flex-col items-center p-6">
-        <Dialog.Title
-          as="h2"
-          className="text-4xl font-extrabold text-black text-opacity-80"
-        >
-          Search!
-        </Dialog.Title>
-        <Dialog.Description
-          as="h3"
-          className="text-lg text-black text-opacity-50"
-        >
-          This feature is not yet implimented
-        </Dialog.Description>
-        <div className="w-full mt-6 ">
-          {/* CONTENT GOES HERE */}
-          <div></div>
-        </div>
+    <div className="min-h-[18rem] w-[50rem] bg-white rounded">
+      <div className="flex flex-col p-6">
+        <SearchDialogForm onChange={onChange} />
       </div>
 
       <hr />
+      <div className="p-6 max-h-[30rem] overflow-auto text-left">
+        {current.trim() === '' ? (
+          <p className="text-black text-opacity-50"> No recent searches </p>
+        ) : (
+          data && (
+            <React.Fragment>
+              <div>
+                <h3 className="font-bold text-black text-opacity-70">
+                  Going To
+                </h3>
+                <ul className="grid gap-2 mt-3">
+                  {data.carpools.items.slice(0, 4).map((e) => (
+                    <li key={e.id}>
+                      <div className="h-16 transition-colors bg-white border rounded shadow-sm hover:bg-kgreen-100"></div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className="mt-6 font-bold text-black text-opacity-70 ">
+                  Going From
+                </h3>
+                <ul className="grid gap-2 mt-3">
+                  {data.carpools.items.slice(0, 4).map((e) => (
+                    <li key={e.id}>
+                      <div className="h-16 transition-colors bg-white border rounded shadow-sm hover:bg-kgreen-100"></div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </React.Fragment>
+          )
+        )}
+      </div>
     </div>
   )
 }
