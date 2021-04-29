@@ -1,7 +1,7 @@
 import { GetStaticProps, NextPage } from 'next'
 
-const arrangePage: NextPage = () => {
-  return <div className="min-h-screen"></div>
+const searchPage: NextPage = () => {
+  return <div className="min-h-screen bg-gray-50 "></div>
 }
 
 export const getStaticProps: GetStaticProps = async (_ctx) => {
@@ -12,4 +12,4 @@ export const getStaticProps: GetStaticProps = async (_ctx) => {
   }
 }
 
-export default arrangePage
+export default searchPage

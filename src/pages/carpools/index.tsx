@@ -1,7 +1,7 @@
 import { GetStaticProps, NextPage } from 'next'
 import * as Carpool from '@comp/pages/Carpools/exports'
 
-const carpools: NextPage = () => {
+const carpoolsPage: NextPage = () => {
   return (
     <div className="min-h-screen bg-gray-50 ">
       <div className="py-8 c-container ">
@@ -19,4 +19,4 @@ export const getStaticProps: GetStaticProps = async (_ctx) => {
   }
 }
 
-export default carpools
+export default carpoolsPage
