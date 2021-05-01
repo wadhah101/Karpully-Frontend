@@ -52,14 +52,12 @@ const ProfileMenu: React.FC = () => {
 
   return (
     <div>
-      <Menu as="div" className="relative inline-block text-left">
+      <Menu as="div" className="relative flex inline-block text-left">
         {({ open }) => (
           <>
-            <div>
-              <Menu.Button name="Profile menu" className="outline-none ">
-                <ImageButton />
-              </Menu.Button>
-            </div>
+            <Menu.Button name="Profile menu" className="flex outline-none">
+              <ImageButton />
+            </Menu.Button>
             <Transition
               show={open}
               as={Fragment}
@@ -72,7 +70,7 @@ const ProfileMenu: React.FC = () => {
             >
               <Menu.Items
                 static
-                className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded shadow ring-1 ring-black ring-opacity-5 focus:outline-none"
+                className="absolute right-0 w-56 mt-2 bg-white divide-y divide-gray-100 rounded shadow top-full ring-1 ring-black ring-opacity-5 focus:outline-none"
               >
                 <div className="px-1 py-1 ">
                   {/* profile / message */}
