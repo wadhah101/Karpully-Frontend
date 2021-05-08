@@ -1,13 +1,13 @@
 import clsx from 'clsx'
 import { Form, Formik } from 'formik'
 import React, { useEffect } from 'react'
-import * as CompleteInfoFormData from './Dialog.CompleteInfo.data'
+import * as CompleteInfoFormData from './data'
 import * as Forms from '../../../Forms/export'
 import {
   User,
   useSignUpStage2Mutation,
 } from '../../../../graphql/generated-types'
-import { formikErrorFactory } from '../../Dialogs.data'
+import { formikErrorFactory } from '../../data'
 import * as Dialogs from '../../exports'
 import { updateUserAction } from 'src/utils/redux/slices/authSlice'
 import { useDispatch, useSelector } from 'react-redux'

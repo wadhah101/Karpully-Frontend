@@ -1,4 +1,4 @@
-import { Banner } from './Home.Banner'
-import Features from './Home.Features'
+import { Banner } from './Banner'
+import Features from './Features'
 
 export { Banner, Features }

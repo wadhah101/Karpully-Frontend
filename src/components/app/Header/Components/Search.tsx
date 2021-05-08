@@ -6,7 +6,7 @@ import {
   openDialog,
   PortalState,
 } from '../../../../utils/redux/slices/appSlice'
-import { APP_PORTALS } from '@comp/Portals/Dialogs.data'
+import { APP_PORTALS } from '@comp/Dialogs/data'
 
 const HeaderSearch: React.FC = () => {
   const dispatch = useDispatch()

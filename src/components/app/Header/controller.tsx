@@ -1,11 +1,11 @@
-import { APP_PORTALS } from '@comp/Portals/Dialogs.data'
+import { APP_PORTALS } from '@comp/Dialogs/data'
 import { useRouter } from 'next/dist/client/router'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { openDialog } from 'src/utils/redux/slices/appSlice'
 import { User } from '../../../graphql/generated-types'
 import { CoreState } from '../../../utils/redux/store'
-import { StatelessHeader } from './Header.stateless'
+import { StatelessHeader } from './Stateless'
 
 // TODO program
 const pageWithScrollColorChangeChecker = (current: string): boolean =>

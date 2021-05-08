@@ -5,12 +5,12 @@ import { useDispatch } from 'react-redux'
 import { useLoginMutation } from '@graphql/generated-types'
 import { closeDialog } from '@utils/redux/slices/appSlice'
 import { loginAction } from '@utils/redux/slices/authSlice'
-import * as LoginFormData from './Dialog.Login.Form.data'
+import * as LoginFormData from './data'
 import { MailIcon, KeyIcon } from '@heroicons/react/outline'
 import * as Forms from '@comp/Forms/export'
 import { useRouter } from 'next/dist/client/router'
 import * as Dialogs from '../../exports'
-import { formikErrorFactory } from '../../Dialogs.data'
+import { formikErrorFactory } from '../../data'
 
 const LoginDialogForm: React.FC = () => {
   const dispatch = useDispatch()

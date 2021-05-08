@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dialog } from '@headlessui/react'
-import { BaseDiagleProps } from '../../Dialogs.data'
-import CompleteInfoDialogForm from './Dialog.CompleteInfo.Form'
+import { BaseDiagleProps } from '../../data'
+import CompleteInfoDialogForm from './Form'
 import useConfirmEmail from './useConfirmMail'
 
 const CompleteInfoDialog: React.FC<BaseDiagleProps> = () => {

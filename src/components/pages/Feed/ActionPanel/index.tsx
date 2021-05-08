@@ -6,7 +6,7 @@ import { useRouter } from 'next/dist/client/router'
 import { useDispatch } from 'react-redux'
 import { openDialog } from '@utils/redux/slices/appSlice'
 import { LocationMarkerIcon } from '@heroicons/react/outline'
-import { APP_PORTALS } from '@comp/Portals/Dialogs.data'
+import { APP_PORTALS } from '@comp/Dialogs/data'
 
 interface IFriendsPanelFeedProps {}
 

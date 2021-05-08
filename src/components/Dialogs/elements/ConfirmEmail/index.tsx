@@ -1,4 +1,4 @@
-import { APP_PORTALS, BaseDiagleProps } from '@comp/Portals/Dialogs.data'
+import { APP_PORTALS, BaseDiagleProps } from '@comp/Dialogs/data'
 import { Dialog } from '@headlessui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { XIcon } from '@heroicons/react/outline'

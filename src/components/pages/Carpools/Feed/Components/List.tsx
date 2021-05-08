@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Carpool } from 'src/graphql/generated-types'
-import CarpoolFeedElement from './Carpool.Feed.element'
+import CarpoolFeedElement from './Element'
 
 interface ICarpoolFeedListProps {
   carpools: Partial<Carpool>[]

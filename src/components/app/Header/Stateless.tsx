@@ -1,5 +1,5 @@
 import React from 'react'
-import HeaderLogo from './Components/Header.logo'
+import HeaderLogo from './Components/Logo'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { useDispatch } from 'react-redux'
@@ -7,10 +7,10 @@ import { openDialog } from '../../../utils/redux/slices/appSlice'
 import {
   HEADER_NAV_LINKS_SIGNED_IN,
   HEADER_NAV_LINKS_SIGNED_OUT,
-} from './Header.data'
+} from './data'
 import { User } from '../../../graphql/generated-types'
-import HeaderProfile from './Components/Header.profile'
-import { APP_PORTALS } from '@comp/Portals/Dialogs.data'
+import HeaderProfile from './Components/Profile'
+import { APP_PORTALS } from '@comp/Dialogs/data'
 
 interface IStatelessHeaderProps {
   text: { white: boolean }

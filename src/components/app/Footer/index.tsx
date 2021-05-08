@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import Logo from '../../../../public/logo/logo.svg'
-import { FOOTER_LINK } from '../Header/Header.data'
+import { FOOTER_LINK } from '../Header/data'
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import { IconType } from 'react-icons'
 

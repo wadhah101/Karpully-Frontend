@@ -3,7 +3,7 @@ import {
   UserNameExistsDocument,
   UserNameExistsQuery,
   UserNameExistsQueryVariables,
-} from './../../../../graphql/generated-types'
+} from '../../../../graphql/generated-types'
 import {
   EmailExistsQuery,
   EmailExistsQueryVariables,

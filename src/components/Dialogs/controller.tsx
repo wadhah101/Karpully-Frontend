@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeDialog } from '../../utils/redux/slices/appSlice'
 import { CoreState } from '../../utils/redux/store'
-import { APP_PORTALS, BLOCKED_PORTALS, PORTALS_WITH_DATA } from './Dialogs.data'
+import { APP_PORTALS, BLOCKED_PORTALS, PORTALS_WITH_DATA } from './data'
 import { Transition } from '@headlessui/react'
 
 import { Dialog } from '@headlessui/react'

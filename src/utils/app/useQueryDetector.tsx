@@ -1,4 +1,4 @@
-import { APP_PORTALS } from '@comp/Portals/Dialogs.data'
+import { APP_PORTALS } from '@comp/Dialogs/data'
 import { useRouter } from 'next/dist/client/router'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'

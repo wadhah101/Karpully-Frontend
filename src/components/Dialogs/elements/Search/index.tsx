@@ -1,6 +1,6 @@
 import React from 'react'
-import { BaseDiagleProps } from '../../Dialogs.data'
-import SearchDialogForm from './Dialog.Search.Form'
+import { BaseDiagleProps } from '../../data'
+import SearchDialogForm from './Form'
 import debounce from 'lodash/debounce'
 import { useCarpoolsLazyQuery } from '@graphql/generated-types'
 import Link from 'next/link'

@@ -1,8 +1,8 @@
 import * as React from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useCarpoolsQuery } from 'src/graphql/generated-types'
-import CarpoolFeedList from './Components/Carpool.Feed.List'
-import CarpoolFeedLoading from './Components/Carpool.Feed.Loading'
+import CarpoolFeedList from './Components/List'
+import CarpoolFeedLoading from './Components/ElementLoading'
 
 interface ICarpoolsFeedControllerProps {}
 

@@ -1,3 +1,3 @@
-import Controller from './Feed.controller'
+import Controller from './controller'
 
 export { Controller }

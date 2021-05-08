@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { APP_PORTALS } from '../../../components/Portals/Dialogs.data'
+import { APP_PORTALS } from '../../../components/Dialogs/data'
 
 export interface PortalState {
   current: APP_PORTALS

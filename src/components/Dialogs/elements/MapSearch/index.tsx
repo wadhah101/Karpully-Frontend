@@ -1,6 +1,6 @@
 import React from 'react'
-import { BaseDiagleProps } from '../../Dialogs.data'
-import MapSearchDialogForm from './Dialog.Search.Form'
+import { BaseDiagleProps } from '../../data'
+import MapSearchDialogForm from './Form'
 
 const MapSearchDialog: React.FC<BaseDiagleProps> = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import { User } from '../../../../graphql/generated-types'
-import HeaderSearch from './Header.search'
+import HeaderSearch from './Search'
 import { Menu, Transition } from '@headlessui/react'
 import {
   UserCircleIcon,
@@ -15,7 +15,7 @@ import Link from 'next/link'
 import { logout } from '../../../../utils/redux/slices/authSlice'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/dist/client/router'
-import HeaderNotificationBell from './NotificationBell/Header.notification.controller'
+import HeaderNotificationBell from './NotificationBell'
 
 const ImageButton: React.FC = () => {
   const imageId = 'IuJc2qh2TcA'

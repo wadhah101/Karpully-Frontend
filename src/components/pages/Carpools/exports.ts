@@ -1,4 +1,4 @@
-import Feed from './Feed/Carpool.Feed.controller'
-import Filter from './Filter/Carpools.Filter.controller'
+import Feed from './Feed/controller'
+import Filter from './Filter'
 
 export { Feed, Filter }

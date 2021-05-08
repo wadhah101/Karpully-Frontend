@@ -2,11 +2,11 @@ import * as React from 'react'
 import { useSelector } from 'react-redux'
 import { User } from 'src/graphql/generated-types'
 import { CoreState } from 'src/utils/redux/store'
-import ActionPanelFeed from './ActionPanel/ActionPanelFeed'
-import MyCarpoolsFeed from './MyCarpoolsPanel/MyCarpools.Feed'
-import ProfilePanel from './ProfilePanel/Feed.ProfilePanel'
-import SubmittedCarpools from './SubmittedCarpools/SubmittedCarpools.Feed'
-import SuggestionPanelFeed from './SuggestionPanel/SuggestionPanel'
+import ActionPanelFeed from './ActionPanel'
+import MyCarpoolsFeed from './MyCarpoolsPanel'
+import ProfilePanel from './ProfilePanel'
+import SubmittedCarpools from './SubmittedCarpools'
+import SuggestionPanelFeed from './SuggestionPanel'
 
 interface IFeedControllerProps {}
 
