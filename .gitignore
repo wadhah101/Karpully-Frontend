@@ -34,3 +34,5 @@ yarn-error.log*
 .vercel
 .env
 src/graphql/generated-types.ts
+
+.scannerwork

@@ -2,6 +2,7 @@
 const tcontainer = require('tailwindcss-fluid-container')
 const lineClamp = require('@tailwindcss/line-clamp')
 const forms = require('@tailwindcss/forms')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   mode: 'jit',
@@ -11,6 +12,9 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    fontFamily: {
+      sans: ['"Nunito Sans"', ...defaultTheme.fontFamily.sans],
+    },
     fluidContainer: {
       default: {
         maxWidth: {

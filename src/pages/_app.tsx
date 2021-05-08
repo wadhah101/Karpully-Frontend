@@ -11,11 +11,9 @@ import AppHead from '../components/app/Head/Head'
 import * as Dialogs from '../components/Portals/exports'
 import { PersistGate } from 'redux-persist/integration/react'
 import { useApolloClient } from '../utils/apollo/useApolloClient'
-import useQueryDetector from 'src/utils/app/useQueryDetector'
 
 const MyWrapper: React.FC<AppProps> = ({ Component, pageProps }) => {
   const client = useApolloClient()
-  useQueryDetector()
   return (
     <ApolloProvider client={client}>
       <AppHead />

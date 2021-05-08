@@ -6,9 +6,11 @@ import CarpoolFeedLoading from './Components/Carpool.Feed.Loading'
 
 interface ICarpoolsFeedControllerProps {}
 
+const pergPage = 15
+
 const CarpoolsFeedController: React.FC<ICarpoolsFeedControllerProps> = () => {
   const { data, fetchMore } = useCarpoolsQuery({
-    variables: { limit: 9, page: 1 },
+    variables: { limit: pergPage, page: 1 },
   })
 
   type CarpoolArrayPartial = typeof data.carpools.items
@@ -29,12 +31,14 @@ const CarpoolsFeedController: React.FC<ICarpoolsFeedControllerProps> = () => {
   }, [data])
 
   const fetchMoreData = () => {
-    const pageNum = Math.floor(pagingData.items.length / 9)
-    fetchMore({ variables: { page: pageNum + 1, limit: 9 } }).then((e) => {
-      const { items } = e.data.carpools
-      const newData = pagingData.items.concat(items)
-      setPagingData({ hasMore: true, items: newData })
-    })
+    const pageNum = Math.floor(pagingData.items.length / pergPage)
+    fetchMore({ variables: { page: pageNum + 1, limit: pergPage } }).then(
+      (e) => {
+        const { items } = e.data.carpools
+        const newData = pagingData.items.concat(items)
+        setPagingData({ hasMore: true, items: newData })
+      }
+    )
   }
 
   return (

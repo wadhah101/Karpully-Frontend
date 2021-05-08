@@ -7,7 +7,6 @@ import { CoreState } from '../redux/store'
 const GUARDED_ROUTES = ['/feed', '/arrange', '/user/messages']
 
 export const useAuthGuard = (): void => {
-  return
   const router = useRouter()
   const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user)
   useEffect(() => {
