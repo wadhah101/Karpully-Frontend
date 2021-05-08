@@ -33,6 +33,6 @@ yarn-error.log*
 # vercel
 .vercel
 .env
-src/graphql/generated-types.ts
+# src/graphql/generated-types.ts
 
 .scannerwork
