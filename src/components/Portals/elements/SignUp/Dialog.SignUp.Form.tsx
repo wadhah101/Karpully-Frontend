@@ -5,7 +5,7 @@ import * as SignUpFormData from './Dialog.SignUp.Form.data'
 import { MailIcon, KeyIcon, UserCircleIcon } from '@heroicons/react/outline'
 import * as Forms from '../../../Forms/export'
 import { useSignUpStage1Mutation } from '../../../../graphql/generated-types'
-import { formikErrorFactory } from '../../Dialogs.data'
+import { APP_PORTALS, formikErrorFactory } from '../../Dialogs.data'
 import * as Dialogs from '../../exports'
 import { useDispatch } from 'react-redux'
 import { openDialog } from 'src/utils/redux/slices/appSlice'
@@ -24,7 +24,7 @@ const SignUpDialogForm: React.FC = () => {
         firstStageSignUp: { email },
       } = data
       dispatch(setSignUpEmail(email))
-      dispatch(openDialog('confirm'))
+      dispatch(openDialog(APP_PORTALS.Confirm))
     }
     return () => null
   }, [data])

@@ -1,3 +1,4 @@
+import { APP_PORTALS } from '@comp/Portals/Dialogs.data'
 import { useRouter } from 'next/dist/client/router'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
@@ -16,7 +17,7 @@ const useQueryDetector = (): void => {
 
     if (sign_up_user_id && sign_up_token && sign_up_verification_token) {
       dispatch(logout())
-      dispatch(openDialog('completeInfo'))
+      dispatch(openDialog(APP_PORTALS.CompleteInfo))
     }
 
     return () => null

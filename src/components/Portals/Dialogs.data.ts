@@ -9,22 +9,33 @@ export type AppPortals =
   | 'confirm'
   | 'completeInfo'
 
+export enum APP_PORTALS {
+  Login = 'login',
+  Signup = 'signup',
+  Reset = 'reset',
+  Search = 'search',
+  Confirm = 'confirm',
+  CompleteInfo = 'completeInfo',
+  MapSearch = 'mapSearch',
+}
+
 export interface BaseDiagleProps {
   cancelButtonRef: React.MutableRefObject<HTMLButtonElement>
 }
 
-export const BLOCKED_PORTALS: AppPortals[] = ['completeInfo']
+export const BLOCKED_PORTALS: APP_PORTALS[] = [APP_PORTALS.CompleteInfo]
 
 export const PORTALS_WITH_DATA: [
-  AppPortals,
+  APP_PORTALS,
   () => React.ComponentType<BaseDiagleProps>
 ][] = [
-  ['login', () => Portals.Login],
-  ['signup', () => Portals.SignUp],
-  ['reset', () => Portals.SignUp],
-  ['search', () => Portals.Search],
-  ['confirm', () => Portals.Confirm],
-  ['completeInfo', () => Portals.CompleteInfo],
+  [APP_PORTALS.Login, () => Portals.Login],
+  [APP_PORTALS.Signup, () => Portals.SignUp],
+  [APP_PORTALS.Reset, () => Portals.SignUp],
+  [APP_PORTALS.Search, () => Portals.Search],
+  [APP_PORTALS.Confirm, () => Portals.Confirm],
+  [APP_PORTALS.CompleteInfo, () => Portals.CompleteInfo],
+  [APP_PORTALS.MapSearch, () => Portals.MapSearch],
 ]
 
 export const formikErrorFactory = (

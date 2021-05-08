@@ -10,6 +10,7 @@ import {
 } from './Header.data'
 import { User } from '../../../graphql/generated-types'
 import HeaderProfile from './Components/Header.profile'
+import { APP_PORTALS } from '@comp/Portals/Dialogs.data'
 
 interface IStatelessHeaderProps {
   text: { white: boolean }
@@ -61,7 +62,9 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
                 <li
                   key={e.link.name}
                   className={clsx(!user && 'cursor-pointer ')}
-                  onClick={() => !user && dispatch(openDialog('login'))}
+                  onClick={() =>
+                    !user && dispatch(openDialog(APP_PORTALS.Login))
+                  }
                 >
                   {user ? (
                     <Link passHref href={e.link.to}>
@@ -82,14 +85,14 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = ({
                 <li className="">
                   <button
                     className="font-semibold"
-                    onClick={() => dispatch(openDialog('login'))}
+                    onClick={() => dispatch(openDialog(APP_PORTALS.Login))}
                   >
                     Login
                   </button>
                 </li>
                 <li>
                   <button
-                    onClick={() => dispatch(openDialog('signup'))}
+                    onClick={() => dispatch(openDialog(APP_PORTALS.Signup))}
                     className="grid px-8 py-2.5 text-white bg-opacity-50 rounded bg-gradient-to-r from-kgreen-700 font-semibold place-items-center to-kgreen-400 "
                   >
                     Sign Up

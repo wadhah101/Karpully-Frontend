@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AppPortals } from '../../../components/Portals/Dialogs.data'
+import { APP_PORTALS } from '../../../components/Portals/Dialogs.data'
 
 export interface PortalState {
-  current: AppPortals
+  current: APP_PORTALS
   show: boolean
 }
 
@@ -18,7 +18,7 @@ const counterSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    openDialog: (state, action: PayloadAction<AppPortals>) => {
+    openDialog: (state, action: PayloadAction<APP_PORTALS>) => {
       state.portal = { current: action.payload, show: true }
     },
     closeDialog: (state) => {

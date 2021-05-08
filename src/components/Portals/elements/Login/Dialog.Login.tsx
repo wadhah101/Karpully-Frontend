@@ -7,7 +7,7 @@ import {
 import { XIcon } from '@heroicons/react/outline'
 import LoginDialogForm from './Dialog.Login.Form'
 import { Dialog } from '@headlessui/react'
-import { BaseDiagleProps } from '../../Dialogs.data'
+import { APP_PORTALS, BaseDiagleProps } from '../../Dialogs.data'
 
 const LoginDialog: React.FC<BaseDiagleProps> = ({ cancelButtonRef }) => {
   const dispatch = useDispatch()
@@ -44,7 +44,7 @@ const LoginDialog: React.FC<BaseDiagleProps> = ({ cancelButtonRef }) => {
         <p className="text-black text-opacity-80">
           Forgot password ?&nbsp;
           <span
-            onClick={() => dispatch(openDialog('reset'))}
+            onClick={() => dispatch(openDialog(APP_PORTALS.Reset))}
             className="font-semibold text-green-500 cursor-pointer"
           >
             Reset
@@ -53,7 +53,7 @@ const LoginDialog: React.FC<BaseDiagleProps> = ({ cancelButtonRef }) => {
         <p className="text-black text-opacity-80">
           Don&apos;t have an account ?&nbsp;
           <span
-            onClick={() => dispatch(openDialog('signup'))}
+            onClick={() => dispatch(openDialog(APP_PORTALS.Signup))}
             className="font-semibold text-green-500 cursor-pointer "
           >
             Sign up

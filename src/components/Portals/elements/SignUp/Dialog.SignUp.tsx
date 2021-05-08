@@ -8,7 +8,7 @@ import {
   openDialog,
 } from '../../../../utils/redux/slices/appSlice'
 import { Dialog } from '@headlessui/react'
-import { BaseDiagleProps } from '../../Dialogs.data'
+import { APP_PORTALS, BaseDiagleProps } from '../../Dialogs.data'
 
 const SignUpDialog: React.FC<BaseDiagleProps> = ({ cancelButtonRef }) => {
   const dispatch = useDispatch()
@@ -45,7 +45,7 @@ const SignUpDialog: React.FC<BaseDiagleProps> = ({ cancelButtonRef }) => {
         <p className="text-black text-opacity-80">
           Already registered ?&nbsp;
           <span
-            onClick={() => dispatch(openDialog('login'))}
+            onClick={() => dispatch(openDialog(APP_PORTALS.Login))}
             className="font-semibold text-green-500 cursor-pointer "
           >
             Sign in

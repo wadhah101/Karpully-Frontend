@@ -1,3 +1,4 @@
+import { APP_PORTALS } from '@comp/Portals/Dialogs.data'
 import { useRouter } from 'next/dist/client/router'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -22,7 +23,8 @@ const Header: React.FC = () => {
   const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user)
 
   useEffect(() => {
-    if (user && !user.completedSignUp) dispatch(openDialog('completeInfo'))
+    if (user && !user.completedSignUp)
+      dispatch(openDialog(APP_PORTALS.CompleteInfo))
   }, [user])
 
   useEffect(() => {

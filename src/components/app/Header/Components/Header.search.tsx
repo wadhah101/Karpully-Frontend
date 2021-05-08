@@ -6,6 +6,7 @@ import {
   openDialog,
   PortalState,
 } from '../../../../utils/redux/slices/appSlice'
+import { APP_PORTALS } from '@comp/Portals/Dialogs.data'
 
 const HeaderSearch: React.FC = () => {
   const dispatch = useDispatch()
@@ -16,7 +17,7 @@ const HeaderSearch: React.FC = () => {
   const Comp = isShown ? XIcon : SearchIcon
 
   return (
-    <div onClick={() => dispatch(openDialog('search'))}>
+    <div onClick={() => dispatch(openDialog(APP_PORTALS.Search))}>
       <Comp className="w-6 h-6 cursor-pointer" />
     </div>
   )

@@ -1,4 +1,4 @@
-import { BaseDiagleProps } from '@comp/Portals/Dialogs.data'
+import { APP_PORTALS, BaseDiagleProps } from '@comp/Portals/Dialogs.data'
 import { Dialog } from '@headlessui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { XIcon } from '@heroicons/react/outline'
@@ -44,7 +44,7 @@ const ConfirmMailDialog: React.FC<BaseDiagleProps> = ({ cancelButtonRef }) => {
         <p className="text-black text-opacity-80">
           If you don&apos;t see it, you can &nbsp;
           <span
-            onClick={() => dispatch(openDialog('reset'))}
+            onClick={() => dispatch(openDialog(APP_PORTALS.Reset))}
             className="font-semibold text-green-500 cursor-pointer"
           >
             resend the confirmation email!

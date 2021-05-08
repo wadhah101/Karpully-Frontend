@@ -1,5 +1,6 @@
 import 'tailwindcss/tailwind.css'
 import '../styles/global.scss'
+import 'leaflet/dist/leaflet.css'
 import type { AppProps } from 'next/app'
 import * as React from 'react'
 import { Footer } from '../components/app/Footer'
