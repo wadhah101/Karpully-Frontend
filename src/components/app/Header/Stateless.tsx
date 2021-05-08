@@ -4,10 +4,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import { useDispatch } from 'react-redux'
 import { openDialog } from '../../../utils/redux/slices/appSlice'
-import {
-  HEADER_NAV_LINKS_SIGNED_IN,
-  HEADER_NAV_LINKS_SIGNED_OUT,
-} from './data'
+import { HEADER_NAV_LINKS_SIGNED_IN, HEADER_NAV_LINKS_SIGNED_OUT } from './data'
 import { User } from '../../../graphql/generated-types'
 import HeaderProfile from './Components/Profile'
 import { APP_PORTALS } from '@comp/Dialogs/data'

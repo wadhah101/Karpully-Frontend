@@ -1,6 +1,4 @@
-import StateLessNotificationBell, {
-  AppNotifications,
-} from './stateless'
+import StateLessNotificationBell, { AppNotifications } from './stateless'
 import dayjs from 'dayjs'
 
 const HeaderNotificationBell: React.FC = () => {

@@ -1,29 +1,20 @@
-import { Form, Formik, useFormikContext } from 'formik'
+import { Form, Formik } from 'formik'
 import * as React from 'react'
 import * as Forms from '@comp/Forms/export'
 import { SearchIcon } from '@heroicons/react/outline'
+import OnChangeBind from '@comp/Forms/OnChangeBind'
 
 interface ISearchDialogFormProps {
   onChange: (string) => void
 }
 
-const Auto = ({ onChange }) => {
-  const {
-    values: { search },
-  } = useFormikContext<{ search: string }>()
-  React.useEffect(() => {
-    onChange(search)
-    return () => null
-  }, [search])
-
-  return null
-}
+const initialValues = { search: '' }
 
 const SearchDialogForm: React.FunctionComponent<ISearchDialogFormProps> = ({
   onChange,
 }) => {
   return (
-    <Formik onSubmit={() => null} initialValues={{ search: '' }}>
+    <Formik onSubmit={() => null} initialValues={initialValues}>
       <Form>
         <Forms.Input
           id="search"
@@ -31,7 +22,11 @@ const SearchDialogForm: React.FunctionComponent<ISearchDialogFormProps> = ({
           RightIcon={SearchIcon}
           placeholder="Ex. Ben Arous, Fouchena"
         />
-        <Auto onChange={onChange} />
+
+        <OnChangeBind
+          cls={initialValues}
+          onChange={({ search }) => onChange(search)}
+        />
       </Form>
     </Formik>
   )
