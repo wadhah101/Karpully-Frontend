@@ -10,7 +10,7 @@ interface IHeaderLogoProps {
 const HeaderLogo: React.FC<IHeaderLogoProps> = ({ user }) => {
   return (
     <Link href={user ? '/feed' : '/'} passHref>
-      <a className="block text-kgreen-700 ">
+      <a title="logo" className="block text-kgreen-700 ">
         <Logo className="fill-current" height="3rem" width="auto" />
       </a>
     </Link>

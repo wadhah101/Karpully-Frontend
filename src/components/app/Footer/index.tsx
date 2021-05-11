@@ -37,7 +37,7 @@ export const Footer: React.FC<Props> = () => {
                   key={e.link.name}
                 >
                   <Link href={e.link.to} passHref>
-                    <a> {e.link.name} </a>
+                    <a title={e.link.name}> {e.link.name} </a>
                   </Link>
                 </li>
               ))}
