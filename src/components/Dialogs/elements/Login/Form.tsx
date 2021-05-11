@@ -10,7 +10,6 @@ import { MailIcon, KeyIcon } from '@heroicons/react/outline'
 import * as Forms from '@comp/Forms/export'
 import { useRouter } from 'next/dist/client/router'
 import * as Dialogs from '../../exports'
-import { formikErrorFactory } from '../../data'
 
 const LoginDialogForm: React.FC = () => {
   const dispatch = useDispatch()
@@ -54,11 +53,12 @@ const LoginDialogForm: React.FC = () => {
       onSubmit={onSumbit}
       initialValues={LoginFormData.initialValues}
     >
-      {({ errors, touched, isValid }) => (
+      {({ isValid }) => (
         <Form>
-          <div className="grid gap-5">
-            <Forms.Input
+          <div className="grid gap-1">
+            <Forms.InputWithError
               LeftIcon={MailIcon}
+              type="text"
               id="username"
               name="username"
               placeholder="Username or Email "
@@ -73,7 +73,7 @@ const LoginDialogForm: React.FC = () => {
               type="submit"
               disabled={loading || !isValid}
               className={clsx(
-                'grid px-8 py-2.5 rounded bg-gradient-to-r font-bold place-items-center  ',
+                'grid px-8 mt-1 py-2.5 rounded bg-gradient-to-r font-bold place-items-center  ',
                 (called && loading) || !isValid || data
                   ? 'from-kgreen-200 to-kgreen-200  text-gray-50'
                   : 'from-kgreen-600 to-kgreen-500 text-white'
@@ -83,10 +83,7 @@ const LoginDialogForm: React.FC = () => {
             </button>
             <Dialogs.SmallText
               error={true}
-              data={[
-                ...formikErrorFactory(touched, errors),
-                ...(error ? [error.message] : []),
-              ]}
+              data={[...(error ? [error.message] : [])]}
             />
           </div>
         </Form>

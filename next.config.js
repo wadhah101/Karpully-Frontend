@@ -4,19 +4,22 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer({
   webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: [
-        {
-          loader: '@svgr/webpack',
-          options: {
-            icon: true,
-            svgo: true,
+    const myRules = [
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              icon: true,
+              svgo: true,
+            },
           },
-        },
-      ],
-    })
+        ],
+      },
+    ]
 
+    config.module.rules = config.module.rules.concat(myRules)
     return config
   },
   future: {

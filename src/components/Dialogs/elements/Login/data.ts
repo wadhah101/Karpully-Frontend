@@ -1,4 +1,5 @@
 import * as Yup from 'yup'
+import * as Forms from '@comp/Forms/export'
 
 export interface FormValues {
   username: string
@@ -10,6 +11,6 @@ export const initialValues: FormValues = {
 }
 
 export const validationSchema: Yup.SchemaOf<FormValues> = Yup.object().shape({
-  username: Yup.string().required(),
-  password: Yup.string().required().min(6),
+  username: Yup.string().required(Forms.Messsages.REQUIRED),
+  password: Yup.string().required(Forms.Messsages.REQUIRED).min(6),
 })

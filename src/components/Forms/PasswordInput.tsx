@@ -1,7 +1,7 @@
 import { EyeIcon } from '@heroicons/react/outline'
 import { FieldAttributes } from 'formik'
 import React, { useState } from 'react'
-import Input, { InputCustomFields } from './Input'
+import InputWithError, { InputCustomFields } from './InputWithError'
 
 const PasswordInput: React.FC<
   FieldAttributes<Omit<InputCustomFields, 'RightIcon'>>
@@ -9,7 +9,7 @@ const PasswordInput: React.FC<
   const [showPassword, setshowPassword] = useState(false)
 
   return (
-    <Input
+    <InputWithError
       {...props}
       type={showPassword ? 'text' : 'password'}
       RightIcon={EyeIcon}

@@ -1,0 +1,18 @@
+fragment FullUser on User {
+  id
+  username
+  firstname
+  lastname
+  age
+  rate
+  email
+  completedSignUp
+  profileImage {
+    id
+    name
+  }
+  localization
+  telNumber
+  gender
+  isConfirmed
+}

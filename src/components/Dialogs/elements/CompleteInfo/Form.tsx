@@ -7,7 +7,6 @@ import {
   User,
   useSignUpStage2Mutation,
 } from '../../../../graphql/generated-types'
-import { formikErrorFactory } from '../../data'
 import * as Dialogs from '../../exports'
 import { updateUserAction } from 'src/utils/redux/slices/authSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -56,22 +55,22 @@ const CompleteInfoDialogForm: React.FC = () => {
       onSubmit={onSumbit}
       initialValues={CompleteInfoFormData.initialValues}
     >
-      {({ errors, touched, isValid }) => (
+      {({ isValid }) => (
         <Form>
-          <div className="grid gap-4">
-            <Forms.Input
+          <div className="grid">
+            <Forms.InputWithError
               id="firstName"
               name="firstName"
               placeholder="First Name"
             />
-            <Forms.Input
+            <Forms.InputWithError
               id="lastName"
               name="lastName"
               placeholder="Last Name"
             />
-            <Forms.Input id="phone" name="phone" placeholder="Phone" />
-            <Forms.Input id="age" name="age" placeholder="Age" />
-            <div className="mt-2">
+            <Forms.InputWithError id="phone" name="phone" placeholder="Phone" />
+            <Forms.InputWithError id="age" name="age" placeholder="Age" />
+            <div className="mt-4">
               <Forms.Select
                 options={['Male', 'Female']}
                 id="gender"
@@ -95,10 +94,7 @@ const CompleteInfoDialogForm: React.FC = () => {
             <div className="">
               <Dialogs.SmallText
                 error={true}
-                data={[
-                  ...formikErrorFactory(touched, errors),
-                  ...(error ? [error.message] : []),
-                ]}
+                data={[...(error ? [error.message] : [])]}
               />
             </div>
           </div>

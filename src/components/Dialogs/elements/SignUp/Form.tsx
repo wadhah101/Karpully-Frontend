@@ -5,7 +5,7 @@ import * as SignUpFormData from './data'
 import { MailIcon, KeyIcon, UserCircleIcon } from '@heroicons/react/outline'
 import * as Forms from '../../../Forms/export'
 import { useSignUpStage1Mutation } from '../../../../graphql/generated-types'
-import { APP_PORTALS, formikErrorFactory } from '../../data'
+import { APP_PORTALS } from '../../data'
 import * as Dialogs from '../../exports'
 import { useDispatch } from 'react-redux'
 import { openDialog } from 'src/utils/redux/slices/appSlice'
@@ -49,19 +49,21 @@ const SignUpDialogForm: React.FC = () => {
       onSubmit={onSumbit}
       initialValues={SignUpFormData.initialValues}
     >
-      {({ errors, touched, isValid }) => (
+      {({ isValid }) => (
         <Form>
-          <div className="grid gap-5">
-            <Forms.Input
+          <div className="grid gap-1">
+            <Forms.InputWithError
               LeftIcon={UserCircleIcon}
               id="username"
               name="username"
+              type="text"
               placeholder="Username"
             />
-            <Forms.Input
+            <Forms.InputWithError
               LeftIcon={MailIcon}
               id="email"
               name="email"
+              type="text"
               placeholder="Email"
             />
             <Forms.PasswordInput
@@ -75,7 +77,7 @@ const SignUpDialogForm: React.FC = () => {
               type="submit"
               disabled={loading || !isValid || !!data}
               className={clsx(
-                'grid px-8 py-2.5 rounded bg-gradient-to-r font-bold place-items-center  ',
+                'grid px-8 mt-1 py-2.5 rounded bg-gradient-to-r font-bold place-items-center  ',
                 (called && loading) || !isValid || !!data
                   ? 'from-kgreen-200 to-kgreen-200  text-gray-50'
                   : 'from-kgreen-600 to-kgreen-500 text-white'
@@ -85,10 +87,7 @@ const SignUpDialogForm: React.FC = () => {
             </button>
             <Dialogs.SmallText
               error={true}
-              data={[
-                ...formikErrorFactory(touched, errors),
-                ...(error ? [error.message] : []),
-              ]}
+              data={[...(error ? [error.message] : [])]}
             />
           </div>
         </Form>

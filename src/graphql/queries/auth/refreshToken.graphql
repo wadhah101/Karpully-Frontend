@@ -3,18 +3,7 @@ query refreshToken($refreshToken: String!) {
     refresh_token
     access_token
     user {
-      id
-      username
-      firstname
-      lastname
-      age
-      completedSignUp
-      rate
-      email
-      localization
-      telNumber
-      gender
-      isConfirmed
+      ...FullUser
     }
   }
 }

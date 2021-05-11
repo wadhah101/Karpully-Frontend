@@ -18,17 +18,6 @@ mutation signUpStage2(
       gender: $gender
     }
   ) {
-    id
-    username
-    firstname
-    lastname
-    completedSignUp
-    age
-    rate
-    email
-    localization
-    telNumber
-    gender
-    isConfirmed
+    ...FullUser
   }
 }

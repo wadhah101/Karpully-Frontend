@@ -11,18 +11,7 @@ mutation confirmEmail(
     }
   ) {
     user {
-      id
-      username
-      firstname
-      lastname
-      age
-      rate
-      completedSignUp
-      email
-      localization
-      telNumber
-      gender
-      isConfirmed
+      ...FullUser
     }
     refresh_token
     access_token

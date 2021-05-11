@@ -11,6 +11,7 @@ import {
 import { authLessClient } from 'src/utils/apollo/useApolloClient'
 import * as Yup from 'yup'
 import debounce from 'lodash/debounce'
+import * as Forms from '@comp/Forms/export'
 
 export interface FormValues {
   username: string
@@ -41,7 +42,7 @@ const userNameExists = async (username: string): Promise<boolean> => {
 
 export const validationSchema: Yup.SchemaOf<FormValues> = Yup.object().shape({
   username: Yup.string()
-    .required()
+    .required(Forms.Messsages.REQUIRED)
     .test(
       'u',
       'username exists',
@@ -50,11 +51,13 @@ export const validationSchema: Yup.SchemaOf<FormValues> = Yup.object().shape({
 
   email: Yup.string()
     .email()
-    .required()
+    .required(Forms.Messsages.REQUIRED)
     .test(
       'u2',
       'email exists',
       debounce((e) => e && emailExists(e), 300)
     ),
-  password: Yup.string().required().min(6),
+  password: Yup.string()
+    .required(Forms.Messsages.REQUIRED)
+    .min(6, Forms.Messsages.PASSWORD_MIN),
 })

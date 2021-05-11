@@ -24,7 +24,7 @@ const Input: React.FC<FieldAttributes<InputCustomFields>> = ({
     )}
     <Field
       className={clsx(
-        'mt-0 block w-full px-2 py-2.5 border-0 outline-none border-b-2 border-gray-200 focus:ring-0 focus:border-black focus:border-opacity-70',
+        'mt-0 block w-full px-2 py-1 border-0 outline-none border-b-2 border-gray-200 focus:ring-0 focus:border-black focus:border-opacity-70',
         className
       )}
       {...props}

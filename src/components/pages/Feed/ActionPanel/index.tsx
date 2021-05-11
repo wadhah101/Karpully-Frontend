@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { openDialog } from '@utils/redux/slices/appSlice'
 import { LocationMarkerIcon } from '@heroicons/react/outline'
 import { APP_PORTALS } from '@comp/Dialogs/data'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 import OnChangeBind from '@comp/Forms/OnChangeBind'
 
@@ -19,37 +20,33 @@ const ActionPanelFeed: React.FunctionComponent<IFriendsPanelFeedProps> = () => {
   const dispatch = useDispatch()
 
   return (
-    <div className="flex flex-col bg-white border rounded shadow ">
+    <div className="flex flex-col px-3 py-6 bg-white border rounded shadow ">
       <Formik onSubmit={() => null} initialValues={initialValues}>
-        <div className="px-3 py-6">
-          <Form>
-            <Forms.Input
-              id="search"
-              name="search"
-              rightIconOnClick={() =>
-                current.trim() && router.push(`/carpools/search?q=${current}`)
-              }
-              RightIcon={SearchIcon}
-              placeholder="Search"
-            />
-            <OnChangeBind
-              cls={initialValues}
-              onChange={({ search }) => setCurrent(search)}
-            />
-          </Form>
-        </div>
+        <Form>
+          <Forms.Input
+            id="search"
+            name="search"
+            rightIconOnClick={() =>
+              current.trim() && router.push(`/carpools/search?q=${current}`)
+            }
+            RightIcon={SearchIcon}
+            placeholder="Search"
+          />
+          <OnChangeBind
+            cls={initialValues}
+            onChange={({ search }) => setCurrent(search)}
+          />
+        </Form>
       </Formik>
-      <div className="px-3 pb-4">
-        <button
-          onClick={() => dispatch(openDialog(APP_PORTALS.MapSearch))}
-          className=" flex w-full  items-center justify-center   py-2.5 text-white rounded bg-gradient-to-r from-kgreen-600  font-bold shadow  to-kgreen-500 "
-        >
-          Search With Map
-          <div>
-            <LocationMarkerIcon className="w-5 h-5 ml-2 " />
-          </div>
-        </button>
-      </div>
+      <button
+        onClick={() => dispatch(openDialog(APP_PORTALS.MapSearch))}
+        className=" flex w-full  items-center justify-center   py-2.5 text-white rounded bg-gradient-to-r from-kgreen-600  mt-6 font-bold shadow  to-kgreen-500 "
+      >
+        Search With Map
+        <div>
+          <LocationMarkerIcon className="w-5 h-5 ml-2 " />
+        </div>
+      </button>
     </div>
   )
 }

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const tcontainer = require('tailwindcss-fluid-container')
 const lineClamp = require('@tailwindcss/line-clamp')
-const forms = require('@tailwindcss/forms')
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
@@ -99,5 +98,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [lineClamp, tcontainer, forms],
+  plugins: [lineClamp, tcontainer],
 }
