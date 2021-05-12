@@ -657,7 +657,7 @@ export type LoginMutationVariables = Exact<{
 export type LoginMutation = { __typename?: 'Mutation' } & {
   login: { __typename?: 'TokenModel' } & Pick<
     TokenModel,
-    'access_token' | 'refresh_token'
+    'refresh_token' | 'access_token'
   > & { user: { __typename?: 'User' } & FullUserFragment }
 }
 
@@ -843,8 +843,8 @@ export type ConfirmEmailMutationOptions = Apollo.BaseMutationOptions<
 export const LoginDocument = gql`
   mutation login($username: String!, $password: String!) {
     login(credentialsInput: { username: $username, password: $password }) {
-      access_token
       refresh_token
+      access_token
       user {
         ...FullUser
       }

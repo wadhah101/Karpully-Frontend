@@ -1,52 +1,16 @@
 import React from 'react'
-import { User } from '../../../../graphql/generated-types'
-import HeaderSearch from './Search'
 import { Menu, Transition } from '@headlessui/react'
-import {
-  UserCircleIcon,
-  InboxIcon,
-  LogoutIcon,
-  ChevronDownIcon,
-} from '@heroicons/react/solid'
-
+import { LogoutIcon } from '@heroicons/react/solid'
 import { Fragment } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { logout } from '../../../../utils/redux/slices/authSlice'
+import { logout } from '../../../../../utils/redux/slices/authSlice'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/dist/client/router'
-import HeaderNotificationBell from './NotificationBell'
+import { ImageButton } from './ImageButton'
+import { ROW_1 } from './data'
 
-const ImageButton: React.FC = () => {
-  const imageId = 'IuJc2qh2TcA'
-  return (
-    <div className="relative pr-4 text-black text-opacity-50 transition-colors hover:text-opacity-100">
-      <img
-        alt="user image"
-        src={`https://source.unsplash.com/${imageId}/100x100`}
-        className="w-10 h-10 overflow-hidden rounded-full"
-      />
-      <div className="absolute right-0 -bottom-2 ">
-        <ChevronDownIcon className="w-6 h-6" />
-      </div>
-    </div>
-  )
-}
-
-const ROW_1 = [
-  {
-    name: 'Profile',
-    Icon: UserCircleIcon,
-    href: '/user/profile',
-  },
-  {
-    name: 'Message',
-    Icon: InboxIcon,
-    href: '/user/messages',
-  },
-]
-
-const ProfileMenu: React.FC = () => {
+export const ProfileMenu: React.FC = () => {
   const dispatch = useDispatch()
   const router = useRouter()
 
@@ -129,19 +93,3 @@ const ProfileMenu: React.FC = () => {
     </div>
   )
 }
-
-interface IHeaderProfileProps {
-  user: Partial<User>
-}
-
-const HeaderProfile: React.FC<IHeaderProfileProps> = () => {
-  return (
-    <div className="grid items-center grid-flow-col-dense gap-4">
-      <HeaderSearch />
-      <HeaderNotificationBell />
-      <ProfileMenu />
-    </div>
-  )
-}
-
-export default HeaderProfile
