@@ -31,7 +31,7 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = (props) => {
       <div className="flex items-center w-full">
         <HeaderLogo user={user} />
         <div className="flex-grow" />
-        <DesktopMenu body={props.body} text={props.text} />
+        <DesktopMenu user={props.user} body={props.body} text={props.text} />
       </div>
     </header>
   );
