@@ -15,9 +15,7 @@ import * as SignUpFormData from './data';
 
 const SignUpDialogForm: React.FC = () => {
   const dispatch = useDispatch();
-  const [signUpMutation, {
-    data, error, called, loading,
-  }] = useSignUpStage1Mutation();
+  const [signUpMutation, { data, error, called, loading }] = useSignUpStage1Mutation();
 
   useEffect(() => {
     if (data) {

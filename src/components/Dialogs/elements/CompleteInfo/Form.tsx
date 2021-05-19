@@ -18,9 +18,7 @@ const CompleteInfoDialogForm: React.FC = () => {
 
   const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user);
 
-  const [signUpMutation, {
-    data, loading, error, called,
-  }] = useSignUpStage2Mutation();
+  const [signUpMutation, { data, loading, error, called }] = useSignUpStage2Mutation();
 
   useEffect(() => {
     if (data) {
@@ -31,9 +29,7 @@ const CompleteInfoDialogForm: React.FC = () => {
   }, [data]);
 
   const onSumbit = (values: CompleteInfoFormData.FormValues): void | Promise<any> => {
-    const {
-      firstName, lastName, age, gender, phone,
-    } = values;
+    const { firstName, lastName, age, gender, phone } = values;
     signUpMutation({
       variables: {
         firstName,

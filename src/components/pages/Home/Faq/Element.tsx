@@ -8,16 +8,8 @@ const HomeFaqElement: React.FunctionComponent<IHomeFaqElementProps> = ({
   data: { question, answer },
 }) => (
   <div>
-    <h4>
-      {' '}
-      {question}
-      {' '}
-    </h4>
-    <p>
-      {' '}
-      {answer}
-      {' '}
-    </p>
+    <h4> {question} </h4>
+    <p> {answer} </p>
   </div>
 );
 

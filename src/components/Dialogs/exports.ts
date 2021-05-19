@@ -7,6 +7,4 @@ import Search from './elements/Search';
 import SignUp from './elements/SignUp';
 import SmallText from './SmallText';
 
-export {
-  MapSearch, Confirm, Login, SignUp, Search, Controller, SmallText, CompleteInfo,
-};
+export { MapSearch, Confirm, Login, SignUp, Search, Controller, SmallText, CompleteInfo };

@@ -31,7 +31,8 @@ export const PORTALS_WITH_DATA: [AppPortals, () => React.ComponentType<BaseDiagl
 export const formikErrorFactory = (
   touched: Record<string, boolean>,
   errors: Record<string, string>,
-): string[] => Object.entries(touched)
-  .filter((e) => e[1])
-  .filter((e) => errors[e[0]])
-  .map((e) => errors[e[0]]);
+): string[] =>
+  Object.entries(touched)
+    .filter((e) => e[1])
+    .filter((e) => errors[e[0]])
+    .map((e) => errors[e[0]]);
