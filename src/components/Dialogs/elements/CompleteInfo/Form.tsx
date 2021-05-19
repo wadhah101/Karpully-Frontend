@@ -1,41 +1,39 @@
-import clsx from 'clsx'
-import { Form, Formik } from 'formik'
-import React, { useEffect } from 'react'
-import * as CompleteInfoFormData from './data'
-import * as Forms from '../../../Forms/export'
-import {
-  User,
-  useSignUpStage2Mutation,
-} from '../../../../graphql/generated-types'
-import * as Dialogs from '../../exports'
-import { updateUserAction } from 'src/utils/redux/slices/authSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import { CoreState } from 'src/utils/redux/store'
-import { closeDialog } from 'src/utils/redux/slices/appSlice'
+import React, { useEffect } from 'react';
+
+import clsx from 'clsx';
+import { Form, Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeDialog } from 'src/utils/redux/slices/appSlice';
+import { updateUserAction } from 'src/utils/redux/slices/authSlice';
+import { CoreState } from 'src/utils/redux/store';
+
+import { User, useSignUpStage2Mutation } from '../../../../graphql/generated-types';
+import * as Forms from '../../../Forms/export';
+import * as Dialogs from '../../exports';
+import * as CompleteInfoFormData from './data';
 
 // TODO add profile picture
 const CompleteInfoDialogForm: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user)
+  const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user);
 
-  const [
-    signUpMutation,
-    { data, loading, error, called },
-  ] = useSignUpStage2Mutation()
+  const [signUpMutation, {
+    data, loading, error, called,
+  }] = useSignUpStage2Mutation();
 
   useEffect(() => {
     if (data) {
-      dispatch(updateUserAction(data.secondStageSignUp))
-      dispatch(closeDialog())
+      dispatch(updateUserAction(data.secondStageSignUp));
+      dispatch(closeDialog());
     }
-    return () => null
-  }, [data])
+    return () => null;
+  }, [data]);
 
-  const onSumbit = (
-    values: CompleteInfoFormData.FormValues
-  ): void | Promise<any> => {
-    const { firstName, lastName, age, gender, phone } = values
+  const onSumbit = (values: CompleteInfoFormData.FormValues): void | Promise<any> => {
+    const {
+      firstName, lastName, age, gender, phone,
+    } = values;
     signUpMutation({
       variables: {
         firstName,
@@ -46,8 +44,8 @@ const CompleteInfoDialogForm: React.FC = () => {
         id: user.id,
         telNumber: phone,
       },
-    }).catch(() => null)
-  }
+    }).catch(() => null);
+  };
 
   return (
     <Formik
@@ -58,16 +56,8 @@ const CompleteInfoDialogForm: React.FC = () => {
       {({ isValid }) => (
         <Form>
           <div className="grid">
-            <Forms.InputWithError
-              id="firstName"
-              name="firstName"
-              placeholder="First Name"
-            />
-            <Forms.InputWithError
-              id="lastName"
-              name="lastName"
-              placeholder="Last Name"
-            />
+            <Forms.InputWithError id="firstName" name="firstName" placeholder="First Name" />
+            <Forms.InputWithError id="lastName" name="lastName" placeholder="Last Name" />
             <Forms.InputWithError id="phone" name="phone" placeholder="Phone" />
             <Forms.InputWithError id="age" name="age" placeholder="Age" />
             <div className="mt-4">
@@ -86,22 +76,19 @@ const CompleteInfoDialogForm: React.FC = () => {
                 'grid px-8 py-2.5 mt-2 rounded bg-gradient-to-r font-bold place-items-center  ',
                 (called && loading) || !isValid || !!data
                   ? 'from-kgreen-200 to-kgreen-200  text-gray-50'
-                  : 'from-kgreen-600 to-kgreen-500 text-white'
+                  : 'from-kgreen-600 to-kgreen-500 text-white',
               )}
             >
               Submit
             </button>
             <div className="">
-              <Dialogs.SmallText
-                error={true}
-                data={[...(error ? [error.message] : [])]}
-              />
+              <Dialogs.SmallText error data={[...(error ? [error.message] : [])]} />
             </div>
           </div>
         </Form>
       )}
     </Formik>
-  )
-}
+  );
+};
 
-export default CompleteInfoDialogForm
+export default CompleteInfoDialogForm;

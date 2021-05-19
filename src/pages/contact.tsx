@@ -1,15 +1,11 @@
-import { GetStaticProps, NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next';
 
-const contact: NextPage = () => {
-  return <div>Enter</div>
-}
+const contact: NextPage = () => <div>Enter</div>;
 
-export const getStaticProps: GetStaticProps = async (_ctx) => {
-  return {
-    props: {
-      data: null,
-    },
-  }
-}
+export const getStaticProps: GetStaticProps = async (_ctx) => ({
+  props: {
+    data: null,
+  },
+});
 
-export default contact
+export default contact;

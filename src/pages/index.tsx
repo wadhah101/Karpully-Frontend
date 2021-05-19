@@ -1,30 +1,32 @@
-import { GetStaticProps, NextPage } from 'next'
-import React from 'react'
-import * as Home from '@comp/pages/Home/exports'
+import React from 'react';
 
-const HomePage: NextPage = () => {
-  return (
-    <div>
-      <Home.Banner />
-      <div className="mb-20 ">
-        <div className="py-24 c-container ">
-          <Home.Features />
-        </div>
+import * as Home from '@comp/pages/Home/exports';
+import MyDisclosure from '@comp/utils/Disclosure';
+import { GetStaticProps, NextPage } from 'next';
+
+const HomePage: NextPage = () => (
+  <div>
+    <Home.Banner />
+    <div className="mb-20 ">
+      <div className="py-24 c-container ">
+        <Home.Features />
       </div>
-
-      {/* Social proff */}
-      {/* FAQ */}
-      {/* Reach Us */}
     </div>
-  )
-}
 
-export const getStaticProps: GetStaticProps = async (_ctx) => {
-  return {
-    props: {
-      data: null,
-    },
-  }
-}
+    {/* Social proff */}
+    {/* FAQ */}
 
-export default HomePage
+    <div className="py-24 c-container">
+      <MyDisclosure />
+    </div>
+    {/* Reach Us */}
+  </div>
+);
+
+export const getStaticProps: GetStaticProps = async (_ctx) => ({
+  props: {
+    data: null,
+  },
+});
+
+export default HomePage;

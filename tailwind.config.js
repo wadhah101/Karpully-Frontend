@@ -1,14 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const tcontainer = require('tailwindcss-fluid-container')
-const lineClamp = require('@tailwindcss/line-clamp')
-const defaultTheme = require('tailwindcss/defaultTheme')
+const tcontainer = require('tailwindcss-fluid-container');
+const lineClamp = require('@tailwindcss/line-clamp');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   mode: 'jit',
-  purge: [
-    './src/pages/**/*.{js,ts,jsx,tsx}',
-    './src/components/**/*.{js,ts,jsx,tsx}',
-  ],
+  purge: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
@@ -99,4 +96,4 @@ module.exports = {
     extend: {},
   },
   plugins: [lineClamp, tcontainer],
-}
+};

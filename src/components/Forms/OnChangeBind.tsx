@@ -1,21 +1,20 @@
-import { useFormikContext } from 'formik'
-import * as React from 'react'
+import * as React from 'react';
+
+import { useFormikContext } from 'formik';
 
 interface IOnChangeBindProps<T> {
-  onChange: (object: T) => void
-  cls?: T
+  onChange: (object: T) => void;
+  cls?: T;
 }
 
-const OnChangeBind = <T extends any>({
-  onChange,
-}: IOnChangeBindProps<T>): JSX.Element => {
-  const { values } = useFormikContext<T>()
+const OnChangeBind = <T extends any>({ onChange }: IOnChangeBindProps<T>): JSX.Element => {
+  const { values } = useFormikContext<T>();
   React.useEffect(() => {
-    onChange && onChange(values)
-    return () => null
-  }, [values])
+    if (onChange) onChange(values);
+    return () => null;
+  }, [values]);
 
-  return null
-}
+  return null;
+};
 
-export default OnChangeBind
+export default OnChangeBind;

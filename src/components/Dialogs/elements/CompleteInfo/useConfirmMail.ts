@@ -1,45 +1,44 @@
-import { useEffect } from 'react'
-import { useRouter } from 'next/dist/client/router'
-import { useConfirmEmailMutation } from 'src/graphql/generated-types'
-import { useDispatch } from 'react-redux'
-import { loginAction } from 'src/utils/redux/slices/authSlice'
+/* eslint-disable @typescript-eslint/naming-convention */
+import { useEffect } from 'react';
+
+import { useRouter } from 'next/dist/client/router';
+import { useDispatch } from 'react-redux';
+import { useConfirmEmailMutation } from 'src/graphql/generated-types';
+import { loginAction } from 'src/utils/redux/slices/authSlice';
 
 // TODO add already confirmed , error ,
 const useConfirmEmail = (): void => {
-  const [mutation, { data }] = useConfirmEmailMutation()
-  const router = useRouter()
-  const dispatch = useDispatch()
+  const [mutation, { data }] = useConfirmEmailMutation();
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const {
-      sign_up_token,
-      sign_up_verification_token,
-      sign_up_user_id,
-    } = router.query
+    const { sign_up_token, sign_up_verification_token, sign_up_user_id } = router.query;
 
-    if (sign_up_user_id && sign_up_token && sign_up_verification_token)
+    if (sign_up_user_id && sign_up_token && sign_up_verification_token) {
       mutation({
         variables: {
           token: String(sign_up_token),
           verificationToken: String(sign_up_verification_token),
           userId: Number(sign_up_user_id),
         },
-      }).catch(() => null)
-  }, [])
+      }).catch(() => null);
+    }
+  }, []);
 
   useEffect(() => {
     if (data) {
-      const { user, access_token, refresh_token } = data.confirmEmail
+      const { user, access_token: accessToken, refresh_token: refreshToken } = data.confirmEmail;
       dispatch(
         loginAction({
-          refreshToken: refresh_token,
-          accessToken: access_token,
+          refreshToken,
+          accessToken,
           user,
-        })
-      )
+        }),
+      );
     }
-    return () => null
-  }, [data])
-}
+    return () => null;
+  }, [data]);
+};
 
-export default useConfirmEmail
+export default useConfirmEmail;

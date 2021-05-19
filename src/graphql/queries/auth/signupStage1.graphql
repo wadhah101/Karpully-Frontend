@@ -1,10 +1,6 @@
 mutation signUpStage1($username: String!, $password: String!, $email: String!) {
   firstStageSignUp(
-    firstStageDTOInput: {
-      username: $username
-      password: $password
-      email: $email
-    }
+    firstStageDTOInput: { username: $username, password: $password, email: $email }
   ) {
     id
     email

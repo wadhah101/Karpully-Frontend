@@ -1,9 +1,9 @@
-import * as React from 'react'
+import * as React from 'react';
 
 interface IMyCarpoolsFeedProps {}
 
-const MyCarpoolsFeed: React.FunctionComponent<IMyCarpoolsFeedProps> = () => {
-  return <div className="h-32 bg-white border rounded shadow "></div>
-}
+const MyCarpoolsFeed: React.FunctionComponent<IMyCarpoolsFeedProps> = () => (
+  <div className="h-32 bg-white border rounded shadow " />
+);
 
-export default MyCarpoolsFeed
+export default MyCarpoolsFeed;

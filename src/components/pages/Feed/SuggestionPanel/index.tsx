@@ -1,17 +1,13 @@
-import * as React from 'react'
+import * as React from 'react';
 
 interface ISuggestionPanelFeedProps {}
 
-const SuggestionPanelFeed: React.FunctionComponent<ISuggestionPanelFeedProps> = () => {
-  return (
-    <div className="p-3 bg-white border rounded shadow min-h-[40rem]">
-      <div>
-        <h3 className="text-lg font-semibold text-black text-opacity-80">
-          Suggestions
-        </h3>
-      </div>
+const SuggestionPanelFeed: React.FunctionComponent<ISuggestionPanelFeedProps> = () => (
+  <div className="p-3 bg-white border rounded shadow min-h-[40rem]">
+    <div>
+      <h3 className="text-lg font-semibold text-black text-opacity-80">Suggestions</h3>
     </div>
-  )
-}
+  </div>
+);
 
-export default SuggestionPanelFeed
+export default SuggestionPanelFeed;

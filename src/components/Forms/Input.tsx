@@ -1,11 +1,13 @@
-import clsx from 'clsx'
-import { Field, FieldAttributes } from 'formik'
-import React from 'react'
+/* eslint-disable react/jsx-props-no-spreading */
+import React from 'react';
+
+import clsx from 'clsx';
+import { Field, FieldAttributes } from 'formik';
 
 export interface InputCustomFields {
-  LeftIcon?: any
-  RightIcon?: any
-  rightIconOnClick?: () => void
+  LeftIcon?: any;
+  RightIcon?: any;
+  rightIconOnClick?: () => void;
 }
 
 const Input: React.FC<FieldAttributes<InputCustomFields>> = ({
@@ -25,21 +27,22 @@ const Input: React.FC<FieldAttributes<InputCustomFields>> = ({
     <Field
       className={clsx(
         'mt-0 block w-full px-2 py-1 border-0 outline-none border-b-2 border-gray-200 focus:ring-0 focus:border-black focus:border-opacity-70',
-        className
+        className,
       )}
       {...props}
     >
       {children}
     </Field>
     {RightIcon && (
-      <i
+      <button
+        type="button"
         onClick={rightIconOnClick}
         className={clsx('text-gray-400 ', rightIconOnClick && 'cursor-pointer')}
       >
         <RightIcon className="w-6 h-6 mx-3 " />
-      </i>
+      </button>
     )}
   </div>
-)
+);
 
-export default Input
+export default Input;

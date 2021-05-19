@@ -1,35 +1,29 @@
-import { Form, Formik } from 'formik'
-import * as React from 'react'
-import * as Forms from '@comp/Forms/export'
-import { SearchIcon } from '@heroicons/react/outline'
-import OnChangeBind from '@comp/Forms/OnChangeBind'
+import * as React from 'react';
+
+import * as Forms from '@comp/Forms/export';
+import OnChangeBind from '@comp/Forms/OnChangeBind';
+import { SearchIcon } from '@heroicons/react/outline';
+import { Form, Formik } from 'formik';
 
 interface ISearchDialogFormProps {
-  onChange: (string) => void
+  onChange: (string) => void;
 }
 
-const initialValues = { search: '' }
+const initialValues = { search: '' };
 
-const SearchDialogForm: React.FunctionComponent<ISearchDialogFormProps> = ({
-  onChange,
-}) => {
-  return (
-    <Formik onSubmit={() => null} initialValues={initialValues}>
-      <Form>
-        <Forms.Input
-          id="search"
-          name="search"
-          RightIcon={SearchIcon}
-          placeholder="Ex. Ben Arous, Fouchena"
-        />
+const SearchDialogForm: React.FunctionComponent<ISearchDialogFormProps> = ({ onChange }) => (
+  <Formik onSubmit={() => null} initialValues={initialValues}>
+    <Form>
+      <Forms.Input
+        id="search"
+        name="search"
+        RightIcon={SearchIcon}
+        placeholder="Ex. Ben Arous, Fouchena"
+      />
 
-        <OnChangeBind
-          cls={initialValues}
-          onChange={({ search }) => onChange(search)}
-        />
-      </Form>
-    </Formik>
-  )
-}
+      <OnChangeBind cls={initialValues} onChange={({ search }) => onChange(search)} />
+    </Form>
+  </Formik>
+);
 
-export default SearchDialogForm
+export default SearchDialogForm;

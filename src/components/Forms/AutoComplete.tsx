@@ -1,15 +1,18 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import clsx from 'clsx'
-import { Field, FieldAttributes, useField } from 'formik'
-import * as React from 'react'
-import { CheckIcon } from '@heroicons/react/outline'
-import { Listbox, Transition } from '@headlessui/react'
+import * as React from 'react';
+
+import { Listbox, Transition } from '@headlessui/react';
+import { CheckIcon } from '@heroicons/react/outline';
+import clsx from 'clsx';
+import { Field, FieldAttributes, useField } from 'formik';
 
 interface ISelectProps {
-  LeftIcon?: any
-  RightIcon?: any
-  items: string[]
-  rightIconOnClick?: () => void
+  LeftIcon?: any;
+  RightIcon?: any;
+  items: string[];
+  rightIconOnClick?: () => void;
 }
 
 // TODO fix this monster
@@ -21,7 +24,7 @@ const Autocomplete: React.FC<FieldAttributes<ISelectProps>> = ({
   rightIconOnClick,
   ...props
 }) => {
-  const [field, , helpers] = useField(props.name)
+  const [field, , helpers] = useField(props.name);
   return (
     <div className="flex items-center ">
       {LeftIcon && (
@@ -38,7 +41,7 @@ const Autocomplete: React.FC<FieldAttributes<ISelectProps>> = ({
                 className={clsx(
                   'block w-full px-2 flex items-center  py-2.5 outline-none border-b-2 focus:ring-0 ',
                   className,
-                  open ? 'border-black border-opacity-70' : 'border-gray-300'
+                  open ? 'border-black border-opacity-70' : 'border-gray-300',
                 )}
                 {...props}
               />
@@ -62,7 +65,7 @@ const Autocomplete: React.FC<FieldAttributes<ISelectProps>> = ({
                         'transition-all cursor-default px-2 duration-300  flex items-center  py-2',
                         active || selected
                           ? 'text-kgreen-800 bg-kgreen-100'
-                          : 'text-black text-opacity-70 '
+                          : 'text-black text-opacity-70 ',
                       )
                     }
                     value={content}
@@ -86,7 +89,7 @@ const Autocomplete: React.FC<FieldAttributes<ISelectProps>> = ({
         )}
       </Listbox>
     </div>
-  )
-}
+  );
+};
 
-export default Autocomplete
+export default Autocomplete;

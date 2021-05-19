@@ -1,8 +1,4 @@
-import {
-  combineReducers,
-  configureStore,
-  getDefaultMiddleware,
-} from '@reduxjs/toolkit'
+import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -12,24 +8,26 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
-import appReducer from './slices/appSlice'
-import authReducer from './slices/authSlice'
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+// eslint-disable-next-line import/no-cycle
+import appReducer from './slices/appSlice';
+import authReducer from './slices/authSlice';
 
 const persistConfig = {
   key: 'root',
   version: 3,
   storage,
   whitelist: ['auth'],
-}
+};
 
 const rootReducer = combineReducers({
   app: appReducer,
   auth: authReducer,
-})
+});
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
@@ -39,10 +37,10 @@ const store = configureStore({
     },
   }),
   devTools: true,
-})
+});
 
-const persistor = persistStore(store)
+const persistor = persistStore(store);
 
-export type CoreState = ReturnType<typeof rootReducer>
+export type CoreState = ReturnType<typeof rootReducer>;
 
-export { store, persistor }
+export { store, persistor };

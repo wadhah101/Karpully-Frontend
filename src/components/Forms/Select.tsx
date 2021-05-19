@@ -1,12 +1,15 @@
-import clsx from 'clsx'
-import { Field, FieldAttributes, useField } from 'formik'
-import * as React from 'react'
-import { CheckIcon, ChevronDownIcon } from '@heroicons/react/outline'
-import { Listbox, Transition } from '@headlessui/react'
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/jsx-props-no-spreading */
+import * as React from 'react';
+
+import { Listbox, Transition } from '@headlessui/react';
+import { CheckIcon, ChevronDownIcon } from '@heroicons/react/outline';
+import clsx from 'clsx';
+import { Field, FieldAttributes, useField } from 'formik';
 
 interface ISelectProps {
-  LeftIcon?: any
-  options: string[]
+  LeftIcon?: any;
+  options: string[];
 }
 
 const Select: React.FC<FieldAttributes<ISelectProps>> = ({
@@ -15,7 +18,7 @@ const Select: React.FC<FieldAttributes<ISelectProps>> = ({
   className,
   ...props
 }) => {
-  const [field, , helpers] = useField(props.name)
+  const [field, , helpers] = useField(props.name);
   return (
     <div className="flex items-center ">
       {LeftIcon && (
@@ -33,7 +36,7 @@ const Select: React.FC<FieldAttributes<ISelectProps>> = ({
                 className={clsx(
                   'block w-full px-2 flex items-center bg-gray-100 py-2.5 outline-none border-b-2 focus:ring-0 ',
                   className,
-                  open ? 'border-black border-opacity-70' : 'border-gray-300'
+                  open ? 'border-black border-opacity-70' : 'border-gray-300',
                 )}
                 {...props}
               >
@@ -65,7 +68,7 @@ const Select: React.FC<FieldAttributes<ISelectProps>> = ({
                         'transition-all cursor-default px-2 duration-300  flex items-center  py-2',
                         active || selected
                           ? 'text-kgreen-800 bg-kgreen-100'
-                          : 'text-black text-opacity-70 '
+                          : 'text-black text-opacity-70 ',
                       )
                     }
                     value={content}
@@ -89,7 +92,7 @@ const Select: React.FC<FieldAttributes<ISelectProps>> = ({
         )}
       </Listbox>
     </div>
-  )
-}
+  );
+};
 
-export default Select
+export default Select;

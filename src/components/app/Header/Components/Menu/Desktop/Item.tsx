@@ -1,10 +1,11 @@
-import { HeaderLinkData } from '@comp/app/Header/data'
-import Link from 'next/link'
-import * as React from 'react'
+import * as React from 'react';
+
+import { HeaderLinkData } from '@comp/app/Header/data';
+import Link from 'next/link';
 
 interface IDektopNavItemProps {
-  data: HeaderLinkData
-  onClick?: (e) => void
+  data: HeaderLinkData;
+  onClick?: (e) => void;
 }
 
 const DektopNavItem: React.FunctionComponent<IDektopNavItemProps> = ({
@@ -13,18 +14,19 @@ const DektopNavItem: React.FunctionComponent<IDektopNavItemProps> = ({
   },
   onClick,
 }) => {
-  if (onClick)
+  if (onClick) {
     return (
-      <span className="cursor-pointer " onClick={onClick}>
+      <button type="button" className="cursor-pointer " onClick={onClick}>
         {name}
-      </span>
-    )
+      </button>
+    );
+  }
 
   return (
     <Link passHref href={to}>
       <a title={name}> {name} </a>
     </Link>
-  )
-}
+  );
+};
 
-export default DektopNavItem
+export default DektopNavItem;

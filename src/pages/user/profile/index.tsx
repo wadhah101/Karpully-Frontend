@@ -1,15 +1,11 @@
-import { GetStaticProps, NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next';
 
-const profile: NextPage = () => {
-  return <div>Enter</div>
-}
+const profile: NextPage = () => <div>Enter</div>;
 
-export const getStaticProps: GetStaticProps = async (_ctx) => {
-  return {
-    props: {
-      data: null,
-    },
-  }
-}
+export const getStaticProps: GetStaticProps = async (_ctx) => ({
+  props: {
+    data: null,
+  },
+});
 
-export default profile
+export default profile;

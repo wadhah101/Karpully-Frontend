@@ -1,8 +1,4 @@
-mutation confirmEmail(
-  $token: String!
-  $verificationToken: String!
-  $userId: Float!
-) {
+mutation confirmEmail($token: String!, $verificationToken: String!, $userId: Float!) {
   confirmEmail(
     emailVerificationInput: {
       token: $token

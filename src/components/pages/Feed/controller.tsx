@@ -1,17 +1,19 @@
-import * as React from 'react'
-import { useSelector } from 'react-redux'
-import { User } from 'src/graphql/generated-types'
-import { CoreState } from 'src/utils/redux/store'
-import ActionPanelFeed from './ActionPanel'
-import MyCarpoolsFeed from './MyCarpoolsPanel'
-import ProfilePanel from './ProfilePanel'
-import SubmittedCarpools from './SubmittedCarpools'
-import SuggestionPanelFeed from './SuggestionPanel'
+import * as React from 'react';
+
+import { useSelector } from 'react-redux';
+import { User } from 'src/graphql/generated-types';
+import { CoreState } from 'src/utils/redux/store';
+
+import ActionPanelFeed from './ActionPanel';
+import MyCarpoolsFeed from './MyCarpoolsPanel';
+import ProfilePanel from './ProfilePanel';
+import SubmittedCarpools from './SubmittedCarpools';
+import SuggestionPanelFeed from './SuggestionPanel';
 
 interface IFeedControllerProps {}
 
 const FeedController: React.FC<IFeedControllerProps> = () => {
-  const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user)
+  const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user);
   return user ? (
     <div className="grid gap-x-6 md:grid-cols-12">
       <div className="md:col-span-3">
@@ -34,7 +36,7 @@ const FeedController: React.FC<IFeedControllerProps> = () => {
         </div>
       </div>
     </div>
-  ) : null
-}
+  ) : null;
+};
 
-export default FeedController
+export default FeedController;

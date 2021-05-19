@@ -1,8 +1,9 @@
-import { LatLngExpression } from 'leaflet'
-import * as React from 'react'
-import { MapContainer, TileLayer } from 'react-leaflet'
+import * as React from 'react';
 
-const position: LatLngExpression = [35, 10.18]
+import { LatLngExpression } from 'leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
+
+const position: LatLngExpression = [35, 10.18];
 
 // const myIcon = L.icon({
 //   iconUrl: '/assets/icons/marker.svg',
@@ -14,20 +15,18 @@ const position: LatLngExpression = [35, 10.18]
 //   shadowAnchor: null,
 // })
 
-const DemoMap: React.FC<React.HTMLAttributes<any>> = ({ className }) => {
-  return (
-    <MapContainer className={className} center={position} zoom={7}>
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      {/* <Marker icon={myIcon} position={position}>
+const DemoMap: React.FC<React.HTMLAttributes<any>> = ({ className }) => (
+  <MapContainer className={className} center={position} zoom={7}>
+    <TileLayer
+      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    />
+    {/* <Marker icon={myIcon} position={position}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker> */}
-    </MapContainer>
-  )
-}
+  </MapContainer>
+);
 
-export default DemoMap
+export default DemoMap;

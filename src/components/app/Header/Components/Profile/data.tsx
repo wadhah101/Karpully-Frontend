@@ -1,4 +1,4 @@
-import { UserCircleIcon, InboxIcon } from '@heroicons/react/solid'
+import { UserCircleIcon, InboxIcon } from '@heroicons/react/solid';
 
 export const ROW_1 = [
   {
@@ -11,4 +11,4 @@ export const ROW_1 = [
     Icon: InboxIcon,
     href: '/user/messages',
   },
-]
+];

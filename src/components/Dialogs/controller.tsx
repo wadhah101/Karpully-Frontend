@@ -1,23 +1,21 @@
-import React, { useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { closeDialog } from '../../utils/redux/slices/appSlice'
-import { CoreState } from '../../utils/redux/store'
-import { APP_PORTALS, BLOCKED_PORTALS, PORTALS_WITH_DATA } from './data'
-import { Transition } from '@headlessui/react'
+import React, { useRef, Fragment } from 'react';
 
-import { Dialog } from '@headlessui/react'
-import { Fragment } from 'react'
+import { Transition, Dialog } from '@headlessui/react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { closeDialog } from '../../utils/redux/slices/appSlice';
+import { CoreState } from '../../utils/redux/store';
+import { AppPortals, BLOCKED_PORTALS, PORTALS_WITH_DATA } from './data';
 
 const DialogsController: React.FC = () => {
-  const portal = useSelector<
-    CoreState,
-    { current: APP_PORTALS; show: boolean }
-  >((state) => state.app.portal)
-  const dispatch = useDispatch()
-  const cancelButtonRef = useRef<HTMLButtonElement>()
+  const portal = useSelector<CoreState, { current: AppPortals; show: boolean }>(
+    (state) => state.app.portal,
+  );
+  const dispatch = useDispatch();
+  const cancelButtonRef = useRef<HTMLButtonElement>();
 
-  if (portal.current === null) return null
-  const Comp = PORTALS_WITH_DATA.find((e) => e[0] === portal.current)[1]()
+  if (portal.current === null) return null;
+  const Comp = PORTALS_WITH_DATA.find((e) => e[0] === portal.current)[1]();
 
   return (
     <Transition show={portal.show} as={Fragment}>
@@ -28,8 +26,7 @@ const DialogsController: React.FC = () => {
         static
         open={portal.show}
         onClose={() => {
-          !BLOCKED_PORTALS.find((e) => e === portal.current) &&
-            dispatch(closeDialog())
+          if (!BLOCKED_PORTALS.find((e) => e === portal.current)) dispatch(closeDialog());
         }}
       >
         <div className="min-h-screen text-center">
@@ -46,10 +43,7 @@ const DialogsController: React.FC = () => {
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
-          <span
-            className="inline-block h-screen align-middle"
-            aria-hidden="true"
-          >
+          <span className="inline-block h-screen align-middle" aria-hidden="true">
             &#8203;
           </span>
           <Transition.Child
@@ -63,13 +57,15 @@ const DialogsController: React.FC = () => {
           >
             <div className="inline-block overflow-hidden align-middle transition-all transform ">
               <Comp cancelButtonRef={cancelButtonRef} />
-              <button className="text-transparent bg-transparent">r</button>
+              <button type="button" className="text-transparent bg-transparent">
+                r
+              </button>
             </div>
           </Transition.Child>
         </div>
       </Dialog>
     </Transition>
-  )
-}
+  );
+};
 
-export default DialogsController
+export default DialogsController;

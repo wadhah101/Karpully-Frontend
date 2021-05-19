@@ -1,9 +1,7 @@
-import * as React from 'react'
+import * as React from 'react';
 
 interface ICarpoolFeedLoadingProps {}
 
-const CarpoolFeedLoading: React.FC<ICarpoolFeedLoadingProps> = () => {
-  return <h4>Loading...</h4>
-}
+const CarpoolFeedLoading: React.FC<ICarpoolFeedLoadingProps> = () => <h4>Loading...</h4>;
 
-export default CarpoolFeedLoading
+export default CarpoolFeedLoading;

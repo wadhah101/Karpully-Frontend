@@ -1,15 +1,11 @@
-import { GetStaticProps, NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next';
 
-const arrangePage: NextPage = () => {
-  return <div className="min-h-screen"></div>
-}
+const arrangePage: NextPage = () => <div className="min-h-screen" />;
 
-export const getStaticProps: GetStaticProps = async (_ctx) => {
-  return {
-    props: {
-      data: null,
-    },
-  }
-}
+export const getStaticProps: GetStaticProps = async (_ctx) => ({
+  props: {
+    data: null,
+  },
+});
 
-export default arrangePage
+export default arrangePage;

@@ -1,14 +1,16 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { User } from '../../../graphql/generated-types'
+/* eslint-disable no-param-reassign */
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { User } from '../../../graphql/generated-types';
 
 export type AuthState = {
-  user: Partial<User>
-  accessToken: string
-  refreshToken: string
+  user: Partial<User>;
+  accessToken: string;
+  refreshToken: string;
   signup: {
-    email: string
-  }
-}
+    email: string;
+  };
+};
 
 const initialState: AuthState = {
   user: null,
@@ -17,7 +19,7 @@ const initialState: AuthState = {
   signup: {
     email: null,
   },
-}
+};
 
 const authSlice = createSlice({
   name: 'auth',
@@ -28,51 +30,46 @@ const authSlice = createSlice({
       {
         payload,
       }: PayloadAction<{
-        refreshToken: string
-        accessToken: string
-        user: Partial<User>
-      }>
+        refreshToken: string;
+        accessToken: string;
+        user: Partial<User>;
+      }>,
     ) => {
-      state.user = payload.user
-      state.accessToken = payload.accessToken
-      state.refreshToken = payload.refreshToken
+      state.user = payload.user;
+      state.accessToken = payload.accessToken;
+      state.refreshToken = payload.refreshToken;
     },
     refreshTokenAction: (
       state,
       {
         payload,
       }: PayloadAction<{
-        refreshToken: string
-        accessToken: string
-        user: Partial<User>
-      }>
+        refreshToken: string;
+        accessToken: string;
+        user: Partial<User>;
+      }>,
     ) => {
-      state.user = payload.user
-      state.accessToken = payload.accessToken
-      state.refreshToken = payload.refreshToken
+      state.user = payload.user;
+      state.accessToken = payload.accessToken;
+      state.refreshToken = payload.refreshToken;
     },
 
     logout: (state) => {
-      state.user = null
-      state.accessToken = null
-      state.refreshToken = null
+      state.user = null;
+      state.accessToken = null;
+      state.refreshToken = null;
     },
 
     setSignUpEmail: (state, { payload }: PayloadAction<string>) => {
-      state.signup = { email: payload }
+      state.signup = { email: payload };
     },
     updateUserAction: (state, { payload }: PayloadAction<Partial<User>>) => {
-      state.user = payload
+      state.user = payload;
     },
   },
-})
+});
 
-export const {
-  loginAction,
-  logout,
-  updateUserAction,
-  setSignUpEmail,
-  refreshTokenAction,
-} = authSlice.actions
+export const { loginAction, logout, updateUserAction, setSignUpEmail, refreshTokenAction } =
+  authSlice.actions;
 
-export default authSlice.reducer
+export default authSlice.reducer;

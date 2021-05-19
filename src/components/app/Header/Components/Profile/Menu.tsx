@@ -1,18 +1,19 @@
-import React from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import { LogoutIcon } from '@heroicons/react/solid'
-import { Fragment } from 'react'
-import clsx from 'clsx'
-import Link from 'next/link'
-import { logout } from '../../../../../utils/redux/slices/authSlice'
-import { useDispatch } from 'react-redux'
-import { useRouter } from 'next/dist/client/router'
-import { ImageButton } from './ImageButton'
-import { ROW_1 } from './data'
+import React, { Fragment } from 'react';
+
+import { Menu, Transition } from '@headlessui/react';
+import { LogoutIcon } from '@heroicons/react/solid';
+import clsx from 'clsx';
+import { useRouter } from 'next/dist/client/router';
+import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+
+import { logout } from '../../../../../utils/redux/slices/authSlice';
+import { ROW_1 } from './data';
+import { ImageButton } from './ImageButton';
 
 export const ProfileMenu: React.FC = () => {
-  const dispatch = useDispatch()
-  const router = useRouter()
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   return (
     <div>
@@ -40,7 +41,7 @@ export const ProfileMenu: React.FC = () => {
                   {/* profile / message */}
                   {ROW_1.map((e) => (
                     <Menu.Item key={e.name}>
-                      {({ active }: { active: boolean }) => (
+                      {({ active }) => (
                         <div>
                           <Link href={e.href} passHref>
                             <a
@@ -65,19 +66,16 @@ export const ProfileMenu: React.FC = () => {
                   <Menu.Item>
                     {({ active }) => (
                       <button
+                        type="button"
                         onClick={() => {
-                          dispatch(logout())
-                          router.push('/')
+                          dispatch(logout());
+                          router.push('/');
                         }}
                         className={`${
                           active ? 'bg-opacity-40  bg-gray-300 ' : ''
                         } group flex text-gray-800 transition-all font-semibold rounded-md items-center w-full px-2 py-2 text-sm`}
                       >
-                        <div
-                          className={clsx(
-                            'mr-3 transition-all text-black text-opacity-50 '
-                          )}
-                        >
+                        <div className={clsx('mr-3 transition-all text-black text-opacity-50 ')}>
                           <LogoutIcon className="w-6 h-6" />
                         </div>
                         Sign Out
@@ -91,5 +89,5 @@ export const ProfileMenu: React.FC = () => {
         )}
       </Menu>
     </div>
-  )
-}
+  );
+};

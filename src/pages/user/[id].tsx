@@ -1,22 +1,16 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 
-const outerProfile: NextPage = () => {
-  return <div>Enter</div>
-}
+const outerProfile: NextPage = () => <div>Enter</div>;
 
-export const getStaticProps: GetStaticProps = async (_ctx) => {
-  return {
-    props: {
-      data: null,
-    },
-  }
-}
+export const getStaticProps: GetStaticProps = async (_ctx) => ({
+  props: {
+    data: null,
+  },
+});
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: false,
-  }
-}
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [],
+  fallback: false,
+});
 
-export default outerProfile
+export default outerProfile;

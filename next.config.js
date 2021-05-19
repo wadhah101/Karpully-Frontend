@@ -1,6 +1,6 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
-})
+});
 
 module.exports = withBundleAnalyzer({
   webpack(config) {
@@ -17,12 +17,12 @@ module.exports = withBundleAnalyzer({
           },
         ],
       },
-    ]
+    ];
 
-    config.module.rules = config.module.rules.concat(myRules)
-    return config
+    config.module.rules = config.module.rules.concat(myRules);
+    return config;
   },
   future: {
     webpack5: true,
   },
-})
+});

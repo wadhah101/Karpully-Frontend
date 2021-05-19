@@ -1,5 +1,6 @@
-import StateLessNotificationBell, { AppNotifications } from './stateless'
-import dayjs from 'dayjs'
+import dayjs from 'dayjs';
+
+import StateLessNotificationBell, { AppNotifications } from './stateless';
 
 const HeaderNotificationBell: React.FC = () => {
   const data: AppNotifications[] = new Array(30).fill(null).map((_, index) => ({
@@ -9,14 +10,8 @@ const HeaderNotificationBell: React.FC = () => {
       .subtract(index * 10, 'minute')
       .toDate(),
     content: `Hello i am notification ${index}, user ${index} accepted you`,
-  }))
-  return (
-    <StateLessNotificationBell
-      onOpen={() => null}
-      notifications={data}
-      hasMissed={true}
-    />
-  )
-}
+  }));
+  return <StateLessNotificationBell onOpen={() => null} notifications={data} hasMissed />;
+};
 
-export default HeaderNotificationBell
+export default HeaderNotificationBell;

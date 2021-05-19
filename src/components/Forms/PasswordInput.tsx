@@ -1,12 +1,13 @@
-import { EyeIcon } from '@heroicons/react/outline'
-import { FieldAttributes } from 'formik'
-import React, { useState } from 'react'
-import InputWithError, { InputCustomFields } from './InputWithError'
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useState } from 'react';
 
-const PasswordInput: React.FC<
-  FieldAttributes<Omit<InputCustomFields, 'RightIcon'>>
-> = (props) => {
-  const [showPassword, setshowPassword] = useState(false)
+import { EyeIcon } from '@heroicons/react/outline';
+import { FieldAttributes } from 'formik';
+
+import InputWithError, { InputCustomFields } from './InputWithError';
+
+const PasswordInput: React.FC<FieldAttributes<Omit<InputCustomFields, 'RightIcon'>>> = (props) => {
+  const [showPassword, setshowPassword] = useState(false);
 
   return (
     <InputWithError
@@ -15,7 +16,7 @@ const PasswordInput: React.FC<
       RightIcon={EyeIcon}
       rightIconOnClick={() => setshowPassword((e) => !e)}
     />
-  )
-}
+  );
+};
 
-export default PasswordInput
+export default PasswordInput;

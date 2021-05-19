@@ -1,15 +1,17 @@
-import React from 'react'
-import { BaseDiagleProps } from '../../data'
-import SearchDialogForm from './Form'
-import debounce from 'lodash/debounce'
-import { Carpool, useCarpoolsLazyQuery } from '@graphql/generated-types'
-import Link from 'next/link'
-import { useDispatch } from 'react-redux'
-import { closeDialog } from '@utils/redux/slices/appSlice'
+import React from 'react';
+
+import { Carpool, useCarpoolsLazyQuery } from '@graphql/generated-types';
+import { closeDialog } from '@utils/redux/slices/appSlice';
+import debounce from 'lodash/debounce';
+import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+
+import { BaseDiagleProps } from '../../data';
+import SearchDialogForm from './Form';
 
 interface SearchListProps {
-  title: string
-  data: Partial<Carpool>[]
+  title: string;
+  data: Partial<Carpool>[];
 }
 
 const SearchList: React.FC<SearchListProps> = ({ title, data }) => (
@@ -18,15 +20,15 @@ const SearchList: React.FC<SearchListProps> = ({ title, data }) => (
     <ul className="grid gap-2 mt-3">
       {data.map((e) => (
         <li key={e.id}>
-          <div className="h-16 transition-colors bg-white border rounded shadow-sm hover:bg-gray-100"></div>
+          <div className="h-16 transition-colors bg-white border rounded shadow-sm hover:bg-gray-100" />
         </li>
       ))}
     </ul>
   </div>
-)
+);
 
 const NoRecentSearches: React.FC<{ current: string }> = ({ current }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   return (
     <div>
       <hr />
@@ -38,28 +40,28 @@ const NoRecentSearches: React.FC<{ current: string }> = ({ current }) => {
             query: { q: current },
           }}
         >
-          <a
+          <button
+            type="button"
             className="font-semibold hover:underline text-kgreen-500 "
             onClick={() => dispatch(closeDialog())}
           >
             See all results
-          </a>
+          </button>
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const SearchDialog: React.FC<BaseDiagleProps> = () => {
-  const [current, setCurrent] = React.useState('')
-  const onChange = debounce((e: string) => setCurrent(e), 200)
-  const [query, { data }] = useCarpoolsLazyQuery()
+  const [current, setCurrent] = React.useState('');
+  const onChange = debounce((e: string) => setCurrent(e), 200);
+  const [query, { data }] = useCarpoolsLazyQuery();
 
   React.useEffect(() => {
-    console.debug({ current })
-    query({ variables: { page: 1, limit: 8 } })
-    return () => null
-  }, [current])
+    query({ variables: { page: 1, limit: 8 } });
+    return () => null;
+  }, [current]);
 
   return (
     <div className="w-[50rem] bg-white rounded">
@@ -71,17 +73,11 @@ const SearchDialog: React.FC<BaseDiagleProps> = () => {
       <div className="p-6 min-h-[15rem] max-h-[33rem] overflow-auto text-left">
         {current.trim() ? (
           data && (
-            <React.Fragment>
-              <SearchList
-                title="Going To"
-                data={data.carpools.items.slice(0, 4) as any}
-              />
+            <>
+              <SearchList title="Going To" data={data.carpools.items.slice(0, 4) as any} />
 
-              <SearchList
-                title="Going From"
-                data={data.carpools.items.slice(0, 4) as any}
-              />
-            </React.Fragment>
+              <SearchList title="Going From" data={data.carpools.items.slice(0, 4) as any} />
+            </>
           )
         ) : (
           <p className="text-black text-opacity-50"> No recent searches </p>
@@ -89,7 +85,7 @@ const SearchDialog: React.FC<BaseDiagleProps> = () => {
       </div>
       {current.trim() && <NoRecentSearches current={current} />}
     </div>
-  )
-}
+  );
+};
 
-export default SearchDialog
+export default SearchDialog;

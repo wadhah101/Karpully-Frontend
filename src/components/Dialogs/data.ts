@@ -1,15 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import * as Portals from './exports'
+// eslint-disable-next-line import/no-cycle
+import * as Portals from './exports';
 
-export type AppPortals =
-  | 'login'
-  | 'signup'
-  | 'reset'
-  | 'search'
-  | 'confirm'
-  | 'completeInfo'
-
-export enum APP_PORTALS {
+export enum AppPortals {
   Login = 'login',
   Signup = 'signup',
   Reset = 'reset',
@@ -20,29 +13,25 @@ export enum APP_PORTALS {
 }
 
 export interface BaseDiagleProps {
-  cancelButtonRef: React.MutableRefObject<HTMLButtonElement>
+  cancelButtonRef: React.MutableRefObject<HTMLButtonElement>;
 }
 
-export const BLOCKED_PORTALS: APP_PORTALS[] = [APP_PORTALS.CompleteInfo]
+export const BLOCKED_PORTALS: AppPortals[] = [AppPortals.CompleteInfo];
 
-export const PORTALS_WITH_DATA: [
-  APP_PORTALS,
-  () => React.ComponentType<BaseDiagleProps>
-][] = [
-  [APP_PORTALS.Login, () => Portals.Login],
-  [APP_PORTALS.Signup, () => Portals.SignUp],
-  [APP_PORTALS.Reset, () => Portals.SignUp],
-  [APP_PORTALS.Search, () => Portals.Search],
-  [APP_PORTALS.Confirm, () => Portals.Confirm],
-  [APP_PORTALS.CompleteInfo, () => Portals.CompleteInfo],
-  [APP_PORTALS.MapSearch, () => Portals.MapSearch],
-]
+export const PORTALS_WITH_DATA: [AppPortals, () => React.ComponentType<BaseDiagleProps>][] = [
+  [AppPortals.Login, () => Portals.Login],
+  [AppPortals.Signup, () => Portals.SignUp],
+  [AppPortals.Reset, () => Portals.SignUp],
+  [AppPortals.Search, () => Portals.Search],
+  [AppPortals.Confirm, () => Portals.Confirm],
+  [AppPortals.CompleteInfo, () => Portals.CompleteInfo],
+  [AppPortals.MapSearch, () => Portals.MapSearch],
+];
 
 export const formikErrorFactory = (
   touched: Record<string, boolean>,
-  errors: Record<string, string>
-): string[] =>
-  Object.entries(touched)
-    .filter((e) => e[1])
-    .filter((e) => errors[e[0]])
-    .map((e) => errors[e[0]])
+  errors: Record<string, string>,
+): string[] => Object.entries(touched)
+  .filter((e) => e[1])
+  .filter((e) => errors[e[0]])
+  .map((e) => errors[e[0]]);

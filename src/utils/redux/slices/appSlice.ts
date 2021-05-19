@@ -1,32 +1,35 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { APP_PORTALS } from '../../../components/Dialogs/data'
+/* eslint-disable no-param-reassign */
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+// eslint-disable-next-line import/no-cycle
+import { AppPortals } from '../../../components/Dialogs/data';
 
 export interface PortalState {
-  current: APP_PORTALS
-  show: boolean
+  current: AppPortals;
+  show: boolean;
 }
 
 export type AppState = {
-  portal: PortalState
-}
+  portal: PortalState;
+};
 
 const initialState: AppState = {
   portal: { current: null, show: false },
-}
+};
 
 const counterSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    openDialog: (state, action: PayloadAction<APP_PORTALS>) => {
-      state.portal = { current: action.payload, show: true }
+    openDialog: (state, action: PayloadAction<AppPortals>) => {
+      state.portal = { current: action.payload, show: true };
     },
     closeDialog: (state) => {
-      state.portal.show = false
+      state.portal.show = false;
     },
   },
-})
+});
 
-export const { openDialog, closeDialog } = counterSlice.actions
+export const { openDialog, closeDialog } = counterSlice.actions;
 
-export default counterSlice.reducer
+export default counterSlice.reducer;

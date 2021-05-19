@@ -1,12 +1,11 @@
-import * as React from 'react'
-import * as Maps from '@comp/Map/exports'
+import * as React from 'react';
 
-const SearchDialogMap: React.FC = () => {
-  return (
-    <div className="h-[40rem]">
-      <Maps.DemoMap className="h-[40rem]" />
-    </div>
-  )
-}
+import * as Maps from '@comp/Map/exports';
 
-export default SearchDialogMap
+const SearchDialogMap: React.FC = () => (
+  <div className="h-[40rem]">
+    <Maps.DemoMap className="h-[40rem]" />
+  </div>
+);
+
+export default SearchDialogMap;

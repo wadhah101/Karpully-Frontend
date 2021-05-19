@@ -1,21 +1,15 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 
-const carpool: NextPage = () => {
-  return <div className="min-h-screen"></div>
-}
+const carpool: NextPage = () => <div className="min-h-screen" />;
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: false,
-  }
-}
-export const getStaticProps: GetStaticProps = async (_ctx) => {
-  return {
-    props: {
-      data: null,
-    },
-  }
-}
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [],
+  fallback: false,
+});
+export const getStaticProps: GetStaticProps = async (_ctx) => ({
+  props: {
+    data: null,
+  },
+});
 
-export default carpool
+export default carpool;

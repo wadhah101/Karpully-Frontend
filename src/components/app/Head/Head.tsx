@@ -1,12 +1,14 @@
-import React from 'react'
-import useRefreshToken from 'src/utils/apollo/useRefreshToken'
-import useQueryDetector from '@utils/app/useQueryDetector'
-import Head from 'next/head'
-const description = `Here is a precise description of my awesome webpage`
+import React from 'react';
+
+import useQueryDetector from '@utils/app/useQueryDetector';
+import Head from 'next/head';
+import useRefreshToken from 'src/utils/apollo/useRefreshToken';
+
+const description = 'Here is a precise description of my awesome webpage';
 
 const AppHead: React.FC = () => {
-  useRefreshToken()
-  useQueryDetector()
+  useRefreshToken();
+  useQueryDetector();
 
   return (
     <Head>
@@ -16,7 +18,7 @@ const AppHead: React.FC = () => {
       <meta property="og:title" content="Karpully" key="title" />
       <meta name="description" content={description} />
     </Head>
-  )
-}
+  );
+};
 
-export default AppHead
+export default AppHead;
