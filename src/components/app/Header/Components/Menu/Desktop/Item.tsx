@@ -16,7 +16,12 @@ const DektopNavItem: React.FunctionComponent<IDektopNavItemProps> = ({
 }) => {
   if (onClick) {
     return (
-      <button type="button" className="cursor-pointer " onClick={onClick}>
+      <button
+        type="button"
+        style={{ fontWeight: 'inherit', textTransform: 'inherit' }}
+        className="cursor-pointer "
+        onClick={onClick}
+      >
         {name}
       </button>
     );

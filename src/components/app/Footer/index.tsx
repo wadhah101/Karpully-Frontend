@@ -12,12 +12,13 @@ interface Props {}
 interface LinkIcon {
   href: string;
   Icon: IconType;
+  name: string;
 }
 
 const FOOTER_ICONS: LinkIcon[] = [
-  { href: 'https://www.google.com/q=1', Icon: FaFacebook },
-  { href: 'https://www.google.com/q=2', Icon: FaInstagram },
-  { href: 'https://www.google.com/q=3', Icon: FaLinkedin },
+  { name: 'facebook', href: 'https://www.google.com/q=1', Icon: FaFacebook },
+  { name: 'instagram', href: 'https://www.google.com/q=2', Icon: FaInstagram },
+  { name: 'linkedin', href: 'https://www.google.com/q=3', Icon: FaLinkedin },
 ];
 
 export const Footer: React.FC<Props> = () => (
@@ -52,7 +53,7 @@ export const Footer: React.FC<Props> = () => (
                 className="text-white transition-colors text-opacity-80 hover:text-opacity-100"
                 key={e.href}
               >
-                <a href={e.href} target="_blank" rel="noreferrer">
+                <a title={e.name} href={e.href} target="_blank" rel="noreferrer">
                   <e.Icon />
                 </a>
               </li>
