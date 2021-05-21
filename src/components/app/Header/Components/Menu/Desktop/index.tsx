@@ -24,7 +24,7 @@ const DesktopMenu: React.FunctionComponent<Partial<IStatelessHeaderProps>> = ({
   );
 
   return (
-    <nav>
+    <nav className="hidden  md:block">
       <ul
         className={clsx(
           'grid items-center transition-colors duration-300 ease-in-out grid-flow-col-dense gap-6 font-semibold  capitalize ',

@@ -1,9 +1,7 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 const defaultOptions = {};
@@ -66,6 +64,13 @@ export type Carpool = {
   submissions: Submission;
 };
 
+export type Chat = {
+  __typename?: 'Chat';
+  id: Scalars['Float'];
+  messages?: Maybe<Array<Message>>;
+  users: Array<User>;
+};
+
 export type City = {
   __typename?: 'City';
   createdAt: Scalars['DateTime'];
@@ -104,7 +109,10 @@ export type CreateCarpoolInput = {
   departureLocationLatitude: Scalars['String'];
   destinationLocationLongitude: Scalars['String'];
   destinationLocationLatitude: Scalars['String'];
-  ownerId: Scalars['Float'];
+};
+
+export type CreateChatInput = {
+  userIds: Array<Scalars['Float']>;
 };
 
 export type CreateCityInput = {
@@ -114,6 +122,12 @@ export type CreateCityInput = {
 
 export type CreateGovInput = {
   govName: Scalars['String'];
+};
+
+export type CreateMessageInput = {
+  chatId: Scalars['Float'];
+  senderId: Scalars['Float'];
+  content: Scalars['String'];
 };
 
 export type CreateSubmissionInput = {
@@ -209,6 +223,15 @@ export type Location = {
   visited?: Maybe<Scalars['Float']>;
 };
 
+export type Message = {
+  __typename?: 'Message';
+  id: Scalars['Float'];
+  chat: Chat;
+  sender: User;
+  isRead: Scalars['Boolean'];
+  content: Scalars['String'];
+};
+
 export type Meta = {
   __typename?: 'Meta';
   itemCount: Scalars['Float'];
@@ -244,6 +267,8 @@ export type Mutation = {
   rejectSubmission: Submission;
   acceptSubmission: Submission;
   removeSubmission: Submission;
+  createChat: Chat;
+  createMessage: Message;
 };
 
 export type MutationFirstStageSignUpArgs = {
@@ -338,6 +363,14 @@ export type MutationRemoveSubmissionArgs = {
   id: Scalars['Int'];
 };
 
+export type MutationCreateChatArgs = {
+  createChatInput: CreateChatInput;
+};
+
+export type MutationCreateMessageArgs = {
+  createMessageInput: CreateMessageInput;
+};
+
 export type Notification = {
   __typename?: 'Notification';
   createdAt: Scalars['DateTime'];
@@ -346,6 +379,13 @@ export type Notification = {
   id: Scalars['Float'];
   receiver: User;
   content: Scalars['String'];
+  meta: NotificationMeta;
+};
+
+export type NotificationMeta = {
+  __typename?: 'NotificationMeta';
+  carpoolId: Scalars['Float'];
+  userId: Scalars['Float'];
 };
 
 export enum OrderBy {
@@ -402,6 +442,7 @@ export type Query = {
   notification: Notification;
   notifications: PaginatedNotification;
   multiPointsDirection: Direction;
+  chat: Chat;
 };
 
 export type QueryUserArgs = {
@@ -478,6 +519,10 @@ export type QueryMultiPointsDirectionArgs = {
   pointsArray: MultiPointsDirectionInput;
 };
 
+export type QueryChatArgs = {
+  id: Scalars['Int'];
+};
+
 export type ResetPasswordEmailInput = {
   email: Scalars['String'];
 };
@@ -528,9 +573,14 @@ export type Submission = {
 export type Subscription = {
   __typename?: 'Subscription';
   notification: Notification;
+  message: Message;
 };
 
 export type SubscriptionNotificationArgs = {
+  userId: Scalars['Float'];
+};
+
+export type SubscriptionMessageArgs = {
   userId: Scalars['Float'];
 };
 
@@ -597,7 +647,7 @@ export type User = {
   telNumber?: Maybe<Scalars['String']>;
   authorities?: Maybe<Array<Scalars['String']>>;
   roles: Array<UserRoleEnum>;
-  gender?: Maybe<Gender>;
+  gender: Gender;
   lowerCasedUsername: Scalars['String'];
   isConfirmed: Scalars['Boolean'];
   sentEmails?: Maybe<Array<Email>>;
@@ -605,6 +655,8 @@ export type User = {
   submissions?: Maybe<Array<Submission>>;
   notifications?: Maybe<Array<Notification>>;
   historic?: Maybe<ConnectionHistoric>;
+  chats?: Maybe<Array<Chat>>;
+  sentMessages?: Maybe<Array<Message>>;
   profileImage?: Maybe<ProfileImgUpload>;
 };
 

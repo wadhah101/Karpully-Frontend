@@ -24,7 +24,7 @@ const FOOTER_ICONS: LinkIcon[] = [
 export const Footer: React.FC<Props> = () => (
   <div className="text-white bg-kgreen-900">
     <div className=" c-container">
-      <div className="grid grid-cols-3 pt-20 ">
+      <div className="grid pt-12 md:pt-20 gap-y-6 md:grid-cols-3 ">
         <div>
           <div className="">
             <Logo height="auto" width="14rem" className="fill-current" />
@@ -66,7 +66,7 @@ export const Footer: React.FC<Props> = () => (
         </div>
       </div>
       <hr className="my-10 border-white border-opacity-30" />
-      <div className="pb-20 text-center">
+      <div className="pb-12 text-center">
         <p className="text-white text-opacity-75 ">© 2021 Karpully, Inc., All Rights Reserved.</p>
       </div>
     </div>

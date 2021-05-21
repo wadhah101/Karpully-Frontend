@@ -1,23 +1,24 @@
 import React from 'react';
 
 import * as Home from '@comp/pages/Home/exports';
-import MyDisclosure from '@comp/utils/Disclosure';
 import { GetStaticProps, NextPage } from 'next';
 
 const HomePage: NextPage = () => (
   <div>
     <Home.Banner />
-    <div className="mb-20 ">
-      <div className="py-24 c-container ">
-        <Home.Features />
-      </div>
+    <div className="py-20 md:py-40 c-container">
+      <Home.Features />
     </div>
 
     {/* Social proff */}
     {/* FAQ */}
 
-    <div className="py-24 c-container">
-      <MyDisclosure />
+    <div className="pb-20 md:pb-40 c-container ">
+      <Home.Social />
+    </div>
+
+    <div className="pb-20 md:pb-40 c-container">
+      <Home.FAQ />
     </div>
     {/* Reach Us */}
   </div>

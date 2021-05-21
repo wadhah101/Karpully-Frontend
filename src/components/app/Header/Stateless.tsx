@@ -21,7 +21,7 @@ export const StatelessHeader: React.FC<IStatelessHeaderProps> = (props) => {
   return (
     <header
       className={clsx(
-        'flex flex-col transition-colors duration-300 w-full z-30 items-center top-0 left-0 justify-center h-20 px-10  ',
+        'flex flex-col transition-colors duration-300 w-full z-30 items-center top-0 left-0 justify-center h-20 md:px-10 px-4  ',
         fixed ? 'fixed' : 'sticky bg-white  border-b border-black border-opacity-10 ',
         white
           ? 'bg-transparent'
