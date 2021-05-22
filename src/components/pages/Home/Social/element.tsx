@@ -4,11 +4,19 @@ interface IHomeSocialElementProps {
   data: any;
 }
 
+const imageId = 'IuJc2qh2TcA';
+
 const HomeSocialElement: React.FunctionComponent<IHomeSocialElementProps> = () => (
-  <div className="h-full p-3 border shadow ">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi itaque earum animi ratione
-    sint, dolorum tenetur minus dolor quos esse odit a ut corporis iure explicabo temporibus, unde
-    fuga consectetur.
+  <div className="flex flex-col items-center h-full p-3 text-center border shadow ">
+    <img
+      alt="user"
+      src={`https://source.unsplash.com/${imageId}/100x100`}
+      className="w-10 h-10 overflow-hidden rounded-full"
+    />
+    <h3 className="mt-1 text-sm font-semibold text-black text-opacity-50"> Lorem, ipsum dolor. </h3>
+    <p className="mt-1 text-black text-opacity-75 ">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima repellat dignissimos il
+    </p>
   </div>
 );
 

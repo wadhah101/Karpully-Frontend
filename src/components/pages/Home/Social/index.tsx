@@ -1,8 +1,13 @@
 import * as React from 'react';
 
+import clsx from 'clsx';
+
 import HomeSocialElement from './element';
 
-const data = [5, 3, 4, 4, 5, 3];
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const a = 'md:col-span-3 md:col-span-4 md:col-span-5 ';
+
+const data = [5, 3, 4, 4, 5, 3].map((e) => `md:col-span-${e}`);
 
 const HomeSocial: React.FC = () => (
   <div>
@@ -16,15 +21,15 @@ const HomeSocial: React.FC = () => (
     <div className="mt-4 md:mt-8">
       <div className="grid gap-4 md:grid-cols-12 md:gap-6">
         {data.slice(0, 3).map((e) => (
-          <div className="" style={{ gridColumn: `span ${e} / span ${e}` }}>
+          <div className={clsx(e)}>
             <HomeSocialElement data={e} />
           </div>
         ))}
       </div>
 
-      <div className="hidden gap-4 mt-4  md:mt-6 md:grid-cols-12 md:gap-6 md:grid">
+      <div className="hidden gap-4 mt-4 md:mt-6 md:grid-cols-12 md:gap-6 md:grid">
         {data.slice(3, 6).map((e) => (
-          <div className="" style={{ gridColumn: `span ${e} / span ${e}` }}>
+          <div className={clsx(e)}>
             <HomeSocialElement data={e} />
           </div>
         ))}
