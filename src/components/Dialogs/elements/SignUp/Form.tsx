@@ -11,6 +11,7 @@ import { useSignUpStage1Mutation } from '../../../../graphql/generated-types';
 import * as Forms from '../../../Forms/export';
 import { AppPortals } from '../../data';
 import * as Dialogs from '../../exports';
+import { BASE_FORM_CLASSES } from '../shared';
 import * as SignUpFormData from './data';
 
 const SignUpDialogForm: React.FC = () => {
@@ -50,7 +51,7 @@ const SignUpDialogForm: React.FC = () => {
     >
       {({ isValid }) => (
         <Form>
-          <div className="grid gap-1">
+          <div className={BASE_FORM_CLASSES}>
             <Forms.InputWithError
               LeftIcon={UserCircleIcon}
               id="username"

@@ -12,6 +12,7 @@ import { useRouter } from 'next/dist/client/router';
 import { useDispatch } from 'react-redux';
 
 import * as Dialogs from '../../exports';
+import { BASE_FORM_CLASSES } from '../shared';
 import * as LoginFormData from './data';
 
 const LoginDialogForm: React.FC = () => {
@@ -56,7 +57,7 @@ const LoginDialogForm: React.FC = () => {
     >
       {({ isValid }) => (
         <Form>
-          <div className="grid gap-1">
+          <div className={BASE_FORM_CLASSES}>
             <Forms.InputWithError
               LeftIcon={MailIcon}
               type="text"

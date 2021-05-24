@@ -6,6 +6,7 @@ import * as React from 'react';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ApolloProvider } from '@apollo/client/react';
+import TestingComp from '@comp/utils/TestingComp';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
@@ -21,6 +22,7 @@ const MyWrapper: React.FC<AppProps> = ({ Component, pageProps }) => {
   const client = useApolloClient();
   return (
     <ApolloProvider client={client}>
+      <TestingComp />
       <AppHead />
       <Header />
       <Component {...pageProps} />
