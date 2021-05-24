@@ -60,34 +60,40 @@ const StateLessNotificationBell: React.FC<IStateLessNotificationBell> = ({
               </h3>
             </div>
             <div className="px-1 py-1 ">
-              {notifications.map((e) => (
-                <Menu.Item key={e.id}>
-                  {({ active }) => (
-                    <div>
-                      <Link href="/user/notifications" passHref>
-                        <a
-                          className={`${
-                            active ? 'bg-opacity-40 bg-gray-300 ' : ''
-                          } group flex text-gray-800 transition-all font-semibold rounded-md items-center w-full px-2 py-3  text-sm`}
-                        >
-                          <img
-                            loading="lazy"
-                            className="w-12 h-12 mr-3 rounded-full"
-                            alt={`${e.id}`}
-                            src={e.picture}
-                          />
-                          <div className="flex flex-col">
-                            <p>{e.content}</p>
-                            <p className="text-xs font-bold text-kpurple-500 ">
-                              {dayjs(e.date).fromNow()}
-                            </p>
-                          </div>
-                        </a>
-                      </Link>
-                    </div>
-                  )}
-                </Menu.Item>
-              ))}
+              {notifications.length ? (
+                notifications.map((e) => (
+                  <Menu.Item key={e.id}>
+                    {({ active }) => (
+                      <div>
+                        <Link href="/user/notifications" passHref>
+                          <a
+                            className={`${
+                              active ? 'bg-opacity-40 bg-gray-300 ' : ''
+                            } group flex text-gray-800 transition-all font-semibold rounded-md items-center w-full px-2 py-3  text-sm`}
+                          >
+                            <img
+                              loading="lazy"
+                              className="w-12 h-12 mr-3 rounded-full"
+                              alt={`${e.id}`}
+                              src={e.picture}
+                            />
+                            <div className="flex flex-col">
+                              <p>{e.content}</p>
+                              <p className="text-xs font-bold text-kpurple-500 ">
+                                {dayjs(e.date).fromNow()}
+                              </p>
+                            </div>
+                          </a>
+                        </Link>
+                      </div>
+                    )}
+                  </Menu.Item>
+                ))
+              ) : (
+                <div className="px-2 py-3 font-semibold text-black text-opacity-80 ">
+                  You Have No Notifications
+                </div>
+              )}
             </div>
           </Menu.Items>
         </Transition>

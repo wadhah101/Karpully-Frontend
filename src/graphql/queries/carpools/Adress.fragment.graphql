@@ -1,0 +1,13 @@
+fragment FullAdress on Address {
+  road
+  neighbourhood
+  suburb
+  village
+  town
+  city
+  region
+  county
+  state
+  country
+  name
+}

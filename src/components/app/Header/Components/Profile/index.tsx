@@ -9,10 +9,10 @@ interface IHeaderProfileProps {
   user: Partial<User>;
 }
 
-const HeaderProfile: React.FC<IHeaderProfileProps> = () => (
+const HeaderProfile: React.FC<IHeaderProfileProps> = ({ user }) => (
   <div className="grid items-center grid-flow-col-dense gap-4">
     <HeaderSearch />
-    <HeaderNotificationBell />
+    <HeaderNotificationBell user={user} />
     <ProfileMenu />
   </div>
 );

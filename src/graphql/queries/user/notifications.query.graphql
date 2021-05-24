@@ -1,0 +1,7 @@
+query Notifications($page: Float!, $limit: Float!, $userId: Float!) {
+  notifications(paginationInput: { page: $page, limit: $limit, orderBy: ASC }, userId: $userId) {
+    items {
+      id
+    }
+  }
+}

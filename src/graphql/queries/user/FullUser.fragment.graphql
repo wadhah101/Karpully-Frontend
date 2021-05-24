@@ -15,4 +15,8 @@ fragment FullUser on User {
   telNumber
   gender
   isConfirmed
+  profileImage {
+    id
+    name
+  }
 }
