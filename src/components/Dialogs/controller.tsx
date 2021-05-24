@@ -4,11 +4,11 @@ import { Transition, Dialog } from '@headlessui/react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { closeDialog } from '../../utils/redux/slices/appSlice';
-import { CoreState } from '../../utils/redux/store';
+import { GlobalState } from '../../utils/redux/store';
 import { AppPortals, BLOCKED_PORTALS, PORTALS_WITH_DATA } from './data';
 
 const DialogsController: React.FC = () => {
-  const portal = useSelector<CoreState, { current: AppPortals; show: boolean }>(
+  const portal = useSelector<GlobalState, { current: AppPortals; show: boolean }>(
     (state) => state.app.portal,
   );
   const dispatch = useDispatch();

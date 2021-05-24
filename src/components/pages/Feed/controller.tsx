@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { useSelector } from 'react-redux';
 import { User } from 'src/graphql/generated-types';
-import { CoreState } from 'src/utils/redux/store';
+import { GlobalState } from 'src/utils/redux/store';
 
 import ActionPanelFeed from './ActionPanel';
 import MyCarpoolsFeed from './MyCarpoolsPanel';
@@ -13,7 +13,7 @@ import SuggestionPanelFeed from './SuggestionPanel';
 interface IFeedControllerProps {}
 
 const FeedController: React.FC<IFeedControllerProps> = () => {
-  const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user);
+  const user = useSelector<GlobalState, Partial<User>>((state) => state.auth.user);
   return user ? (
     <div className="grid gap-x-6 md:grid-cols-12">
       <div className="md:col-span-3">

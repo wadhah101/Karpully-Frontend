@@ -41,6 +41,6 @@ const store = configureStore({
 
 const persistor = persistStore(store);
 
-export type CoreState = ReturnType<typeof rootReducer>;
+export type GlobalState = ReturnType<typeof rootReducer>;
 
 export { store, persistor };

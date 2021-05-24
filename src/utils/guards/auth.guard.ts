@@ -4,13 +4,13 @@ import { useRouter } from 'next/dist/client/router';
 import { useSelector } from 'react-redux';
 
 import { User } from '../../graphql/generated-types';
-import { CoreState } from '../redux/store';
+import { GlobalState } from '../redux/store';
 
 const GUARDED_ROUTES = ['/feed', '/arrange', '/user/messages'];
 
 export const useAuthGuard = (): void => {
   const router = useRouter();
-  const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user);
+  const user = useSelector<GlobalState, Partial<User>>((state) => state.auth.user);
   useEffect(() => {
     if (router) {
       const inGuardedPath = GUARDED_ROUTES.find((e) => e === router.pathname);

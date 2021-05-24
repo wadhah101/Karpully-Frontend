@@ -5,7 +5,7 @@ import { Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeDialog } from 'src/utils/redux/slices/appSlice';
 import { updateUserAction } from 'src/utils/redux/slices/authSlice';
-import { CoreState } from 'src/utils/redux/store';
+import { GlobalState } from 'src/utils/redux/store';
 
 import { User, useSignUpStage2Mutation } from '../../../../graphql/generated-types';
 import * as Forms from '../../../Forms/export';
@@ -16,7 +16,7 @@ import * as CompleteInfoFormData from './data';
 const CompleteInfoDialogForm: React.FC = () => {
   const dispatch = useDispatch();
 
-  const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user);
+  const user = useSelector<GlobalState, Partial<User>>((state) => state.auth.user);
 
   const [signUpMutation, { data, loading, error, called }] = useSignUpStage2Mutation();
 

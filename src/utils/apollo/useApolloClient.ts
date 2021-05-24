@@ -3,11 +3,11 @@ import { ApolloClient, createHttpLink, InMemoryCache, NormalizedCacheObject } fr
 import { setContext } from '@apollo/client/link/context';
 import { useSelector } from 'react-redux';
 
-import { CoreState } from '../redux/store';
+import { GlobalState } from '../redux/store';
 
-const base = new URL(process.env.NEXT_PUBLIC_API_URL);
+export const BACKEND_BASE_URL = new URL(process.env.NEXT_PUBLIC_API_URL);
 const httpLink = createHttpLink({
-  uri: base.toString(),
+  uri: BACKEND_BASE_URL.toString(),
 });
 
 export const authLessClient = new ApolloClient({
@@ -20,7 +20,7 @@ const client = new ApolloClient({
 });
 
 export const useApolloClient = (): ApolloClient<NormalizedCacheObject> => {
-  const token = useSelector<CoreState, string>((state) => state.auth.accessToken);
+  const token = useSelector<GlobalState, string>((state) => state.auth.accessToken);
 
   const authLink = setContext((_, { headers }) => ({
     headers: {

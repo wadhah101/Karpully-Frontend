@@ -3,11 +3,11 @@ import { Dialog } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeDialog, openDialog } from 'src/utils/redux/slices/appSlice';
-import { CoreState } from 'src/utils/redux/store';
+import { GlobalState } from 'src/utils/redux/store';
 
 const ConfirmMailDialog: React.FC<BaseDiagleProps> = ({ cancelButtonRef }) => {
   const dispatch = useDispatch();
-  const email = useSelector<CoreState, string>((state) => state.auth.signup.email);
+  const email = useSelector<GlobalState, string>((state) => state.auth.signup.email);
 
   return (
     <div className="relative w-[40rem] bg-white rounded">

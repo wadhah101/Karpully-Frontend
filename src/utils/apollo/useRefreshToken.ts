@@ -6,14 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useRefreshTokenLazyQuery } from '../../graphql/generated-types';
 import { logout, refreshTokenAction } from '../redux/slices/authSlice';
-import { CoreState } from '../redux/store';
+import { GlobalState } from '../redux/store';
 
 const timeOut = 30 * 1000;
 const logEnabled = false;
 
 const useRefreshToken = (): void => {
   const disptah = useDispatch();
-  const refreshToken = useSelector<CoreState, string>((state) => state.auth.refreshToken);
+  const refreshToken = useSelector<GlobalState, string>((state) => state.auth.refreshToken);
   const [query, { data, error }] = useRefreshTokenLazyQuery();
 
   useEffect(() => {

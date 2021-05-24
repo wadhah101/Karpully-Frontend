@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { getProfilePictureUrl } from '@utils/app/getProfilePictureUrl';
 import { User } from 'src/graphql/generated-types';
 
 interface IProfilePanelProps {
@@ -7,7 +8,6 @@ interface IProfilePanelProps {
 }
 
 const ProfilePanel: React.FunctionComponent<IProfilePanelProps> = ({ user }) => {
-  const imageId = 'IuJc2qh2TcA';
   const fullName = `${user.firstname} ${user.lastname}`;
 
   return (
@@ -17,7 +17,7 @@ const ProfilePanel: React.FunctionComponent<IProfilePanelProps> = ({ user }) => 
         <div className="p-1 overflow-hidden bg-white rounded-full">
           <img
             alt="user"
-            src={`https://source.unsplash.com/${imageId}/200x200`}
+            src={getProfilePictureUrl(user)}
             className="w-20 h-20 overflow-hidden rounded-full shadow"
           />
         </div>

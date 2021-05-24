@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { openDialog } from 'src/utils/redux/slices/appSlice';
 
 import { User } from '../../../graphql/generated-types';
-import { CoreState } from '../../../utils/redux/store';
+import { GlobalState } from '../../../utils/redux/store';
 import { StatelessHeader } from './Stateless';
 
 // TODO program
@@ -19,7 +19,7 @@ const Header: React.FC = () => {
   const pageWithScrollColorChange = pageWithScrollColorChangeChecker(router.pathname);
   const [textWhiteWithScroll, setTextWhite] = useState({ white: true });
 
-  const user = useSelector<CoreState, Partial<User>>((state) => state.auth.user);
+  const user = useSelector<GlobalState, Partial<User>>((state) => state.auth.user);
 
   useEffect(() => {
     if (user && !user.completedSignUp) dispatch(openDialog(AppPortals.CompleteInfo));
