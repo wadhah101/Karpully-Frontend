@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { User } from '../../../../../graphql/generated-types';
-import HeaderNotificationBell from '../NotificationBell';
+import HeaderNotificationBell from '../NotificationMenu';
 import HeaderSearch from '../Search';
 import { ProfileMenu } from './Menu';
 

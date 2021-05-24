@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import { User } from '../../../graphql/generated-types';
 import HeaderLogo from './Components/Logo';
-import DesktopMenu from './Components/Menu/Desktop';
+import DesktopMenu from './Components/NavBar/Desktop';
 
 export interface IStatelessHeaderProps {
   text: { white: boolean };

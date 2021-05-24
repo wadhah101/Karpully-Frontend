@@ -7,7 +7,7 @@ import { openDialog } from '@utils/redux/slices/appSlice';
 import clsx from 'clsx';
 import { useDispatch } from 'react-redux';
 
-import HeaderProfile from '../../Profile';
+import HeaderProfile from '../../ProfileMenu';
 import DektopNavItem from './Item';
 
 const DesktopMenu: React.FunctionComponent<Partial<IStatelessHeaderProps>> = ({
