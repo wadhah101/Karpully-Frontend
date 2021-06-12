@@ -6,6 +6,7 @@ fragment FullUser on User {
   age
   rate
   email
+  createdAt
   completedSignUp
   profileImage {
     id

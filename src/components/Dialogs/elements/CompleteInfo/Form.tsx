@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { UserCircleIcon } from '@heroicons/react/outline';
+import useAxiosClient from '@utils/axios/useAxiosClient';
 import clsx from 'clsx';
 import { Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,20 +17,24 @@ import * as CompleteInfoFormData from './data';
 
 const CompleteInfoDialogForm: React.FC = () => {
   const dispatch = useDispatch();
+  const axios = useAxiosClient();
 
   const user = useSelector<GlobalState, Partial<User>>((state) => state.auth.user);
 
-  const [signUpMutation, { data, loading, error, called }] = useSignUpStage2Mutation();
+  const [profilePicture, setProfilePicture] = useState<FileList>(null);
+
+  const [signUpMutation, { data: mutationData, loading, error, called }] =
+    useSignUpStage2Mutation();
 
   useEffect(() => {
-    if (data) {
-      dispatch(updateUserAction(data.secondStageSignUp));
+    if (mutationData) {
+      dispatch(updateUserAction(mutationData.secondStageSignUp));
       dispatch(closeDialog());
     }
     return () => null;
-  }, [data]);
+  }, [mutationData]);
 
-  const onSumbit = (values: CompleteInfoFormData.FormValues): void | Promise<any> => {
+  const onSumbit = async (values: CompleteInfoFormData.FormValues): Promise<any> => {
     const { firstName, lastName, age, gender, phone } = values;
     signUpMutation({
       variables: {
@@ -42,7 +47,25 @@ const CompleteInfoDialogForm: React.FC = () => {
         telNumber: phone,
       },
     }).catch(() => null);
+
+    //  TODO upload profile picture
+    if (profilePicture) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+      const formData = new FormData();
+      formData.append('image', profilePicture[0], profilePicture[0].name);
+      axios.post('/profile-img-upload', formData);
+    }
   };
+
+  useEffect(() => {
+    if (profilePicture) {
+      const formData = new FormData();
+      formData.append('image', profilePicture[0], profilePicture[0].name);
+      axios.post('/profile-img-upload', formData);
+    }
+    return () => null;
+  }, [profilePicture]);
 
   return (
     <Formik
@@ -68,19 +91,24 @@ const CompleteInfoDialogForm: React.FC = () => {
 
             <div className="mt-2">
               <Forms.FileUpload
+                onChange={(e) => {
+                  setProfilePicture(e);
+                }}
                 RightIcon={UserCircleIcon}
                 name="profilePicture"
                 id="profilePicture"
-                placeholder="Please Choose Profile Picture"
+                placeholder={
+                  profilePicture ? profilePicture[0].name : 'Please Choose Profile Picture'
+                }
               />
             </div>
 
             <button
               type="submit"
-              disabled={loading || !isValid || !!data}
+              disabled={loading || !isValid || !!mutationData}
               className={clsx(
                 'grid px-8 py-2.5 mt-3 rounded bg-gradient-to-r font-bold place-items-center  ',
-                (called && loading) || !isValid || !!data
+                (called && loading) || !isValid || !!mutationData
                   ? 'from-kgreen-200 to-kgreen-200  text-gray-50'
                   : 'from-kgreen-600 to-kgreen-500 text-white',
               )}

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import * as React from 'react';
 
 import clsx from 'clsx';
@@ -20,16 +21,16 @@ const HomeSocial: React.FC = () => (
     </p>
     <div className="mt-4 md:mt-8">
       <div className="grid gap-4 md:grid-cols-12 md:gap-6">
-        {data.slice(0, 3).map((e) => (
-          <div className={clsx(e)}>
+        {data.slice(0, 3).map((e, id) => (
+          <div key={id} className={clsx(e)}>
             <HomeSocialElement data={e} />
           </div>
         ))}
       </div>
 
       <div className="hidden gap-4 mt-4 md:mt-6 md:grid-cols-12 md:gap-6 md:grid">
-        {data.slice(3, 6).map((e) => (
-          <div className={clsx(e)}>
+        {data.slice(3, 6).map((e, id) => (
+          <div key={id} className={clsx(e)}>
             <HomeSocialElement data={e} />
           </div>
         ))}

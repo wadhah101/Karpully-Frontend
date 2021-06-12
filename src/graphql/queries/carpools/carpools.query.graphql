@@ -16,8 +16,7 @@ query carpools($page: Float!, $limit: Float!) {
       nbrOfAvailablePlaces
       description
       owner {
-        username
-        id
+        ...FullUser
       }
     }
     meta {

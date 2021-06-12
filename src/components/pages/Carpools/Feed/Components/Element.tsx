@@ -21,10 +21,10 @@ const CarpoolFeedElement: React.FunctionComponent<ICarpoolFeedElementProps> = ({
   const formatedDate = dayjs(departureDate).format('DD/MM/YYYY');
   return (
     <div className="p-3 border ">
-      <div>{nbrOfAvailablePlaces}</div>
+      <div> {nbrOfAvailablePlaces}</div>
       <div> {destinationLocation.address.name} </div>
       <div> {departureLocation.address.name} </div>
-      <div> owner id {owner.id} </div>
+      <div> owner id {owner.firstname} </div>
       <div> {formatedDate} </div>
     </div>
   );
