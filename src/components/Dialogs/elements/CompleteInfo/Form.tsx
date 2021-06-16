@@ -62,7 +62,7 @@ const CompleteInfoDialogForm: React.FC = () => {
     if (profilePicture) {
       const formData = new FormData();
       formData.append('image', profilePicture[0], profilePicture[0].name);
-      axios.post('/profile-img-upload', formData);
+      axios.post(`/profile-img-upload?id=${user.id}`, formData);
     }
     return () => null;
   }, [profilePicture]);

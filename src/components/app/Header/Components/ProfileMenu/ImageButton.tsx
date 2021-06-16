@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 
 export const ImageButton: React.FC = () => {
   const user = useSelector<GlobalState, Partial<User>>((state) => state.auth.user);
+  // const imageUrl = `${process.env.NEXT_PUBLIC_API_REST_URL}profile-img-upload?imgId=${user.profileImage.id}`;
 
   return (
     <div className="relative pr-4 text-black text-opacity-50 transition-colors hover:text-opacity-100">

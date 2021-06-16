@@ -11,7 +11,7 @@ interface ICarpoolFeedListProps {
 const CarpoolFeedList: React.FC<ICarpoolFeedListProps> = ({ carpools }) => {
   if (!carpools) return null;
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid gap-4 md:grid-cols-3">
       {carpools.map((e) => (
         <CarpoolFeedElement key={e.id} carpool={e} />
       ))}

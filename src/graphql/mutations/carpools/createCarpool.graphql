@@ -1,0 +1,25 @@
+mutation createCarpool(
+  $departureLocationLongitude: String!
+  $departureLocationLatitude: String!
+  $nbrOfAvailablePlaces: Float!
+  $description: String!
+  $hasSmokePermission: Boolean!
+  $departureDate: DateTime!
+  $destinationLocationLongitude: String!
+  $destinationLocationLatitude: String!
+) {
+  createCarpool(
+    createCarpoolInput: {
+      departureLocationLongitude: $departureLocationLongitude
+      departureLocationLatitude: $departureLocationLatitude
+      nbrOfAvailablePlaces: $nbrOfAvailablePlaces
+      description: $description
+      hasSmokePermission: $hasSmokePermission
+      departureDate: $departureDate
+      destinationLocationLongitude: $destinationLocationLongitude
+      destinationLocationLatitude: $destinationLocationLatitude
+    }
+  ) {
+    id
+  }
+}

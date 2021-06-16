@@ -42,10 +42,7 @@ const CarpoolsFeedController: React.FC<ICarpoolsFeedControllerProps> = () => {
   };
 
   return (
-    <div className="bg-white shadow md:p-6">
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident tenetur quisquam quam,
-      nisi incidunt similique, a voluptatem molestiae eligendi labore sequi libero ipsam?
-      Exercitationem incidunt inventore reiciendis fuga fugit aspernatur.
+    <div className="p-3 bg-white shadow md:p-6">
       <div className="mt-3">
         <InfiniteScroll
           dataLength={pagingData.items.length}

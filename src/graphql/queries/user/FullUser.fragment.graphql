@@ -1,5 +1,9 @@
 fragment FullUser on User {
   id
+  profileImage {
+    id
+  }
+
   username
   firstname
   lastname

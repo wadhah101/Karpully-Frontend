@@ -799,6 +799,26 @@ export type XyLocation = {
   lat: Scalars['Float'];
 };
 
+export type CreateCarpoolMutationVariables = Exact<{
+  departureLocationLongitude: Scalars['String'];
+  departureLocationLatitude: Scalars['String'];
+  nbrOfAvailablePlaces: Scalars['Float'];
+  description: Scalars['String'];
+  hasSmokePermission: Scalars['Boolean'];
+  departureDate: Scalars['DateTime'];
+  destinationLocationLongitude: Scalars['String'];
+  destinationLocationLatitude: Scalars['String'];
+}>;
+
+
+export type CreateCarpoolMutation = (
+  { __typename?: 'Mutation' }
+  & { createCarpool: (
+    { __typename?: 'Carpool' }
+    & Pick<Carpool, 'id'>
+  ) }
+);
+
 export type ConfirmEmailMutationVariables = Exact<{
   token: Scalars['String'];
   verificationToken: Scalars['String'];
@@ -993,6 +1013,10 @@ export const FullAdressFragmentDoc = gql`
 export const FullUserFragmentDoc = gql`
     fragment FullUser on User {
   id
+  profileImage {
+    id
+    name
+  }
   username
   firstname
   lastname
@@ -1015,6 +1039,48 @@ export const FullUserFragmentDoc = gql`
   }
 }
     `;
+export const CreateCarpoolDocument = gql`
+    mutation createCarpool($departureLocationLongitude: String!, $departureLocationLatitude: String!, $nbrOfAvailablePlaces: Float!, $description: String!, $hasSmokePermission: Boolean!, $departureDate: DateTime!, $destinationLocationLongitude: String!, $destinationLocationLatitude: String!) {
+  createCarpool(
+    createCarpoolInput: {departureLocationLongitude: $departureLocationLongitude, departureLocationLatitude: $departureLocationLatitude, nbrOfAvailablePlaces: $nbrOfAvailablePlaces, description: $description, hasSmokePermission: $hasSmokePermission, departureDate: $departureDate, destinationLocationLongitude: $destinationLocationLongitude, destinationLocationLatitude: $destinationLocationLatitude}
+  ) {
+    id
+  }
+}
+    `;
+export type CreateCarpoolMutationFn = Apollo.MutationFunction<CreateCarpoolMutation, CreateCarpoolMutationVariables>;
+
+/**
+ * __useCreateCarpoolMutation__
+ *
+ * To run a mutation, you first call `useCreateCarpoolMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateCarpoolMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createCarpoolMutation, { data, loading, error }] = useCreateCarpoolMutation({
+ *   variables: {
+ *      departureLocationLongitude: // value for 'departureLocationLongitude'
+ *      departureLocationLatitude: // value for 'departureLocationLatitude'
+ *      nbrOfAvailablePlaces: // value for 'nbrOfAvailablePlaces'
+ *      description: // value for 'description'
+ *      hasSmokePermission: // value for 'hasSmokePermission'
+ *      departureDate: // value for 'departureDate'
+ *      destinationLocationLongitude: // value for 'destinationLocationLongitude'
+ *      destinationLocationLatitude: // value for 'destinationLocationLatitude'
+ *   },
+ * });
+ */
+export function useCreateCarpoolMutation(baseOptions?: Apollo.MutationHookOptions<CreateCarpoolMutation, CreateCarpoolMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateCarpoolMutation, CreateCarpoolMutationVariables>(CreateCarpoolDocument, options);
+      }
+export type CreateCarpoolMutationHookResult = ReturnType<typeof useCreateCarpoolMutation>;
+export type CreateCarpoolMutationResult = Apollo.MutationResult<CreateCarpoolMutation>;
+export type CreateCarpoolMutationOptions = Apollo.BaseMutationOptions<CreateCarpoolMutation, CreateCarpoolMutationVariables>;
 export const ConfirmEmailDocument = gql`
     mutation confirmEmail($token: String!, $verificationToken: String!, $userId: Float!) {
   confirmEmail(
