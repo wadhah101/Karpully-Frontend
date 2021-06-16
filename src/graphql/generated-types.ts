@@ -927,12 +927,14 @@ export type CarpoolsQuery = (
       & Pick<Carpool, 'id' | 'nbrOfAvailablePlaces' | 'description'>
       & { departureLocation: (
         { __typename?: 'Location' }
+        & Pick<Location, 'display_name' | 'lat' | 'lon'>
         & { address?: Maybe<(
           { __typename?: 'Address' }
           & FullAdressFragment
         )> }
       ), destinationLocation: (
         { __typename?: 'Location' }
+        & Pick<Location, 'lat' | 'lon' | 'display_name'>
         & { address?: Maybe<(
           { __typename?: 'Address' }
           & FullAdressFragment
@@ -946,6 +948,50 @@ export type CarpoolsQuery = (
       & Pick<Meta, 'currentPage' | 'itemCount'>
     ) }
   ) }
+);
+
+export type SearchByPromixityDepartureQueryVariables = Exact<{
+  lat: Scalars['Float'];
+  lon: Scalars['Float'];
+  radius: Scalars['Float'];
+}>;
+
+
+export type SearchByPromixityDepartureQuery = (
+  { __typename?: 'Query' }
+  & { carpoolsByProximity: Array<(
+    { __typename?: 'Carpool' }
+    & Pick<Carpool, 'id'>
+    & { destinationLocation: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'display_name'>
+    ), departureLocation: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'display_name'>
+    ) }
+  )> }
+);
+
+export type SearchByPromixityDestinationQueryVariables = Exact<{
+  lat: Scalars['Float'];
+  lon: Scalars['Float'];
+  radius: Scalars['Float'];
+}>;
+
+
+export type SearchByPromixityDestinationQuery = (
+  { __typename?: 'Query' }
+  & { carpoolsByProximity: Array<(
+    { __typename?: 'Carpool' }
+    & Pick<Carpool, 'id'>
+    & { destinationLocation: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'display_name'>
+    ), departureLocation: (
+      { __typename?: 'Location' }
+      & Pick<Location, 'display_name'>
+    ) }
+  )> }
 );
 
 export type FullUserFragment = (
@@ -1283,11 +1329,17 @@ export const CarpoolsDocument = gql`
   carpools(where: {}, paginationInput: {page: $page, limit: $limit}) {
     items {
       departureLocation {
+        display_name
+        lat
+        lon
         address {
           ...FullAdress
         }
       }
       destinationLocation {
+        lat
+        lon
+        display_name
         address {
           ...FullAdress
         }
@@ -1336,6 +1388,96 @@ export function useCarpoolsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<C
 export type CarpoolsQueryHookResult = ReturnType<typeof useCarpoolsQuery>;
 export type CarpoolsLazyQueryHookResult = ReturnType<typeof useCarpoolsLazyQuery>;
 export type CarpoolsQueryResult = Apollo.QueryResult<CarpoolsQuery, CarpoolsQueryVariables>;
+export const SearchByPromixityDepartureDocument = gql`
+    query searchByPromixityDeparture($lat: Float!, $lon: Float!, $radius: Float!) {
+  carpoolsByProximity(
+    carpoolsProximityInput: {departureLoc: {lat: $lat, lon: $lon, radius: $radius}}
+  ) {
+    id
+    destinationLocation {
+      display_name
+    }
+    departureLocation {
+      display_name
+    }
+  }
+}
+    `;
+
+/**
+ * __useSearchByPromixityDepartureQuery__
+ *
+ * To run a query within a React component, call `useSearchByPromixityDepartureQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchByPromixityDepartureQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchByPromixityDepartureQuery({
+ *   variables: {
+ *      lat: // value for 'lat'
+ *      lon: // value for 'lon'
+ *      radius: // value for 'radius'
+ *   },
+ * });
+ */
+export function useSearchByPromixityDepartureQuery(baseOptions: Apollo.QueryHookOptions<SearchByPromixityDepartureQuery, SearchByPromixityDepartureQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SearchByPromixityDepartureQuery, SearchByPromixityDepartureQueryVariables>(SearchByPromixityDepartureDocument, options);
+      }
+export function useSearchByPromixityDepartureLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SearchByPromixityDepartureQuery, SearchByPromixityDepartureQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SearchByPromixityDepartureQuery, SearchByPromixityDepartureQueryVariables>(SearchByPromixityDepartureDocument, options);
+        }
+export type SearchByPromixityDepartureQueryHookResult = ReturnType<typeof useSearchByPromixityDepartureQuery>;
+export type SearchByPromixityDepartureLazyQueryHookResult = ReturnType<typeof useSearchByPromixityDepartureLazyQuery>;
+export type SearchByPromixityDepartureQueryResult = Apollo.QueryResult<SearchByPromixityDepartureQuery, SearchByPromixityDepartureQueryVariables>;
+export const SearchByPromixityDestinationDocument = gql`
+    query searchByPromixityDestination($lat: Float!, $lon: Float!, $radius: Float!) {
+  carpoolsByProximity(
+    carpoolsProximityInput: {destinationLoc: {lat: $lat, lon: $lon, radius: $radius}}
+  ) {
+    id
+    destinationLocation {
+      display_name
+    }
+    departureLocation {
+      display_name
+    }
+  }
+}
+    `;
+
+/**
+ * __useSearchByPromixityDestinationQuery__
+ *
+ * To run a query within a React component, call `useSearchByPromixityDestinationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchByPromixityDestinationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchByPromixityDestinationQuery({
+ *   variables: {
+ *      lat: // value for 'lat'
+ *      lon: // value for 'lon'
+ *      radius: // value for 'radius'
+ *   },
+ * });
+ */
+export function useSearchByPromixityDestinationQuery(baseOptions: Apollo.QueryHookOptions<SearchByPromixityDestinationQuery, SearchByPromixityDestinationQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SearchByPromixityDestinationQuery, SearchByPromixityDestinationQueryVariables>(SearchByPromixityDestinationDocument, options);
+      }
+export function useSearchByPromixityDestinationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SearchByPromixityDestinationQuery, SearchByPromixityDestinationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SearchByPromixityDestinationQuery, SearchByPromixityDestinationQueryVariables>(SearchByPromixityDestinationDocument, options);
+        }
+export type SearchByPromixityDestinationQueryHookResult = ReturnType<typeof useSearchByPromixityDestinationQuery>;
+export type SearchByPromixityDestinationLazyQueryHookResult = ReturnType<typeof useSearchByPromixityDestinationLazyQuery>;
+export type SearchByPromixityDestinationQueryResult = Apollo.QueryResult<SearchByPromixityDestinationQuery, SearchByPromixityDestinationQueryVariables>;
 export const NotificationsDocument = gql`
     query Notifications($page: Float!, $limit: Float!, $userId: Float!) {
   notifications(

@@ -14,6 +14,7 @@ import storage from 'redux-persist/lib/storage';
 // eslint-disable-next-line import/no-cycle
 import appReducer from './slices/appSlice';
 import authReducer from './slices/authSlice';
+import carpoolReducer from './slices/carpoolsSlice';
 
 const persistConfig = {
   key: 'root',
@@ -25,6 +26,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   app: appReducer,
   auth: authReducer,
+  carpool: carpoolReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
