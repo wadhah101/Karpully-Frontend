@@ -1,0 +1,8 @@
+query geoEncode($text: String!) {
+  geoEncoding(loc: { text: $text }) {
+    importance
+    lat
+    lon
+    display_name
+  }
+}

@@ -1,0 +1,7 @@
+query geoDecode($lat: String!, $lon: String!) {
+  geoDecoding(xy: { lat: $lat, lon: $lon }) {
+    display_name
+    lat
+    lon
+  }
+}

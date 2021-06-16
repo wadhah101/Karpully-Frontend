@@ -9,5 +9,8 @@ query searchByPromixityDeparture($lat: Float!, $lon: Float!, $radius: Float!) {
     departureLocation {
       display_name
     }
+    owner {
+      ...FullUser
+    }
   }
 }

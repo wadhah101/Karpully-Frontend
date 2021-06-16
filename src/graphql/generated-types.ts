@@ -968,6 +968,9 @@ export type SearchByPromixityDepartureQuery = (
     ), departureLocation: (
       { __typename?: 'Location' }
       & Pick<Location, 'display_name'>
+    ), owner: (
+      { __typename?: 'User' }
+      & FullUserFragment
     ) }
   )> }
 );
@@ -990,7 +993,37 @@ export type SearchByPromixityDestinationQuery = (
     ), departureLocation: (
       { __typename?: 'Location' }
       & Pick<Location, 'display_name'>
+    ), owner: (
+      { __typename?: 'User' }
+      & FullUserFragment
     ) }
+  )> }
+);
+
+export type GeoDecodeQueryVariables = Exact<{
+  lat: Scalars['String'];
+  lon: Scalars['String'];
+}>;
+
+
+export type GeoDecodeQuery = (
+  { __typename?: 'Query' }
+  & { geoDecoding: Array<(
+    { __typename?: 'Location' }
+    & Pick<Location, 'display_name' | 'lat' | 'lon'>
+  )> }
+);
+
+export type GeoEncodeQueryVariables = Exact<{
+  text: Scalars['String'];
+}>;
+
+
+export type GeoEncodeQuery = (
+  { __typename?: 'Query' }
+  & { geoEncoding: Array<(
+    { __typename?: 'Location' }
+    & Pick<Location, 'importance' | 'lat' | 'lon' | 'display_name'>
   )> }
 );
 
@@ -1400,9 +1433,12 @@ export const SearchByPromixityDepartureDocument = gql`
     departureLocation {
       display_name
     }
+    owner {
+      ...FullUser
+    }
   }
 }
-    `;
+    ${FullUserFragmentDoc}`;
 
 /**
  * __useSearchByPromixityDepartureQuery__
@@ -1445,9 +1481,12 @@ export const SearchByPromixityDestinationDocument = gql`
     departureLocation {
       display_name
     }
+    owner {
+      ...FullUser
+    }
   }
 }
-    `;
+    ${FullUserFragmentDoc}`;
 
 /**
  * __useSearchByPromixityDestinationQuery__
@@ -1478,6 +1517,82 @@ export function useSearchByPromixityDestinationLazyQuery(baseOptions?: Apollo.La
 export type SearchByPromixityDestinationQueryHookResult = ReturnType<typeof useSearchByPromixityDestinationQuery>;
 export type SearchByPromixityDestinationLazyQueryHookResult = ReturnType<typeof useSearchByPromixityDestinationLazyQuery>;
 export type SearchByPromixityDestinationQueryResult = Apollo.QueryResult<SearchByPromixityDestinationQuery, SearchByPromixityDestinationQueryVariables>;
+export const GeoDecodeDocument = gql`
+    query geoDecode($lat: String!, $lon: String!) {
+  geoDecoding(xy: {lat: $lat, lon: $lon}) {
+    display_name
+    lat
+    lon
+  }
+}
+    `;
+
+/**
+ * __useGeoDecodeQuery__
+ *
+ * To run a query within a React component, call `useGeoDecodeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGeoDecodeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGeoDecodeQuery({
+ *   variables: {
+ *      lat: // value for 'lat'
+ *      lon: // value for 'lon'
+ *   },
+ * });
+ */
+export function useGeoDecodeQuery(baseOptions: Apollo.QueryHookOptions<GeoDecodeQuery, GeoDecodeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GeoDecodeQuery, GeoDecodeQueryVariables>(GeoDecodeDocument, options);
+      }
+export function useGeoDecodeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GeoDecodeQuery, GeoDecodeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GeoDecodeQuery, GeoDecodeQueryVariables>(GeoDecodeDocument, options);
+        }
+export type GeoDecodeQueryHookResult = ReturnType<typeof useGeoDecodeQuery>;
+export type GeoDecodeLazyQueryHookResult = ReturnType<typeof useGeoDecodeLazyQuery>;
+export type GeoDecodeQueryResult = Apollo.QueryResult<GeoDecodeQuery, GeoDecodeQueryVariables>;
+export const GeoEncodeDocument = gql`
+    query geoEncode($text: String!) {
+  geoEncoding(loc: {text: $text}) {
+    importance
+    lat
+    lon
+    display_name
+  }
+}
+    `;
+
+/**
+ * __useGeoEncodeQuery__
+ *
+ * To run a query within a React component, call `useGeoEncodeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGeoEncodeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGeoEncodeQuery({
+ *   variables: {
+ *      text: // value for 'text'
+ *   },
+ * });
+ */
+export function useGeoEncodeQuery(baseOptions: Apollo.QueryHookOptions<GeoEncodeQuery, GeoEncodeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GeoEncodeQuery, GeoEncodeQueryVariables>(GeoEncodeDocument, options);
+      }
+export function useGeoEncodeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GeoEncodeQuery, GeoEncodeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GeoEncodeQuery, GeoEncodeQueryVariables>(GeoEncodeDocument, options);
+        }
+export type GeoEncodeQueryHookResult = ReturnType<typeof useGeoEncodeQuery>;
+export type GeoEncodeLazyQueryHookResult = ReturnType<typeof useGeoEncodeLazyQuery>;
+export type GeoEncodeQueryResult = Apollo.QueryResult<GeoEncodeQuery, GeoEncodeQueryVariables>;
 export const NotificationsDocument = gql`
     query Notifications($page: Float!, $limit: Float!, $userId: Float!) {
   notifications(
