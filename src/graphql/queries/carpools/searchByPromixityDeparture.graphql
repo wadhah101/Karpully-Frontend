@@ -2,15 +2,6 @@ query searchByPromixityDeparture($lat: Float!, $lon: Float!, $radius: Float!) {
   carpoolsByProximity(
     carpoolsProximityInput: { departureLoc: { lat: $lat, lon: $lon, radius: $radius } }
   ) {
-    id
-    destinationLocation {
-      display_name
-    }
-    departureLocation {
-      display_name
-    }
-    owner {
-      ...FullUser
-    }
+    ...FullCarpool
   }
 }

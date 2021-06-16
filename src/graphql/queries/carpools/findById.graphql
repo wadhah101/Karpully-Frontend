@@ -1,0 +1,5 @@
+query findCarpoolById($id: Int!) {
+  carpool(id: $id) {
+    ...FullCarpool
+  }
+}

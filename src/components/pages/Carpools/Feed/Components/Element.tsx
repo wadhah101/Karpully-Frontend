@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
 
+import { AppPortals } from '@comp/Dialogs/data';
 import { LocationMarkerIcon, ClockIcon } from '@heroicons/react/solid';
+import { openDialog } from '@utils/redux/slices/appSlice';
 import { setCurrentCarpool } from '@utils/redux/slices/carpoolsSlice';
 import dayjs from 'dayjs';
 import { useDispatch } from 'react-redux';
@@ -20,7 +22,10 @@ const CarpoolFeedElement: React.FunctionComponent<ICarpoolFeedElementProps> = ({
   return (
     <button
       type="button"
-      onClick={() => dispatch(setCurrentCarpool(carpool))}
+      onClick={() => {
+        dispatch(setCurrentCarpool(carpool));
+        dispatch(openDialog(AppPortals.CarpoolView));
+      }}
       className="flex flex-col p-3 transition-shadow border cursor-pointer hover:shadow "
     >
       <div className="flex-grow">

@@ -912,6 +912,29 @@ export type FullAdressFragment = (
   & Pick<Address, 'road' | 'neighbourhood' | 'suburb' | 'village' | 'town' | 'city' | 'region' | 'county' | 'state' | 'country' | 'name'>
 );
 
+export type FullCarpoolFragment = (
+  { __typename?: 'Carpool' }
+  & Pick<Carpool, 'id' | 'nbrOfAvailablePlaces' | 'description'>
+  & { departureLocation: (
+    { __typename?: 'Location' }
+    & Pick<Location, 'display_name' | 'lat' | 'lon'>
+    & { address?: Maybe<(
+      { __typename?: 'Address' }
+      & FullAdressFragment
+    )> }
+  ), destinationLocation: (
+    { __typename?: 'Location' }
+    & Pick<Location, 'lat' | 'lon' | 'display_name'>
+    & { address?: Maybe<(
+      { __typename?: 'Address' }
+      & FullAdressFragment
+    )> }
+  ), owner: (
+    { __typename?: 'User' }
+    & FullUserFragment
+  ) }
+);
+
 export type CarpoolsQueryVariables = Exact<{
   page: Scalars['Float'];
   limit: Scalars['Float'];
@@ -924,29 +947,24 @@ export type CarpoolsQuery = (
     { __typename?: 'PaginatedCarpool' }
     & { items: Array<(
       { __typename?: 'Carpool' }
-      & Pick<Carpool, 'id' | 'nbrOfAvailablePlaces' | 'description'>
-      & { departureLocation: (
-        { __typename?: 'Location' }
-        & Pick<Location, 'display_name' | 'lat' | 'lon'>
-        & { address?: Maybe<(
-          { __typename?: 'Address' }
-          & FullAdressFragment
-        )> }
-      ), destinationLocation: (
-        { __typename?: 'Location' }
-        & Pick<Location, 'lat' | 'lon' | 'display_name'>
-        & { address?: Maybe<(
-          { __typename?: 'Address' }
-          & FullAdressFragment
-        )> }
-      ), owner: (
-        { __typename?: 'User' }
-        & FullUserFragment
-      ) }
+      & FullCarpoolFragment
     )>, meta: (
       { __typename?: 'Meta' }
       & Pick<Meta, 'currentPage' | 'itemCount'>
     ) }
+  ) }
+);
+
+export type FindCarpoolByIdQueryVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type FindCarpoolByIdQuery = (
+  { __typename?: 'Query' }
+  & { carpool: (
+    { __typename?: 'Carpool' }
+    & FullCarpoolFragment
   ) }
 );
 
@@ -961,17 +979,7 @@ export type SearchByPromixityDepartureQuery = (
   { __typename?: 'Query' }
   & { carpoolsByProximity: Array<(
     { __typename?: 'Carpool' }
-    & Pick<Carpool, 'id'>
-    & { destinationLocation: (
-      { __typename?: 'Location' }
-      & Pick<Location, 'display_name'>
-    ), departureLocation: (
-      { __typename?: 'Location' }
-      & Pick<Location, 'display_name'>
-    ), owner: (
-      { __typename?: 'User' }
-      & FullUserFragment
-    ) }
+    & FullCarpoolFragment
   )> }
 );
 
@@ -986,17 +994,7 @@ export type SearchByPromixityDestinationQuery = (
   { __typename?: 'Query' }
   & { carpoolsByProximity: Array<(
     { __typename?: 'Carpool' }
-    & Pick<Carpool, 'id'>
-    & { destinationLocation: (
-      { __typename?: 'Location' }
-      & Pick<Location, 'display_name'>
-    ), departureLocation: (
-      { __typename?: 'Location' }
-      & Pick<Location, 'display_name'>
-    ), owner: (
-      { __typename?: 'User' }
-      & FullUserFragment
-    ) }
+    & FullCarpoolFragment
   )> }
 );
 
@@ -1118,6 +1116,33 @@ export const FullUserFragmentDoc = gql`
   }
 }
     `;
+export const FullCarpoolFragmentDoc = gql`
+    fragment FullCarpool on Carpool {
+  departureLocation {
+    display_name
+    lat
+    lon
+    address {
+      ...FullAdress
+    }
+  }
+  destinationLocation {
+    lat
+    lon
+    display_name
+    address {
+      ...FullAdress
+    }
+  }
+  id
+  nbrOfAvailablePlaces
+  description
+  owner {
+    ...FullUser
+  }
+}
+    ${FullAdressFragmentDoc}
+${FullUserFragmentDoc}`;
 export const CreateCarpoolDocument = gql`
     mutation createCarpool($departureLocationLongitude: String!, $departureLocationLatitude: String!, $nbrOfAvailablePlaces: Float!, $description: String!, $hasSmokePermission: Boolean!, $departureDate: DateTime!, $destinationLocationLongitude: String!, $destinationLocationLatitude: String!) {
   createCarpool(
@@ -1361,28 +1386,7 @@ export const CarpoolsDocument = gql`
     query carpools($page: Float!, $limit: Float!) {
   carpools(where: {}, paginationInput: {page: $page, limit: $limit}) {
     items {
-      departureLocation {
-        display_name
-        lat
-        lon
-        address {
-          ...FullAdress
-        }
-      }
-      destinationLocation {
-        lat
-        lon
-        display_name
-        address {
-          ...FullAdress
-        }
-      }
-      id
-      nbrOfAvailablePlaces
-      description
-      owner {
-        ...FullUser
-      }
+      ...FullCarpool
     }
     meta {
       currentPage
@@ -1390,8 +1394,7 @@ export const CarpoolsDocument = gql`
     }
   }
 }
-    ${FullAdressFragmentDoc}
-${FullUserFragmentDoc}`;
+    ${FullCarpoolFragmentDoc}`;
 
 /**
  * __useCarpoolsQuery__
@@ -1421,24 +1424,50 @@ export function useCarpoolsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<C
 export type CarpoolsQueryHookResult = ReturnType<typeof useCarpoolsQuery>;
 export type CarpoolsLazyQueryHookResult = ReturnType<typeof useCarpoolsLazyQuery>;
 export type CarpoolsQueryResult = Apollo.QueryResult<CarpoolsQuery, CarpoolsQueryVariables>;
+export const FindCarpoolByIdDocument = gql`
+    query findCarpoolById($id: Int!) {
+  carpool(id: $id) {
+    ...FullCarpool
+  }
+}
+    ${FullCarpoolFragmentDoc}`;
+
+/**
+ * __useFindCarpoolByIdQuery__
+ *
+ * To run a query within a React component, call `useFindCarpoolByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindCarpoolByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFindCarpoolByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useFindCarpoolByIdQuery(baseOptions: Apollo.QueryHookOptions<FindCarpoolByIdQuery, FindCarpoolByIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FindCarpoolByIdQuery, FindCarpoolByIdQueryVariables>(FindCarpoolByIdDocument, options);
+      }
+export function useFindCarpoolByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindCarpoolByIdQuery, FindCarpoolByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FindCarpoolByIdQuery, FindCarpoolByIdQueryVariables>(FindCarpoolByIdDocument, options);
+        }
+export type FindCarpoolByIdQueryHookResult = ReturnType<typeof useFindCarpoolByIdQuery>;
+export type FindCarpoolByIdLazyQueryHookResult = ReturnType<typeof useFindCarpoolByIdLazyQuery>;
+export type FindCarpoolByIdQueryResult = Apollo.QueryResult<FindCarpoolByIdQuery, FindCarpoolByIdQueryVariables>;
 export const SearchByPromixityDepartureDocument = gql`
     query searchByPromixityDeparture($lat: Float!, $lon: Float!, $radius: Float!) {
   carpoolsByProximity(
     carpoolsProximityInput: {departureLoc: {lat: $lat, lon: $lon, radius: $radius}}
   ) {
-    id
-    destinationLocation {
-      display_name
-    }
-    departureLocation {
-      display_name
-    }
-    owner {
-      ...FullUser
-    }
+    ...FullCarpool
   }
 }
-    ${FullUserFragmentDoc}`;
+    ${FullCarpoolFragmentDoc}`;
 
 /**
  * __useSearchByPromixityDepartureQuery__
@@ -1474,19 +1503,10 @@ export const SearchByPromixityDestinationDocument = gql`
   carpoolsByProximity(
     carpoolsProximityInput: {destinationLoc: {lat: $lat, lon: $lon, radius: $radius}}
   ) {
-    id
-    destinationLocation {
-      display_name
-    }
-    departureLocation {
-      display_name
-    }
-    owner {
-      ...FullUser
-    }
+    ...FullCarpool
   }
 }
-    ${FullUserFragmentDoc}`;
+    ${FullCarpoolFragmentDoc}`;
 
 /**
  * __useSearchByPromixityDestinationQuery__

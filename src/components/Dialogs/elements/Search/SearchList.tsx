@@ -9,9 +9,8 @@ interface SearchListProps {
   data: Partial<Carpool>[];
 }
 
-const SearchList: React.FC<SearchListProps> = ({ title, data }) => {
-  console.log('search list', data);
-  return data && data.length ? (
+const SearchList: React.FC<SearchListProps> = ({ title, data }) =>
+  data && data.length ? (
     <div>
       <h3 className="font-bold text-black text-opacity-70">{title}</h3>
       <ul className="grid gap-2 mt-3">
@@ -23,6 +22,5 @@ const SearchList: React.FC<SearchListProps> = ({ title, data }) => {
       </ul>
     </div>
   ) : null;
-};
 
 export default SearchList;

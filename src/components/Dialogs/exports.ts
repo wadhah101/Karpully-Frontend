@@ -1,4 +1,5 @@
 import Controller from './controller';
+import CarpoolView from './elements/CarpoolView';
 import CompleteInfo from './elements/CompleteInfo';
 import Confirm from './elements/ConfirmEmail';
 import Login from './elements/Login';
@@ -7,4 +8,14 @@ import Search from './elements/Search';
 import SignUp from './elements/SignUp';
 import SmallText from './SmallText';
 
-export { MapSearch, Confirm, Login, SignUp, Search, Controller, SmallText, CompleteInfo };
+export {
+  CarpoolView,
+  MapSearch,
+  Confirm,
+  Login,
+  SignUp,
+  Search,
+  Controller,
+  SmallText,
+  CompleteInfo,
+};

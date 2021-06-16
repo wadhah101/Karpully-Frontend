@@ -1,29 +1,7 @@
 query carpools($page: Float!, $limit: Float!) {
   carpools(where: {}, paginationInput: { page: $page, limit: $limit }) {
     items {
-      departureLocation {
-        display_name
-        lat
-        lon
-        address {
-          ...FullAdress
-        }
-      }
-
-      destinationLocation {
-        lat
-        lon
-        display_name
-        address {
-          ...FullAdress
-        }
-      }
-      id
-      nbrOfAvailablePlaces
-      description
-      owner {
-        ...FullUser
-      }
+      ...FullCarpool
     }
     meta {
       currentPage

@@ -3,6 +3,7 @@ import * as React from 'react';
 import { AppPortals } from '@comp/Dialogs/data';
 import { Carpool } from '@graphql/generated-types';
 import { openDialog } from '@utils/redux/slices/appSlice';
+import { setCurrentCarpool } from '@utils/redux/slices/carpoolsSlice';
 import dayjs from 'dayjs';
 import { useDispatch } from 'react-redux';
 
@@ -16,7 +17,10 @@ const SearchResultElement: React.FunctionComponent<ISearchResultElementProps> = 
   const formatHour = dayjs(data.departureDate).format('HH:mm');
   return (
     <button
-      onClick={() => dispatch(openDialog(AppPortals.MapSearch))}
+      onClick={() => {
+        dispatch(setCurrentCarpool(data));
+        dispatch(openDialog(AppPortals.CarpoolView));
+      }}
       type="button"
       className="block w-full p-3 text-left transition-colors bg-white border rounded shadow-sm hover:bg-gray-100"
     >

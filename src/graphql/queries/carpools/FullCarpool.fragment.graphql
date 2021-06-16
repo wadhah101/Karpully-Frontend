@@ -1,0 +1,25 @@
+fragment FullCarpool on Carpool {
+  departureLocation {
+    display_name
+    lat
+    lon
+    address {
+      ...FullAdress
+    }
+  }
+
+  destinationLocation {
+    lat
+    lon
+    display_name
+    address {
+      ...FullAdress
+    }
+  }
+  id
+  nbrOfAvailablePlaces
+  description
+  owner {
+    ...FullUser
+  }
+}

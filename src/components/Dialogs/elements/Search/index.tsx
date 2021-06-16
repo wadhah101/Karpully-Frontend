@@ -41,6 +41,7 @@ const SeeAllSearch: React.FC<{ current: string }> = ({ current }) => {
   );
 };
 
+// TODO split into components
 const SearchDialog: React.FC<BaseDiagleProps> = () => {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -84,7 +85,7 @@ const SearchDialog: React.FC<BaseDiagleProps> = () => {
 
       <hr />
 
-      <div className="p-6 bg-green-300 min-h-[15rem] max-h-[33rem] overflow-auto text-left">
+      <div className="p-6 grid gap-4 min-h-[15rem] max-h-[33rem] overflow-auto text-left">
         {showResult && (
           <>
             <SearchList

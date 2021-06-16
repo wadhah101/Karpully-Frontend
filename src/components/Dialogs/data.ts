@@ -10,6 +10,7 @@ export enum AppPortals {
   Confirm = 'confirm',
   CompleteInfo = 'completeInfo',
   MapSearch = 'mapSearch',
+  CarpoolView = 'carpoolView',
 }
 
 export interface BaseDiagleProps {
@@ -26,6 +27,7 @@ export const PORTALS_WITH_DATA: [AppPortals, () => React.ComponentType<BaseDiagl
   [AppPortals.Confirm, () => Portals.Confirm],
   [AppPortals.CompleteInfo, () => Portals.CompleteInfo],
   [AppPortals.MapSearch, () => Portals.MapSearch],
+  [AppPortals.CarpoolView, () => Portals.CarpoolView],
 ];
 
 export const formikErrorFactory = (
